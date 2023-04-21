@@ -11,12 +11,12 @@ breadcrumbText: JavaScript
 
 ## Getting Started
 
-- [User Guide](user-guide/index.md)
+- [User Guide]({{site.js}}user-guide/index.md)
 
 ## API Reference
 
-- [API Reference](api-reference/index.md)
+- [API Reference]({{site.js}}api-reference/index.md)
 
 ## Release Notes
 
-- [Version 1.x](release-notes/javascript-1.md)
+- [Version 1.x]({{site.js}}release-notes/javascript-1.md)
