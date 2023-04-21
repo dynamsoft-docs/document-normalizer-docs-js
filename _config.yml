@@ -17,19 +17,18 @@ dcv_cpp_api: /capture-vision/docs/server/programming/cplusplus/api-reference/
 
 useVersionTree: true
 
-assets: /document-normalizer/docs/assets/
-edit_icon: /document-normalizer/docs/assets/img-icon/edit-icon.png
-smile_icon: /document-normalizer/docs/assets/img-icon/icon-smile.png
-sad_icon: /document-normalizer/docs/assets/img-icon/icon-sad.png
+assets: /document-normalizer/docs/core/assets/
+edit_icon: /document-normalizer/docs/core/assets/img-icon/edit-icon.png
+smile_icon: /document-normalizer/docs/core/assets/img-icon/icon-smile.png
+sad_icon: /document-normalizer/docs/core/assets/img-icon/icon-sad.png
 
-baseurl: "/document-normalizer/docs"
+baseurl: "/document-normalizer/docs/core"
 
 download: "/document-normalizer/downloads/1000023-confirmation/"
 
 plugins:
   - jemoji
   - jekyll-sitemap
-
 
 defaults:
   - scope:
