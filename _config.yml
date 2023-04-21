@@ -1,8 +1,8 @@
 repository: dynamsoft-docs/document-normalizer-docs
 repositoryUrl: https://github.com/dynamsoft-docs/document-normalizer-docs/blob/main
 docFullPath: https://www.dynamsoft.com/document-normalizer/docs
-firstLevelUrl: /document-normalizer/docs
-docHomePage: /document-normalizer/docs/introduction/
+firstLevelUrl: /document-normalizer/docs/core
+docHomePage: /document-normalizer/docs/core/introduction/
 
 js: /document-normalizer/docs/web/programming/javascript/
 js_api: /document-normalizer/docs/web/programming/javascript/api-reference/
@@ -10,8 +10,8 @@ js_release_notes: /document-normalizer/docs/web/programming/javascript/release-n
 js_user_guide: /document-normalizer/docs/web/programming/javascript/user-guide/
 
 enumerations_old: /document-normalizer/docs/web/programming/enumerations/
-parameters_reference: /document-normalizer/docs/parameters/reference/
-release_notes: /document-normalizer/docs/release-notes/
+parameters_reference: /document-normalizer/docs/core/parameters/reference/
+release_notes: /document-normalizer/docs/core/release-notes/
 
 dcv_cpp_api: /capture-vision/docs/server/programming/cplusplus/api-reference/
 
