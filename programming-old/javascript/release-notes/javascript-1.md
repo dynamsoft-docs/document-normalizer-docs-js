@@ -6,7 +6,7 @@ keywords: release notes, javascript
 needAutoGenerateSidebar: true
 needGenerateH3Content: false
 noTitleIndex: true
-permalink: /programming/javascript/javascript-1.html
+permalink: /programming/javascript/release-notes/javascript-1.html
 ---
 
 # Release Notes for JavaScript SDK
