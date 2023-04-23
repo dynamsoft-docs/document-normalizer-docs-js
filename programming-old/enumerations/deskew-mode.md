@@ -3,6 +3,7 @@ layout: default-layout
 title: DeskewMode Enumeration
 keywords: DeskewMode, enumerations, enums, documentation
 description: Dynamsoft Document Normalizer - DeskewMode Enumeration
+permalink: /programming/enumerations/deskew-mode.html
 ---
 
 # DeskewMode

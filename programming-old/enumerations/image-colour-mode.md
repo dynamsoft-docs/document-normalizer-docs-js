@@ -3,6 +3,7 @@ layout: default-layout
 title: ImageColourMode Enumeration
 keywords: imagecolourmode, enumerations, enums, documentation
 description: Dynamsoft Document Normalizer - ImageColourMode Enumeration
+permalink: /programming/enumerations/image-colour-mode.html
 ---
 
 # ImageColourMode

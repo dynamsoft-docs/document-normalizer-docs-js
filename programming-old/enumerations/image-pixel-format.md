@@ -3,6 +3,7 @@ layout: default-layout
 title: ImagePixelFormat Enumeration
 keywords: imagepixelformat, enumerations, enums, documentation
 description: Dynamsoft Document Normalizer - ImagePixelFormat Enumeration
+permalink: /programming/enumerations/image-pixel-format.html
 ---
 
 # ImagePixelFormat

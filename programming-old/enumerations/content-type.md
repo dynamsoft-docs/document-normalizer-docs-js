@@ -3,6 +3,7 @@ layout: default-layout
 title: ContentType Enumeration
 keywords: contenttype, enumerations, enums, documentation
 description: Dynamsoft Document Normalizer - ContentType Enumeration
+permalink: /programming/enumerations/content-type.html
 ---
 
 # ContentType
