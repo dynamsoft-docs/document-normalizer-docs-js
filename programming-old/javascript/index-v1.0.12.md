@@ -12,11 +12,11 @@ permalink: /programming/javascript/index-v1.0.12.html
 
 ## Getting Started
 
-- [User Guide](user-guide/index.md)
+- [User Guide](user-guide/index-v1.0.12.md)
 
 ## API Reference
 
-- [API Reference](api-reference/index.md)
+- [API Reference](api-reference/index-v1.0.12.md)
 
 ## Release Notes
 
