@@ -10,7 +10,6 @@ js_api: /document-normalizer/docs/web/programming/javascript/api-reference/
 js_release_notes: /document-normalizer/docs/web/programming/javascript/release-notes/
 js_user_guide: /document-normalizer/docs/web/programming/javascript/user-guide/
 
-parameters: /document-normalizer/docs/parameters/
 enumerations: /document-normalizer/docs/web/programming/enumerations/
 parameters_reference: /document-normalizer/docs/core/parameters/reference/
 release_notes: /document-normalizer/docs/core/release-notes/
