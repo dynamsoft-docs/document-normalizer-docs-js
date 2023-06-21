@@ -15,6 +15,7 @@
     <div class="container" id="categoryMenuTree">
         <div class="row">
             <div class="sideBar col-xs-12 col-lg-3 hide-xs hide-sm hide-md">
+
                 <div id="sideBarCnt">
                     <div class="docSearchPart" style="margin-top: 30px;">
                         <input id="txtSearch" class="search" type="text">
@@ -31,12 +32,14 @@
                 </div>
                 <div class="main row showRightSideMenu" id="articleContent" data-needh3="{{page.needGenerateH3Content}}">
                     <div class="content markdown-body headCounter {{noTitleIndex}} col-xs-12 col-md-12 col-lg-9 col-xl-10 showRightSideMenu" style="margin-bottom: 20px;">
+
                         {{ content }}
-                        
+
                     </div>
                     <div class="rightSideMenu col-xs-12 col-md-12 col-lg-3 col-xl-2  hide-md hide-sm hide-xs showRightSideMenu">
                         <div id="compatibleInfo">
                             <p>This page is compatible for:</p>
+
                             <p class="compatibleCurVersion">Version 1.0</p>
                         </div>
                         <div id="feedbackFooter" style="color: #306877;">
@@ -59,11 +62,13 @@
             </div>
         </div>
     </div>
+
     <div class="history list">
         <div class="container">
             <div class="col-xs-12">
                 {%- include liquid_autoGenerateHistoryList.html -%}
                 {%- include auto-version-list.html -%}
+
             </div>
         </div>
     </div>
@@ -71,23 +76,25 @@
         {%- include page_footer.html -%}
     </div>
 
-    <iframe id="sideBarIframe" src="{{ site.firstLevelUrl }}/Hide_Tree_Page.html" allow="" height="0" frameborder="0"></iframe>
-
-    <script type="text/javascript">anchors.add();</script>
-
+    <iframe id="sideBarIframe" src="{{site.firstLevelUrl}}/Hide_Tree_Page.html" allow="" height="0" frameborder="0"></iframe>
+    <script type="text/javascript">
+        anchors.add();
+    </script>
 
     <script type="text/javascript">
         UrlReplace();
     </script>
+
     
     <script type="text/javascript">
         FullTreeMenuList('{{ page.needAutoGenerateSidebar }}', '{{ page.needGenerateH3Content }}', '{{ page.pageStartVer }}', '{{ site.useVersionTree }}');
+
     </script>
 
     {%- include livehelp.html -%}
 
-
     <!-- for ddn -->
+
     <script type="text/javascript">
         $(document).ready(function() {
 
@@ -98,8 +105,6 @@
             })
         })
     </script>
-
-
     <!-- Google Tag Manager -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-538F83"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

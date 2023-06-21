@@ -45,5 +45,3 @@ Dynamsoft Document Normalizer 1.0 version supports quad boundary detection and i
   - Contrast
   - Brightness
 
-
-

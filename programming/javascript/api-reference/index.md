@@ -11,124 +11,120 @@ noTitleIndex: true
 
 # API Reference - JavaScript
 
-The primary class of the library is `DocumentNormalizer`. The following code snippets shows the basic usage. 
+## Primary Class
 
-* Detect and normalize a still image
+- [`CaptureVisionRouter`]({{ site.dcv_js_api }}capture-vision-router/capture-vision-router.html)
 
-```js
-let normalizer = await Dynamsoft.DDN.DocumentNormalizer.createInstance();
-let quads = await normalizer.detectQuad(imagePath);
-let normalizedImageResult = await normalizer.normalize(imagePath, { quad: quads[0].location });
-if(normalizedImageResult) {
-    // Show the normalized image in a Canvas
-    const cvs = normalizedImageResult.image.toCanvas();
-    document.querySelector("#normalized-result").appendChild(cvs);
-}
-// Download the normalized image
-let img = await normalizedImageResult.saveToFile("example.png", true);
-```
+## Input
 
-* Detect and normalize continuous video frames
+<!-- - [`DirectoryFetcher`]({{ site.dcv_js_api }}utility/directory-fetcher.html) -->
+- [`CameraEnhancer`]({{ site.dce_js_api }})
+- [`ImageSourceAdapter`]({{ site.dcv_js_api }}core/basic-structures/image-source-adapter.html)
+<!-- - [`ProactiveImageSourceAdapter`]({{ site.dcv_js_api }}utility/proactive-image-source-adapter.html) -->
 
-```js
-(async function() {
-    cameraEnhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance();
-    normalizer = await Dynamsoft.DDN.DocumentNormalizer.createInstance();
-    await normalizer.setImageSource(cameraEnhancer, { resultsHighlightBaseShapes: Dynamsoft.DCE.DrawingItem });
+## Final Results
 
-    await document.getElementById('div-ui-container').append(cameraEnhancer.getUIElement());
-    
-    // Triggered when a quadrilateral is detected from a video frame.
-    normalizer.onQuadDetected = (quadResults, sourceImage) => {
-        console.log(quadResults);
-    };
+- [`CapturedResultReceiver`]({{ site.dcv_js_api }}core/basic-structures/captured-result-receiver.html)
+- [`CapturedResultItem`]({{ site.dcv_js_api }}core/basic-structures/captured-result-item.html)
+- [`CapturedResult`]({{ site.dcv_js_api }}core/basic-structures/captured-result.html)
+<!-- - [`CapturedResultArray`]({{ site.dcv_js_api }}core/basic-structures/captured-result-array.html) -->
+- [`DetectedQuadResultItem`]({{ site.js_api }}detected-quad-result-item.html)
+- [`DetectedQuadsResult`]({{ site.js_api }}detected-quads-result.html)
+<!-- - [`DetectedQuadsResultArray`]({{ site.js_api }}detected-quads-result-array.html) -->
+- [`NormalizedImageResultItem`]({{ site.js_api }}normalized-image-result-item.html)
+- [`NormalizedImagesResult`]({{ site.js_api }}normalized-images-result.html)
+<!-- - [`NormalizedImagesResultArray`]({{ site.js_api }}normalized-images-result-array.html) -->
+- [`RawImageResultItem`]({{ site.dcv_js_api }}core/basic-structures/raw-image-result-item.html)
 
-    // Click the button to pause the video and edit a quadrilateral.
-    document.getElementById('confirmQuadForNormalization').addEventListener("click", () => {
-        normalizer.confirmQuadForNormalization();
-    });
+<!-- 
+## Final Results Filters
 
-    // Click the button to normalize with the selected/adjusted quadrilateral.
-    document.getElementById('normalizeWithConfirmedQuad').addEventListener("click", async () => {
-        const normalizedImageResult = await normalizer.normalizeWithConfirmedQuad();
-        if(normalizedImageResult) {
-        // Show the normalized image in a Canvas
-        const cvs = normalizedImageResult.image.toCanvas();
-        document.querySelector("#normalized-result").appendChild(cvs);
-        console.log(normalizedImageResult);
-        }
-    });
-    // Start scanning document boundaries.
-    await normalizer.startScanning(true);
-})();
-```
+- [`CapturedResultFilter`]({{ site.dcv_js_api }}core/basic-structures/captured-result-filter.html)
+- [`MultiFrameResultCrossFilter`]({{ site.dcv_js_api }}utility/multi-frame-result-cross-filter.html) -->
 
-The APIs for this class include
+## Intermediate Results
 
-## Initialization Control
+- [`IntermediateResultManager`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result-manager.html)
+- [`IntermediateResultReceiver`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result-receiver.html)
+- [`ObservationParameters`]({{ site.dcv_js_api }}core/intermediate-results/observed-parameters.html)
+- [`IntermediateResultExtraInfo`]({{ site.dcv_js_api }}core/structs/intermediate-result-extra-info.html)
+- [`IntermediateResult`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result.html)
+- [`IntermediateResultUnit`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result-unit.html)
+- [`PredetectedRegionsUnit`]({{ site.dcv_js_api }}core/intermediate-results/predetected-regions-unit.html)
+- [`DetectedQuadsUnit`]({{ site.js_api }}detected-quads-unit.html)
+- [`NormalizedImagesUnit`]({{ site.js_api }}normalized-image-unit.html)
+- [`RegionObjectElement`]({{ site.dcv_js_api }}core/intermediate-results/region-object-element.html)
+- [`PredetectedRegionElement`]({{ site.dcv_js_api }}core/intermediate-results/predetected-region-element.html)
+- [`DetectedQuadElement`]({{ site.js_api }}detected-quad-element.html)
+- [`NormalizedImageElement`]({{ site.js_api }}normalized-image-element.html)
+- [`BinaryImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/binary-image-unit.html)
+- [`CandidateQuadEdgesUnit`]({{ site.js_api }}candidate-quad-edges-unit.html)
+- [`ColourImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/colour-image-unit.html)
+- [`ContoursUnit`]({{ site.dcv_js_api }}core/intermediate-results/contours-unit.html)
+- [`CornersUnit`]({{ site.js_api }}corners-unit.html)
+- [`EnhancedGrayscaleImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/enhanced-grayscale-image-unit.html)
+- [`GrayscaleImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/grayscale-image-unit.html)
+- [`LineSegmentsUnit`]({{ site.dcv_js_api }}core/intermediate-results/line-segments-unit.html)
+- [`LongLinesUnit`]({{ site.js_api }}long-lines-unit.html)
+- [`ScaledDownColourImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/scaled-down-colour-image-unit.html)
+- [`TextRemovedBinaryImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/text-removed-binary-image-unit.html)
+- [`TextZonesUnit`]({{ site.dcv_js_api }}core/intermediate-results/text-zones-unit.html)
+- [`TextureDetectionResultUnit`]({{ site.dcv_js_api }}core/intermediate-results/texture-detection-result-unit.html)
+- [`TextureRemovedBinaryImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/texture-removed-binary-image-unit.html)
+- [`TextureRemovedGrayscaleImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/texture-removed-grayscale-image-unit.html)
+- [`TransformedGrayscaleImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/transformed-grayscale-image-unit.html)
 
-| Method               | Description |
-|----------------------|-------------|
-| [license](initialize.md#license) | Uses an alphanumeric string to specify the license. |
-| [createInstance()](initialize.md#createinstance) | Creates a `DocumentNormalizer` instance. |
-| [dispose()](initialize.md#dispose) | Dispose the DocumentNormalizer instance. |
-| [disposed](initialize.md#disposed) | Returns whether the instance has been disposed. |
-| [engineResourcePath](initialize.md#engineresourcepath) | Specifies the path from where the engine and models, etc. can be loaded. |
-| [loadWasm()](initialize.md#loadwasm) | Loads the engine. |
-| [isWasmLoaded()](initialize.md#iswasmloaded) | Returns whether the engine has been loaded. |
-| [getVersion()](initialize.md#getversion) | Returns the version of the library. |
+## Settings
 
-## Video Detecting Methods
+- [`SimplifiedCaptureVisionSettings`]({{ site.dcv_js_api }}capture-vision-router/structs/simplified-capture-vision-settings.html)
+- [`PresetTemplate`]({{ site.dcv_js_api }}capture-vision-router/auxiliary-classes/preset-template.html)
 
-| Method               | Description |
-|----------------------|-------------|
-| [setImageSource()](normalize.md#setimagesource) | Sets an image source for continous scanning. |
-| [onQuadDetected](normalize.md#onquaddetected) | This event is triggered when a new quadrilateral is detected. |
-| [setQuadResultFilter()](normalize.md#setquadresultfilter) | Sets a function to filter a detected quadrilateral. |
-| [confirmQuadForNormalization()](normalize.md#confirmquadfornormalization) | Confirms which quadrilateral will be referred for later normalization. |
-| [normalizeWithConfirmedQuad()](normalize.md#normalizewithconfirmedquad) | Normalizes the image whith a selected quadrilateral. |
-| [startScanning()](normalize.md#startscanning) | Opens the camera and starts continuous scanning of incoming images. |
-| [pauseScanning()](normalize.md#pausescanning) | Pauses continuous scanning but keep the video stream. |
-| [resumeScanning()](normalize.md#resumescanning) | Resumes continuous scanning. |
-| [stopScanning()](normalize.md#stopscanning) | Stops continuous scanning and closes the video stream. |
+## State Listener
 
-## Detect and Normalize Methods
+- [`CaptureStateListener`]({{ site.dcv_js_api }}capture-vision-router/auxiliary-classes/capture-state-listener.html)
+- [`ImageSourceStateListener`]({{ site.dcv_js_api }}capture-vision-router/auxiliary-classes/image-source-state-listener.html)
 
-| Method               | Description |
-|----------------------|-------------|
-| [detectQuad()](normalize.md#detectquad) | Detects quadrilaterals from an image. |
-| [normalize()](normalize.md#normalize) | Normalizes the source image based on the settings in options. |
+## [`CLicenseManager`]({{ site.dcv_js_api }}license/license-manager.html)
 
-## Scan Settings Methods
+## Basic Structure
 
-| Method               | Description |
-|----------------------|-------------|
-| [getScanSettings()](settings.md#getscansettings) | Returns the current [`ScanSettings`](./interfaces/scansettings.md). |
-| [updateScanSettings()](settings.md#updatescansettings) | Updates scan settings with the object passed in. |
+- [`Contour`]({{ site.dcv_js_api }}core/basic-structures/contour.html)
+- [`Corner`]({{ site.dcv_js_api }}core/basic-structures/corner.html)
+- [`Edge`]({{ site.dcv_js_api }}core/basic-structures/edge.html)
+- [`FileImageTag`]({{ site.dcv_js_api }}core/basic-structures/file-image-tag.html)
+- [`ImageData`]({{ site.dcv_js_api }}core/basic-structures/image-data.html)
+- [`ImageTag`]({{ site.dcv_js_api }}core/basic-structures/image-tag.html)
+- [`LineSegment`]({{ site.dcv_js_api }}core/basic-structures/line-segment.html)
+- [`PDFReadingParameter`]({{ site.dcv_js_api }}core/basic-structures/pdf-reading-parameter.html)
+- [`Point`]({{ site.dcv_js_api }}core/basic-structures/point.html)
+- [`Quadrilateral`]({{ site.dcv_js_api }}core/basic-structures/quadrilateral.html)
+- [`Rect`]({{ site.dcv_js_api }}core/basic-structures/rect.html)
+- [`VideoFrameTag`]({{ site.dcv_js_api }}core/basic-structures/video-frame-tag.html)
 
-## Runtime Settings Methods
+## Modules
 
-| Method               | Description |
-|----------------------|-------------|
-| [getRuntimeSettings()](settings.md#getruntimesettings) | Gets runtime settings with a template represented by a JSON object. |
-| [setRuntimeSettings()](settings.md#setputruntimesettings) | Sets runtime settings with a JSON object. |
-| [resetRuntimeSettings()](settings.md#resetputruntimesettings) | Resets all parameters to default values. |
+- [`CaptureVisionRouterModule`]({{ site.dcv_js_api }}capture-vision-router/auxiliary-classes/capture-vision-router-module.html)
+- [`DocumentNormalizerModule`]({{ site.js_api }}document-normalizer-module.html)
+- [`CoreModule`]({{ site.dcv_js_api }}core/basic-structures/core-module.html)
+- [`LicenseModule`]({{ site.dcv_js_api }}license/license-module.html)
+- [`UtilityModule`]({{ site.dcv_js_api }}utility/utility-module.html)
+- [`ImageProcessingModule`]({{ site.dcv_js_api }}image-processing/image-processing-module.html)
 
-## Interfaces
+## Enumerations
 
-* [`DetectedQuadResult`](./interfaces/detected-quad-result.md)
-* [`NormalizedImageResult`](./interfaces/normalized-image-result.md)
-* [`ScanSettings`](./interfaces/scansettings.md)
-* [`Quadrilateral`](./interfaces/quadrilateral.md)
-* [`Point`](./interfaces/point.md)
-* [`ImageSource`](./interfaces/imagesource.md)
-* [`DDNImage`](./interfaces/ddn-image.md)
-* [`DSImage`](./interfaces/dsimage.md)
-
-<!-- ## Enumerations
-
-- [`EnumImagePixelFormat`]({{ site.enumerations }}image-pixel-format.html?src=android)
-
-## Others
-
-View the [Error Codes]({{ site.enumerations }}error-code.html) -->
+- [`BufferOverflowProtectionMode`]({{ site.enumerations }}core/buffer-overflow-protection-mode.html?src=cpp&&lang=cpp)
+- [`CapturedResultItemType`]({{ site.enumerations }}core/captured-result-item-type.html?src=cpp&&lang=cpp)
+- [`CornerType`]({{ site.enumerations }}core/corner-type.html?src=cpp&&lang=cpp)
+- [`ErrorCode`]({{ site.enumerations }}core/error-code.html?src=cpp&&lang=cpp)
+- [`GrayscaleTransformationMode`]({{ site.enumerations }}core/grayscale-transformation-mode.html?src=cpp&&lang=cpp)
+- [`ImageCaptureDistanceMode`]({{ site.enumerations }}core/image-capture-distance-mode.html?src=cpp&&lang=cpp)
+- [`ImagePixelFormat`]({{ site.enumerations }}core/image-pixel-format.html?src=cpp&&lang=cpp)
+- [`ImageSourceState`]({{ site.enumerations }}core/image-source-state.html?src=cpp&&lang=cpp)
+- [`ImageTagType`]({{ site.enumerations }}core/image-tag-type.html?src=cpp&&lang=cpp)
+- [`IntermediateResultUnitType`]({{ site.enumerations }}core/intermediate-result-unit-type.html?src=cpp&&lang=cpp)
+- [`PDFReadingMode`]({{ site.enumerations }}core/pdf-reading-mode.html?src=cpp&&lang=cpp)
+- [`RegionObjectElementType`]({{ site.enumerations }}core/region-object-element-type.html?src=cpp&&lang=cpp)
+- [`SectionType`]({{ site.enumerations }}core/section-type.html?src=cpp&&lang=cpp)
+- [`TargetType`]({{ site.enumerations }}core/target-type.html?src=cpp&&lang=cpp)
+- [`VideoFrameQuality`]({{ site.enumerations }}core/video-frame-quality.html?src=cpp&&lang=cpp)
+- [`ColourChannelUsageType`]({{ site.enumerations}}core/colour-channel-usage-type.html?src=cpp&&lang=cpp)
