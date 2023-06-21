@@ -2,16 +2,12 @@ repository: dynamsoft-docs/document-normalizer-docs-js
 repositoryUrl: https://github.com/dynamsoft-docs/document-normalizer-docs-js/blob/main
 docFullPath: https://www.dynamsoft.com/document-normalizer/docs/web
 firstLevelUrl: /document-normalizer/docs/web
-docHomePage: /document-normalizer/docs/core/introduction/
+docRootName: "Document Normalizer JS Edition" 
+docHomePage: /document-normalizer/docs/web/programming/javascript/
 
 js: /document-normalizer/docs/web/programming/javascript/
 js_api: /document-normalizer/docs/web/programming/javascript/api-reference/
 js_release_notes: /document-normalizer/docs/web/programming/javascript/release-notes/
-
-js: /document-normalizer/docs/web/programming/javascript/
-ios: /document-normalizer/docs/mobile/programming/ios/
-android: /document-normalizer/docs/mobile/programming/android/
-xamarin: /document-normalizer/docs/mobile/programming/xamarin/
 
 enumerations: /capture-vision/docs/core/enums/
 parameters_reference_ddn: /document-normalizer/docs/core/parameters/reference/
@@ -34,7 +30,6 @@ plugins:
   - jemoji
   - jekyll-sitemap
 
-
 defaults:
   - scope:
       path: ""
@@ -43,6 +38,7 @@ defaults:
       noTitleIndex: true
       needAutoGenerateSidebar: true
       needGenerateH3Content: true
+
   - scope: 
       path: "programming/javascript" 
     values: 
@@ -53,6 +49,7 @@ defaults:
     values: 
       docRootName: "Document Normalizer JavaScript" 
       docHomePage: "/document-normalizer/docs/web/programming/javascript/"
+
   - scope:
       path: "Hide_Tree_Page.html"
     values:

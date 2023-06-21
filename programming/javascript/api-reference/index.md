@@ -1,9 +1,12 @@
 ---
 layout: default-layout
 title: Dynamsoft Document Normalizer JavaScript API Reference - Main Page
-description: This is the main page of Dynamsoft Document Normalizer SDK API Reference for JavaScript Language.
-keywords: DocumentNormalizer, api reference, JavaScript
-permalink: /programming/javascript/api-reference/index.html
+description: This is the main page of Dynamsoft Document Normalizer for JavaScript SDK API Reference.
+keywords: DocumentNormalizer, api reference, javascript, js
+needAutoGenerateSidebar: true
+needGenerateH3Content: true
+breadcrumbText: API Reference
+noTitleIndex: true
 ---
 
 # API Reference - JavaScript
