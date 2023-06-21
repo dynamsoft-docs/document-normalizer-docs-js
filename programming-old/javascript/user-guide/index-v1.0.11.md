@@ -6,6 +6,7 @@ keywords: user guide, javascript
 needAutoGenerateSidebar: true
 needGenerateH4Content: true
 noTitleIndex: true
+permalink: /programming/javascript/user-guide/index-v1.0.11.html
 ---
 
 # Document Normalizer for Your Website - User Guide
@@ -23,29 +24,18 @@ In this guide, you will learn how to integrate this SDK into your website step b
 
 <span style="font-size:20px">Table of Contents</span>
 
-- [Document Normalizer for Your Website - User Guide](#document-normalizer-for-your-website---user-guide)
-  - [Example Usage](#example-usage)
-    - [Check the code](#check-the-code)
-      - [About the code](#about-the-code)
-    - [Test the code](#test-the-code)
-  - [Building your own page](#building-your-own-page)
-    - [Include the SDK](#include-the-sdk)
-      - [Use a CDN](#use-a-cdn)
-      - [Host the SDK yourself](#host-the-sdk-yourself)
-    - [Configure the SDK](#configure-the-sdk)
-      - [Specify the license](#specify-the-license)
-      - [Specify the location of the "engine" files](#specify-the-location-of-the-engine-files)
-    - [Interact with the SDK](#interact-with-the-sdk)
-      - [Create a `DocumentNormalizer` object](#create-a-documentnormalizer-object)
-      - [Create a `CameraEnhancer` object and bind it to the `DocumentNormalizer` object](#create-a-cameraenhancer-object-and-bind-it-to-the-documentnormalizer-object)
-      - [Change the camera settings (optional)](#change-the-camera-settings-optional)
-      - [Customize the DocumentNormalizer Settings (optional)](#customize-the-documentnormalizer-settings-optional)
-      - [Start the detection and normalization](#start-the-detection-and-normalization)
-    - [Customize the UI (optional)](#customize-the-ui-optional)
-  - [API Documentation](#api-documentation)
-  - [System Requirements](#system-requirements)
-  - [Release Notes](#release-notes)
-  - [Next Steps](#next-steps)
+- [Example Usage](#example-usage)
+  - [Check the code](#check-the-code)
+  - [Test the code](#test-the-code)
+- [Building your own page](#building-your-own-page)
+  - [Include the SDK](#include-the-sdk)
+  - [Configure the SDK](#configure-the-sdk)
+  - [Interact with the SDK](#interact-with-the-sdk)
+  - [Customize the UI (optional)](#customize-the-ui-optional)
+- [API Documentation](#api-documentation)
+- [System Requirements](#system-requirements)
+- [Release Notes](#release-notes)
+- [Next Steps](#next-steps)
 
 ## Example Usage
 

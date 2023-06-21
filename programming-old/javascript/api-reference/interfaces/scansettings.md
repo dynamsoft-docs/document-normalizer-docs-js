@@ -7,6 +7,7 @@ needAutoGenerateSidebar: true
 needGenerateH3Content: true
 noTitleIndex: true
 breadcrumbText: ScanSettings
+permalink: /programming/javascript/api-reference/interfaces/scansettings.html
 ---
 
 # ScanSettings

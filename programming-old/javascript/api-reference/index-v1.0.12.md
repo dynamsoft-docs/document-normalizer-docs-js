@@ -7,6 +7,7 @@ needAutoGenerateSidebar: true
 needGenerateH3Content: true
 breadcrumbText: API Reference
 noTitleIndex: true
+permalink: /programming/javascript/api-reference/index-v1.0.12.html
 ---
 
 # API Reference - JavaScript

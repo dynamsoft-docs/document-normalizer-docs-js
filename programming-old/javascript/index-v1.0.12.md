@@ -5,17 +5,18 @@ description: This is the main page of Dynamsoft Document Normalizer for JavaScri
 keywords: javascript
 needAutoGenerateSidebar: false
 breadcrumbText: JavaScript
+permalink: /programming/javascript/index-v1.0.12.html
 ---
 
 # Documentation - JavaScript
 
 ## Getting Started
 
-- [User Guide](user-guide/index.md)
+- [User Guide](user-guide/index-v1.0.12.md)
 
 ## API Reference
 
-- [API Reference](api-reference/index.md)
+- [API Reference](api-reference/index-v1.0.12.md)
 
 ## Release Notes
 

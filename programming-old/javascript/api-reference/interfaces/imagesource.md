@@ -7,6 +7,7 @@ needAutoGenerateSidebar: true
 needGenerateH3Content: true
 noTitleIndex: true
 breadcrumbText: ImageSource
+permalink: /programming/javascript/api-reference/interfaces/imagesource.html
 ---
 
 # ImageSource

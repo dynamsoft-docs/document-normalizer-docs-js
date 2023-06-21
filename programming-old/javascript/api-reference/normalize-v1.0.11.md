@@ -7,6 +7,7 @@ needAutoGenerateSidebar: true
 needGenerateH3Content: true
 noTitleIndex: true
 breadcrumbText: Detect and Normalize APIs
+permalink: /programming/javascript/api-reference/normalize-v1.0.11.html
 ---
 
 # Detect and Normalize

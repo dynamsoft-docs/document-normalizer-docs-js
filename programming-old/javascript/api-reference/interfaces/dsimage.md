@@ -6,6 +6,7 @@ keywords: DSImage, interface, api reference, javascript
 needAutoGenerateSidebar: true
 needGenerateH3Content: true
 noTitleIndex: true
+permalink: /programming/javascript/api-reference/interfaces/dsimage.html
 ---
 
 # DSImage

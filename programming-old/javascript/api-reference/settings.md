@@ -7,6 +7,7 @@ needAutoGenerateSidebar: true
 needGenerateH3Content: true
 noTitleIndex: true
 breadcrumbText: Settings APIs
+permalink: /programming/javascript/api-reference/settings.html
 ---
 
 # Settings
@@ -74,7 +75,7 @@ await normalizer.updateScanSettings(scanSettings);
 
 ## getRuntimeSettings
 
-Gets current runtime settings with a template represented by [`a JSON object`](../../../parameters/parameter-organization-structure.md#example).
+Gets current runtime settings with a template represented by [`a JSON object`]({{site.parameter}}parameter-organization-structure.html).
 
 ```typescript
 getRuntimeSettings(): Promise<object>

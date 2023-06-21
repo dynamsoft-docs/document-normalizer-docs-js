@@ -6,6 +6,7 @@ keywords: Quadrilateral, javascript, interface
 needAutoGenerateSidebar: true
 needGenerateH3Content: true
 noTitleIndex: true
+permalink: /programming/javascript/api-reference/interfaces/quadrilateral.html
 ---
 
 # Quadrilateral
