@@ -1,0 +1,61 @@
+repository: dynamsoft-docs/document-normalizer-docs-js
+repositoryUrl: https://github.com/dynamsoft-docs/document-normalizer-docs-js/blob/main
+docFullPath: https://www.dynamsoft.com/document-normalizer/docs/web
+firstLevelUrl: /document-normalizer/docs/web
+docHomePage: /document-normalizer/docs/core/introduction/
+
+js: /document-normalizer/docs/web/programming/javascript/
+js_api: /document-normalizer/docs/web/programming/javascript/api-reference/
+js_release_notes: /document-normalizer/docs/web/programming/javascript/release-notes/
+
+js: /document-normalizer/docs/web/programming/javascript/
+ios: /document-normalizer/docs/mobile/programming/ios/
+android: /document-normalizer/docs/mobile/programming/android/
+xamarin: /document-normalizer/docs/mobile/programming/xamarin/
+
+enumerations: /capture-vision/docs/core/enums/
+parameters_reference_ddn: /document-normalizer/docs/core/parameters/reference/
+
+dcv_js_api: /capture-vision/docs/web/programming/javascript/api-reference/
+dcv_introduction: /capture-vision/docs/core/introduction/
+
+useVersionTree: true
+
+assets: /document-normalizer/docs/web/assets/
+edit_icon: /document-normalizer/docs/web/assets/img-icon/edit-icon.png
+smile_icon: /document-normalizer/docs/web/assets/img-icon/icon-smile.png
+sad_icon: /document-normalizer/docs/web/assets/img-icon/icon-sad.png
+
+baseurl: "/document-normalizer/docs/web"
+
+download: "/document-normalizer/downloads/1000023-confirmation/"
+
+plugins:
+  - jemoji
+  - jekyll-sitemap
+
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default-layout"
+      noTitleIndex: true
+      needAutoGenerateSidebar: true
+      needGenerateH3Content: true
+  - scope: 
+      path: "programming/javascript" 
+    values: 
+      docRootName: "Document Normalizer JavaScript" 
+      docHomePage: "/document-normalizer/docs/web/programming/javascript/"
+  - scope: 
+      path: "programming-old/javascript" 
+    values: 
+      docRootName: "Document Normalizer JavaScript" 
+      docHomePage: "/document-normalizer/docs/web/programming/javascript/"
+  - scope:
+      path: "Hide_Tree_Page.html"
+    values:
+      sitemap: false
+
+url: "https://www.dynamsoft.com" # sitemap root
