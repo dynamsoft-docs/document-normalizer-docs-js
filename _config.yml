@@ -9,6 +9,8 @@ js: /document-normalizer/docs/web/programming/javascript/
 js_api: /document-normalizer/docs/web/programming/javascript/api-reference/
 js_release_notes: /document-normalizer/docs/web/programming/javascript/release-notes/
 
+programming: /document-normalizer/docs/web/programming/
+
 enumerations: /capture-vision/docs/core/enums/
 parameters_reference_ddn: /document-normalizer/docs/core/parameters/reference/
 
