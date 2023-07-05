@@ -1,311 +1,272 @@
 ---
 layout: default-layout
-title: User Guide for JavaScript Language
-keywords: user guide, hello world
-description: Dynamsoft Document Normalizer - User Guide for JavaScript Language
+title: User Guide Index - Dynamsoft Capture Vision JavaScript Edition
+description: This is the index page for Dynamsoft Capture Vision User Guide.
+keywords: CaptureVision, Capture, User Guide, javascript, js
+needAutoGenerateSidebar: true
+needGenerateH3Content: true
+noTitleIndex: true
+breadcrumbText: User Guide
 ---
 
-# Document Normalizer in JavaScript - User Guide
+# JavaScript User Guide
+
+In this guide, you will learn step by step on how to build a document normalizer application with Dynamsoft Capture Vision SDK using JavaScript language.
+
+> Read more on [Dynamsoft Capture Vision Features]({{site.introduction}})
+
+<span style="font-size:20px">Table of Contents</span>
+
+- [User Guide - JavaScript](#javascript-user-guide)
+  - [Example Usage](#example-usage)
+    - [Check the code](#check-the-code)
+      - [About the code](#about-the-code)
+    - [Test the code](#test-the-code)
+  - [Building your own page](#building-your-own-page)
+    - [Include the SDK](#include-the-sdk)
+      - [Use a CDN](#use-a-cdn)
+      - [Host the SDK yourself](#host-the-sdk-yourself)
+    - [Configure the SDK](#configure-the-sdk)
+      - [Specify the license](#specify-the-license)
+      - [Specify the location of the "engine" files](#specify-the-location-of-the-engine-files)
+    - [Interact with the SDK](#interact-with-the-sdk)
+      - [Create a `DocumentNormalizer` object](#create-a-documentnormalizer-object)
+      - [Create a `CameraEnhancer` object and bind it to the `DocumentNormalizer` object](#create-a-cameraenhancer-object-and-bind-it-to-the-documentnormalizer-object)
+      - [Change the camera settings (optional)](#change-the-camera-settings-optional)
+      - [Customize the DocumentNormalizer Settings (optional)](#customize-the-documentnormalizer-settings-optional)
+      - [Start the detection and normalization](#start-the-detection-and-normalization)
+    - [Customize the UI (optional)](#customize-the-ui-optional)
+  - [API Documentation](#api-documentation)
+  - [System Requirements](#system-requirements)
+  - [Release Notes](#release-notes)
+  - [Next Steps](#next-steps)
+
+## Example Usage
+
+Let's start by testing an example of the SDK which demonstrates how to detect quadrilaterals (document boundaries) from a live video stream and use a selected quadrilateral to obtain a normalized image of the document. To run the example, the following are required
+
+1. Internet connection
+2. [A supported browser](#system-requirements)
+3. An accessible Camera
+
+### Check the code
+
+The complete code of the example is shown below:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-camera-enhancer@4.0.0-dev-20230621180020/dist/dce.js"></script>
+  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/cvrjs@0.20230630163122.0/dist/cvr.js"></script>
+</head>
+<body>
+  <h1>Detect A Document Boundary</h1>
+  <button onclick="start()">start capturing</button>
+  <div id="uiNormalize"></div>
+  <div id="uiContainer" style="width: 100vw; height: 60vh; margin-top: 10px;display: none;"></div>
+
+  <script>
+    const uiContainer = document.querySelector("#uiContainer");
+    const uiNormalize = document.querySelector("#uiNormalize");
+    Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"]);
+
+    let dce;
+    let cvr;
+    
+    async function createInstance() {
+      cvr = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
+      console.log(Dynamsoft.CVR.CaptureVisionRouterModule.getVersion());
+    }
+    createInstance();
+    async function start() {
+      if (dce) return;
+      uiContainer.style.display = "block";
+      let view = await Dynamsoft.DCE.CameraView.createInstance();
+      dce = await Dynamsoft.DCE.CameraEnhancer.createInstance(view);
+      dce.setResolution({ width: 1920, height: 1080 });
+      uiContainer.append(view.getUIElement());
+      cvr.setInput(dce);
+      await dce.open();
+      await cvr.startCapturing("detect-document-boundaries");
+    }
+  </script>
+</body>
+</html>
+```
+<!--
+<p align="center" style="text-align:center; white-space: normal; ">
+  <a target="_blank" href="https://jsfiddle.net/DynamsoftTeam/5vgh7rdx/" title="Run via JSFiddle">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/jsfiddle.svg" alt="Run via JSFiddle" width="20" height="20" style="width:20px;height:20px;">
+  </a>
+</p>
+-->
+-----
 
-In this guide, you will learn step by step on how to build a document normalization application with Dynamsoft Document Normalizer SDK using JavaScript language.
+#### About the code
 
-> Read more on [Dynamsoft Document Normalizer Features](https://www.dynamsoft.com/document-normalizer/docs/core/introduction/index.html)
+- `Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"])`: This method is called to preload the `DocumentNormalizer` module of the CaptureVisionRouter library, Preparing for document border detection and image normalization.
 
-- [Document Normalizer in JavaScript - User Guide](#document-normalizer-in-c---user-guide)
-  - [Installation](#installation)
-  - [Build Your First Application](#build-your-first-application)
-    - [Create a New Project](#create-a-new-project)
-    - [Include the Library](#include-the-library)
-    - [Initialize a Capture Vision Router Instance](#initialize-a-capture-vision-router-instance)
-    - [Detect and Save the Normalized Document](#detect-and-save-the-normalized-document)
-    - [Build and Run the Project](#build-and-run-the-project)
-  - [Process Multiple Images](#process-multiple-images)
-    - [Preparation Steps](#preparation-steps)
-    - [Add an Image Source as the Input](#add-an-image-source-as-the-input)
-    - [Add a Result Receiver as the Output](#add-a-result-receiver-as-the-output)
-    - [Start the Process](#start-the-process)
-    - [Release Allocated Memory](#release-allocated-memory)
-    - [Build and Run the Project Again](#build-and-run-the-project-again)
+- `createInstance()`: This method is called to initialize the cvr variable by creating an instance of the `CaptureVisionRouter` class. The version of the `CaptureVisionRouterModule` is logged to the console.
 
-## Installation
+- `start()` : This method is defined, which performs the following tasks:
+    - Checks if dce is already initialized and returns if it is (prevents reinitialization).
+    - Makes the `uiContainer` visible by changing its display style property to "block."
+    - Creates an instance of the `CameraView`, sets its resolution to 1920x1080, and appends its UI element to the `uiContainer`.
+    - Initializes the dce variable by creating an instance of the `CameraEnhancer` with the previously created view.
+    - Sets the input for the `CaptureVisionRouter` (cvr) to be the dce instance.
+    - Opens the camera feed using `dce.open()`.
+    - Starts capturing and detecting document boundaries using `cvr.startCapturing()`, and default template "detect-document-boundaries" is used.
 
-If you haven't downloaded the SDK yet, <a href="https://download2.dynamsoft.com/ddn/dynamsoft-document-normalizer-cpp-2.0.0.zip">download the `JavaScript Package`</a> now and unpack the package into a directory of your choice.
+### Test the code
 
-> For this tutorial, we unpack it to a pseudo directory `[INSTALLATION FOLDER]`, change it to your unpacking path for the following content.
+Create a text file with the name "Detect-Boundary-From-Video-Frames.html", fill it with the code above and save. After that, open the example page in a browser, allow the page to access your camera and the video will show up on the page. After that, you can point the camera at something with a quadrilateral border to detect it.
 
-> To find out whether your environment is supported, read the [System Requirements](https://www.dynamsoft.com/document-normalizer/docs/server/programming/javascript/#system-requirements).
+> You can also just test it at [https://jsfiddle.net/DynamsoftTeam/5vgh7rdx/](https://jsfiddle.net/DynamsoftTeam/5vgh7rdx/)
 
-## Build Your First Application
+Please note:
 
-Let's start by creating a console application which demonstrates how to use the minimum code to detect and normalize a document from an picture of it.
+- Although the page should work properly when opened directly as a file ("file:///"), it's recommended that you deploy it to a web server and access it via HTTPS.
+- On first use, you need to wait a few seconds for the SDK to initialize.
+- The license "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9" used in this sample is an online license and requires network connection to work.
 
-> You can <a href="https://github.com/Dynamsoft/document-normalizer-c-cpp-samples/tree/main/Samples/HelloWorld/NormalizeAnImage" target="_blank">download the entire source code from here</a>.
+If the test doesn't go as expected, you can [contact us](https://www.dynamsoft.com/company/contact/?utm_source=guide&product=ddn&package=js).
 
-### Create a New Project
+## Building your own page
 
-- For Windows
+In this section, we'll break down and show all the steps required to build a web page for document capturing with DDN-JS.
 
-1. Open Visual Studio. Go to "File > New > Project..." or click "Create a new project" on the starting page, choose "Console App", create a new Empty Project and set the Project name as `NormalizeAnImage`.
+### Include the SDK
 
-2. Add a new source file named `NormalizeAnImage.cpp` into the project.
+#### Use a CDN
 
-- For Linux
+The simplest way to include the SDK is to use either the [jsDelivr](https://jsdelivr.com/) or [UNPKG](https://unpkg.com/) CDN. The "hello world" example above uses **jsDelivr**. We should also include the SDK Dynamsoft Camera Enhancer which provides camera support.
 
-1. Create a new source file named `NormalizeAnImage.cpp` and place it into the folder `[INSTALLATION FOLDER]/Resources/DocumentNormalizer/Samples/HelloWorld/NormalizeAnImage`.
+- jsDelivr
 
-### Include the Library
+  ```html
+  <script src=""></script>
+  <script src=""></script>
+  ```
 
-1. Add headers and libs in `NormalizeAnImage.cpp`.
+- UNPKG
 
-    ```cpp
-    #include <iostream>
-    #include <string>
-    #include "[INSTALLATION FOLDER]/Include/DynamsoftCaptureVisionRouter.h"
+  ```html
+  <script src=""></script>
+  <script src=""></script>
+  ```
 
-    using namespace std;
-    using namespace dynamsoft::license;
-    using namespace dynamsoft::cvr;
-    using namespace dynamsoft::ddn;
+#### Host the SDK yourself
 
-    #if defined(_WIN64) || defined(_WIN32)
-        #ifdef _WIN64
-            #pragma comment(lib, "[INSTALLATION FOLDER]/Lib/Windows/x64/DynamsoftCaptureVisionRouterx64.lib")
-            #pragma comment(lib, "[INSTALLATION FOLDER]/Lib/Windows/x64/DynamsoftCorex64.lib")
-            #pragma comment(lib, "[INSTALLATION FOLDER]/Lib/Windows/x64/DynamsoftLicensex64.lib")
-            #pragma comment(lib, "[INSTALLATION FOLDER]/Lib/Windows/x64/DynamsoftUtilityx64.lib")
-        #else
-            #pragma comment(lib, "[INSTALLATION FOLDER]/Lib/Windows/x86/DynamsoftCaptureVisionRouterx86.lib")
-            #pragma comment(lib, "[INSTALLATION FOLDER]/Lib/Windows/x86/DynamsoftCorex86.lib")
-            #pragma comment(lib, "[INSTALLATION FOLDER]/Lib/Windows/x86/DynamsoftLicensex86.lib")
-            #pragma comment(lib, "[INSTALLATION FOLDER]/Lib/Windows/x86/DynamsoftUtilityx86.lib")
-        #endif
-    #endif
-    ```
+Besides using the CDN, you can also download the SDK and host its files on your own website / server before including it in your application.
 
-### Initialize a Capture Vision Router Instance
+> Also read [how to do the same for Dynamsoft Camera Enhancer](https://www.dynamsoft.com/camera-enhancer/docs/programming/javascript/user-guide/index.html?ver=latest#host-the-sdk-yourself).
 
-1. Initialize the license key.
+To download the SDK:
 
-    ```cpp
-    char errorMsg[256] = {0};
-    CLicenseManager::InitLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9", errorMsg, 256);
-    ```
+- yarn
 
-    > The string "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9" here is a free public trial license. Note that network connection is required for this license to work. When it expires, you can request a 30-day free trial license from the <a href="https://www.dynamsoft.com/customer/license/trialLicense?utm_source=guide&product=ddn&package=desktop" target="_blank">Customer Portal</a>.
+  ```cmd
+  yarn add 
+  ```
 
-2. Create an instance of Capture Vision Router.
+- npm
 
-    ```cpp
-    CCaptureVisionRouter *router = new CCaptureVisionRouter;
-    ```
+  ```cmd
+  npm install 
+  ```
 
-### Detect and Save the Normalized Document
+Depending on how you downloaded the SDK and where you put it, you can typically include it like this:
 
-1. Apply normalization for an image file.
+  ```html
+  <script src="/dynamsoft-capture-vision-router-js-2.0.0/dist/cvr.js"></script>
+  ```
 
-    ```cpp
-    CCapturedResultArray* results = router->Capture("[INSTALLATION FOLDER]/Resources/DocumentNormalizer/Images/sample-image.png", CPresetTemplate::PT_DETECT_AND_NORMALIZE_DOCUMENT);
-    ```
+or
 
-    > Note:
-    >
-    > Please change all `[INSTALLATION FOLDER]` in above code snippet to your unpacking path.
+  ```html
+  <script src="/node_modules/dynamsoft-capture-vision-router/dist/cvr.js"></script>
+  ```
 
-2. Save the normalized result as an image file.
+or
 
-    ```cpp
-    cout << "File: " << imageFile << endl;
+  ```ts
+  import { CaptureVisionRouter } from 'dynamsoft-capture-vision-router';
+  ```
 
-    /*
-    * results is an Array of CCapturedResult objects, each object is the result of an image.
-    */
-    for (int arrayIndex = 0; arrayIndex < results->GetCount(); arrayIndex++)
-    {
-        const CCapturedResult* result = results->GetResult(arrayIndex);
+### Configure the SDK with license
 
-        if (result->GetErrorCode() != 0) {
-            cout << "Error: " << result->GetErrorCode() << "," << result->GetErrorString() << endl;
-            continue;
-        }
+The SDK requires a license to work, use the API `license` to specify a license key.
 
-        /*
-        * There can be multiple types of result items per image.
-        * We check each of these items until we find the normalized image.
-        */
-        int count = result->GetCount();
-        cout << "Normalized " << count << " documents" << endl;
-        for (int i = 0; i < count; i++) {
-            const CCapturedResultItem* item = result->GetItem(i);
-
-            CapturedResultItemType type = item->GetType();
-            if (type == CapturedResultItemType::CRIT_NORMALIZED_IMAGE) {
-                const CNormalizedImageResultItem* normalizedImage = dynamic_cast<const CNormalizedImageResultItem*>(item);
-
-                string outPath = "normalizedResult_";
-                outPath += to_string(i) + ".png";
-
-                CImageManager manager;
-
-                // 4.Save normalized iamge to file.
-                errorcode = manager.SaveToFile(normalizedImage->GetImageData(), outPath.c_str());
-                if (errorcode == 0) {
-                    cout << "Document " << i << " file: " << outPath << endl;
-                }
-            }
-        }
-    } 
-    ```
-
-### Build and Run the Project
-
-- For Windows
-
-1. In Visual Studio, set the solution to build as Release\|x64.
-
-2. Build the project to generate program `NormalizeAnImage.exe`.
-
-3. Copy **ALL** `*.dll` files under `[INSTALLATION FOLDER]\Lib\Windows\x64` to the same folder as the `NormalizeAnImage.exe`
-
-4. Run the program `NormalizeAnImage.exe`.
-
-> The SDK supports both x86 and x64, please set the platform based on your needs.
-
-- For Linux
-
-1. Open a terminal and change to the target directory where `NormalizeAnImage.cpp` is located. Build the sample:
-
-    ```bash
-    g++ -o NormalizeAnImage NormalizeAnImage.cpp -lDynamsoftCore -lDynamsoftLicense -lDynamsoftUtility -lDynamsoftCaptureVisionRouter -L ../../../Lib/Linux/x64 -Wl,-rpath=../../../Lib/Linux/x64 -std=c++11
-    ```
-
-2. Run the program `NormalizeAnImage`.
-
-    ```bash
-    ./NormalizeAnImage
-    ```
-
-## Process Multiple Images
-
-If you need to process multiple images at once instead of one image, you can follow these steps:
-
-### Preparation Steps
-
-1. [Create a new project](#create-a-new-project) named `NormalizeMultipleImages`.
-2. [Initialize a Capture Vision Router Instance](#initialize-a-capture-vision-router-instance).
-3. [Include the Library](#include-the-library).
-
->You can download the complete source code from [here](https://github.com/Dynamsoft/document-normalizer-c-cpp-samples/tree/main/samples/HelloWorld/NormalizeMultipleImages).
-
-### Add an Image Source as the Input
-
-The class `CDirectoryFetcher` is capable of converting a local directory to an image source. We will use it to connect multiple images to the image-processing engine.
-
-1. Setting up a directory fetcher to retrieve image data sources from a directory.
-
-    ```cpp
-    CDirectoryFetcher *dirFetcher = new CDirectoryFetcher;
-    dirFetcher->SetDirectory("[Your Image Path]");
-
-    router->SetInput(dirFetcher);
-    ```
-
-2. Create a class `MyImageSourceStateListener` to implement the `CImageSourceStateListenter` interface, and call `StopCapturing` in the callback function.
-
-    ```cpp
-    class MyImageSourceStateListener : public CImageSourceStateListener
-    {
-    private:
-        CCaptureVisionRouter* m_router;
-
-    public:
-        MyImageSourceStateListener(CCaptureVisionRouter* router) {
-            m_router = router;
-        }
-
-        virtual void OnImageSourceStateReceived(ImageSourceState state)
-        {
-            if (state == ISS_EXHAUSTED)
-                m_router->StopCapturing();
-        }
-    };
-    ```
-
-3. Register the `MyImageSourceStateListener` object to monitor the status of the image source.
-
-    ```cpp
-    CImageSourceStateListener *listener = new MyImageSourceStateListener(router);
-    router->AddImageSourceStateListener(listener);
-    ```
-
-### Add a Result Receiver as the Output
-
-1. Define the receiver class.
-
-    ```cpp
-    class MyResultReceiver : public CCapturedResultReceiver
-    {
-    public:
-        virtual void OnNormalizedImagesReceived(const CNormalizedImagesResult* pResult)
-        {
-            const CFileImageTag *tag = dynamic_cast<const CFileImageTag*>(pResult->GetSourceImageTag());
-
-            cout << "File: " << tag->GetFilePath() << endl;
-
-            if (pResult->GetErrorCode() != EC_OK)
-            {
-                cout << "Error: " << pResult->GetErrorString() << endl;
-            }
-            else
-            {
-                CImageManager manager;
-                int lCount = pResult->GetCount();
-                cout << "Normalized " << lCount << " documents" << endl;
-                for (int li = 0; li < lCount; ++li)
-                {
-                    const CNormalizedImageResultItem* item = pResult->GetItem(li);
-                    
-                    string outPath = "normalizeImage_";
-                    outPath += to_string(li) + ".png";
-
-                    manager.SaveToFile(item->GetImageData(), outPath.c_str());
-
-                    cout << "Document " << li << " file: " << outPath << endl;
-                }
-            }
-
-            cout << endl;
-        }
-    };
-    ```
-
-    >For the error handling mechanism, the SDK returns Error Code in the `CNormalizedImagesResult` object. You can add error handling code as needed. See [Error Code]({{site.dcv_enumerations}}core/error-code.html) for a full list of supported error codes.
-
-2. Create a receiver object and set it as the output.
-
-    ```cpp
-    CCapturedResultReceiver *recv = new MyResultReceiver;
-    router->AddResultReceiver(recv);
-    ```
-
-### Start the Process
-
-1. Call the method `StartCapturing()` to start processing all the images in the specified folder.
-
-    ```cpp
-    router->StartCapturing(CPresetTemplate::PT_DETECT_AND_NORMALIZE_DOCUMENT, true);        
-    ```
-
-    >During the process, the callback function `OnNormalizedImagesReceived()` is triggered each time an image finishes processing. After all images are processed, the listener function `OnImageSourceStateReceived()` will return the image source state as `ISS_EXHAUSTED` and the process is stopped with the method `StopCapturing()`.
-
-### Release Allocated Memory
-
-```cpp
-delete router, router = NULL;
-delete dirFetcher, dirFetcher = NULL;
-delete listener, listener = NULL;
-delete recv, recv = NULL;
+```javascript
+Dynamsoft.CVR.CaptureVisionRouter.license = "YOUR-LICENSE-KEY";
 ```
 
-### Build and Run the Project Again
+To test the SDK, you can request a 30-day trial license via the [customer portal](https://www.dynamsoft.com/customer/license/trialLicense?utm_source=guide&product=ddn&package=js).
 
-Please refer to [Build and Run the Project](#build-and-run-the-project).
+
+### Interact with the SDK
+
+#### Create a `DocumentNormalizer` object
+
+
+
+#### Create a `CameraEnhancer` object and bind it to the `DocumentNormalizer` object
+
+
+#### Start the detection and normalization
+
+
+
+## API Documentation
+
+You can check out the detailed documentation about the APIs of the SDK at
+[https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/api-reference/?ver=latest](https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/api-reference/?ver=latest).
+
+## System Requirements
+
+DDN-JS SDK requires the following features to work:
+
+- Secure context (HTTPS deployment)
+
+  When deploying your application / website for production, make sure to serve it via a secure HTTPS connection. This is required for two reasons
+  
+  - Access to the camera video stream is only granted in a security context. Most browsers impose this restriction.
+  > Some browsers like Chrome may grant the access for `http://127.0.0.1` and `http://localhost` or even for pages opened directly from the local disk (`file:///...`). This can be helpful for temporary development and test.
+  
+  - Dynamsoft License requires a secure context to work.
+
+- `WebAssembly`, `Blob`, `URL`/`createObjectURL`, `Web Workers`
+
+  The above four features are required for the SDK to work.
+
+- `MediaDevices`/`getUserMedia`
+
+  This API is only required for in-browser video streaming.
+
+- `getSettings`
+
+  This API inspects the video input which is a `MediaStreamTrack` object about its constrainable properties.
+
+The following table is a list of supported browsers based on the above requirements:
+
+  Browser Name | Version
+  :-: | :-:
+  Chrome | v85+ on desktop, v94+ on Android
+  Firefox | v99+ on desktop and Android
+  Safari | v15+ on iOS
+
+Apart from the browsers, the operating systems may impose some limitations of their own that could restrict the use of the SDK.
+
+## Release Notes
+
+Learn about what are included in each release at [https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/release-notes/?ver=latest](https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/release-notes/?ver=latest).
+
+## Next Steps
+
+
+Now that you have got the SDK integrated, you can choose to move forward in the following directions
+
+1. Check out the [official samples]().
+2. Learn about the available [APIs]().

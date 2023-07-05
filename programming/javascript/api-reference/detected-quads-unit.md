@@ -1,62 +1,34 @@
 ---
 layout: default-layout
-title: CDetectedQuadsUnit Class
-description: This page shows CDetectedQuadsUnit class definition of Dynamsoft Document Normalizer SDK JavaScript Edition.
-keywords: GetCount, GetDetectedQuad, CDetectedQuadsUnit, api reference
-permalink: /programming/javascript/api-reference/detected-quads-unit.html
+title: interface DetectedQuadsUnit - Dynamsoft Core Module JS Edition API Reference
+description: This page shows the JS edition of the interfaace DetectedQuadsUnit in Dynamsoft Core Module.
+keywords: detected quad, JS
+needAutoGenerateSidebar: true
+noTitleIndex: true
 ---
 
-# CDetectedQuadsUnit Class
+# DetectedQuadsUnit
 
-The CDetectedQuadsUnit class represents an intermediate result unit whose type is detected quads.
+The DetectedQuadsUnit interface inherits from IntermediateResultUnit interface in the Core.IntermediateResult namespace. It includes additional properties `detectedQuads`.
 
 ## Definition
 
-*Namespace:* dynamsoft::ddn::intermediate_results
-
-*Assembly:* DynamsoftDocumentNormalizer.dll
-
-```cpp
-class CDetectedQuadsUnit: CIntermediateResultUnit
+```js
+export interface DetectedQuadsUnit extends Core.IntermediateResult.IntermediateResultUnit {
+                detectedQuads: Array<DetectedQuadElement>;
+            }
 ```
 
-*Inheritance:* [CIntermediateResultUnit]({{ site.dcv_cpp_api }}core/intermediate-results/intermediate-result-unit.html) -> CDetectedQuadsUnit
+## Attributes Summary
 
-## Methods
+| Attribute               | Type |
+|----------------------|-------------|
+| [`detectedQuads`](#detectedquads) | *Array<DetectedQuadsUnit>* |
 
-| Method | Description |
-|--------|-------------|
-| [`GetCount`](#getcount) | Gets the count of DetectedQuad objects in current object.|
-| [`GetDetectedQuad`](#getdetectedquad) | Gets a DetectedQuad object from current object by specifying a index. |
+### detectedQuads
 
-### GetCount
+An array of DetectedQuadElement objects and it holds the detected quads. Each DetectedQuadElement represents a single set of detected quads.
 
-Gets the count of DetectedQuad objects in current object.
-
-```cpp
-int GetCount() 
+```js
+detectedQuads: Array<DetectedQuadElement>;
 ```
-
-**Return Value**
-
-The count of DetectedQuad objects in current object.
-
-### GetDetectedQuad
-
-Gets a DetectedQuad object from current object by specifying a index.
-
-```cpp
-const CDetectedQuadElement* GetDetectedQuad(int index)
-```
-
-**Parameters**
-
-`[in] index` The index of the DetectedQuad object.
-
-**Return Value**
-
-Returns the DetectedQuad object got by the specific index.
-
-**See Also**
-
-* [CDetectedQuadElement]({{cpp_api}}detected-quad-element.html)

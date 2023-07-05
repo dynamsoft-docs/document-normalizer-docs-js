@@ -1,43 +1,44 @@
 ---
 layout: default-layout
-title: CNormalizedImageElement Class
-description: This page shows CNormalizedImageElement class definition of Dynamsoft Document Normalizer SDK JavaScript Edition.
-keywords: GetImageData, GetReferencedElement, CNormalizedImageElement, api reference
-permalink: /programming/javascript/api-reference/normalized-image-element.html
+title: interface NormalizedImageElement - Dynamsoft Core Module JS Edition API Reference
+description: This page shows the JS edition of the interfaace NormalizedImageElement in Dynamsoft Core Module.
+keywords: normalized image, JS
+needAutoGenerateSidebar: true
+noTitleIndex: true
 ---
 
-# CNormalizedImageElement Class
+# NormalizedImageElement
 
-The CNormalizedImageElement class stores an intermediate result whose type is normalized image.
+The NormalizedImageElement interface inherits from RegionObjectElement interface in the Core.IntermediateResult namespace. It includes additional properties `imageData` and `referencedElement`.
 
 ## Definition
 
-*Namespace:* dynamsoft::ddn::intermediate_results
-
-*Assembly:* DynamsoftDocumentNormalizer.dll
-
-```cpp
-class CNormalizedImageElement
+```js
+export interface NormalizedImageElement extends Core.IntermediateResult.RegionObjectElement {
+                imageData: Core.BasicStructures.DSImageData;
+                referencedElement: Core.IntermediateResult.RegionObjectElement;
+            }
 ```
 
-## Methods
+## Attributes Summary
 
-| Method | Description |
-|--------|-------------|
-| [`GetImageData`](#getimagedata) | Gets the ImageData of current object. |
+| Attribute               | Type |
+|----------------------|-------------|
+| [`imageData`](#imagedata) | *Core.BasicStructures.DSImageData* |
+| [`referencedElement`](#referencedelement) | *Core.IntermediateResult.RegionObjectElement* |
 
-### GetImageData
+### imageData
 
-Gets the ImageData of current object.
+A property that holds image data represented by the DSImageData type, defined in the Core.BasicStructures namespace. 
 
-```cpp
-const CImageData* GetImageData() 
+```js
+imageData: Core.BasicStructures.DSImageData;
 ```
 
-**Return Value**
+### referencedElement
 
-The image data.
+A property that holds a reference to another RegionObjectElement from the Core.IntermediateResult namespace. This property is used to establish a connection or reference between the normalized image element and the original region object that it refers to.
 
-**See Also**
-
-* [CImageData]({{ site.dcv_cpp_api }}core/basic-structures/image-data.html)
+```js
+referencedElement: Core.IntermediateResult.RegionObjectElement;
+```

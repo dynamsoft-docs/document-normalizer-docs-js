@@ -1,58 +1,34 @@
 ---
 layout: default-layout
-title: CNormalizedImagesUnit Class
-description: This page shows CNormalizedImagesUnit class definition of Dynamsoft Document Normalizer SDK JavaScript Edition.
-keywords: GetNormalizedImage, CNormalizedImagesUnit, api reference
-permalink: /programming/javascript/api-reference/normalized-image-unit.html
+title: interface NormalizedImagesUnit - Dynamsoft Core Module JS Edition API Reference
+description: This page shows the JS edition of the interfaace NormalizedImagesUnit in Dynamsoft Core Module.
+keywords: normalized image, JS
+needAutoGenerateSidebar: true
+noTitleIndex: true
 ---
 
-# CNormalizedImagesUnit Class
+# NormalizedImagesUnit
 
-The CNormalizedImagesUnit class represents an intermediate result unit whose type is normalized images.
+The NormalizedImagesUnit interface inherits from IntermediateResultUnit interface in the Core.IntermediateResult namespace. It includes additional properties `normalizedImages`.
 
 ## Definition
 
-*Namespace:* dynamsoft::ddn::intermediate_results
-
-*Assembly:* DynamsoftDocumentNormalizer.dll
-
-```cpp
-class CNormalizedImagesUnit: CIntermediateResultUnit
+```js
+export interface NormalizedImagesUnit extends Core.IntermediateResult.IntermediateResultUnit {
+                normalizedImages: Array<NormalizedImagesUnit>;
+            }
 ```
 
-*Inheritance:* [CIntermediateResultUnit]({{ site.dcv_cpp_api }}core/intermediate-results/intermediate-result-unit.html) -> CNormalizedImagesUnit
+## Attributes Summary
 
-## Methods
+| Attribute               | Type |
+|----------------------|-------------|
+| [`normalizedImages`](#normalizedimages) | *Array<NormalizedImagesUnit>* |
 
-| Method | Description |
-|--------|-------------|
-| [`GetCount`](#getcount) | Gets the count of `CNormalizedImageElement` objects in current object. |
-| [`GetNormalizedImage`](#getnormalizedimage) | Gets a NormalizedImage object from current object. |
+### normalizedImages
 
-### GetCount
+An array of NormalizedImageElement objects. It holds the normalized image elements, each NormalizedImageElement represents an image that has been normalized (cropped and standardized).
 
-Gets the count of `CNormalizedImageElement` objects in current object.
-
-```cpp
-int GetCount() 
+```js
+normalizedImages: Array<NormalizedImagesUnit>;
 ```
-
-**Return Value**
-
-The count of `CNormalizedImageElement` objects in current object.
-
-### GetNormalizedImage
-
-Gets a NormalizedImage object from current object.
-
-```cpp
-const CNormalizedImageElement* GetNormalizedImage(int index)
-```
-
-**Return Value**
-
-Returns the NormalizedImage object.
-
-**See Also**
-
-* [CNormalizedImageElement]({{cpp_api}}normalized-image-element.html)

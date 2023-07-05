@@ -1,65 +1,34 @@
 ---
 layout: default-layout
-title: CCornersUnit Class
-description: This page shows CCornersUnit class definition of Dynamsoft Document Normalizer SDK JavaScript Edition.
-keywords: GetCount, GetCorner, CCornersUnit, api reference
-permalink: /programming/javascript/api-reference/corners-unit.html
+title: interface CornersUnit - Dynamsoft Core Module JS Edition API Reference
+description: This page shows the JS edition of the interfaace CornersUnit in Dynamsoft Core Module.
+keywords: corners, JS
+needAutoGenerateSidebar: true
+noTitleIndex: true
 ---
 
-# CCornersUnit Class
+# CornersUnit
 
-The CCornersUnit class represents an intermediate result unit whose type is corners.
+The CornersUnit interface extends the IntermediateResultUnit interface and represents a unit of intermediate result specifically for corners. It includes additional properties that provide information about the corners.
 
 ## Definition
 
-*Namespace:* dynamsoft::ddn::intermediate_results
-
-*Assembly:* DynamsoftDocumentNormalizer.dll
-
-```cpp
-class CCornersUnit: CIntermediateResultUnit
+```js
+export interface CornersUnit extends Core.IntermediateResult.IntermediateResultUnit {
+                corners: Array<Core.BasicStructures.Corner>;
+            }
 ```
 
-*Inheritance:* [CIntermediateResultUnit]({{ site.dcv_cpp_api }}core/intermediate-results/intermediate-result-unit.html) -> CCornersUnit
+## Attributes Summary
 
-## Methods
+| Attribute               | Type |
+|----------------------|-------------|
+| [`corners`](#corners) | *Array<Core.BasicStructures.Corner>* |
 
-| Method | Description |
-|--------|-------------|
-| [`GetCount`](#getcount) | Gets the count of Corner objects in current object.|
-| [`GetCorner`](#getcorner) | Gets a Corner object from current object by specifying a index. |
+### corners
 
-### GetCount
+It stores the candidate corners detected during processing. The corner type is defined in the Core.BasicStructures namespace.
 
-Gets the count of Corner objects in current object.
-
-```cpp
-int GetCount() 
+```js
+corners: Array<Core.BasicStructures.Corner>;
 ```
-
-**Return Value**
-
-The count of Corner objects in current object.
-
-### GetCorner
-
-Gets a Corner object from current object by specifying a index.
-
-```cpp
-int GetCorner(int index, CCorner* corner)
-```
-
-**Parameters**
-
-`[in] index` The index of the Corner object.
-
-`[in, out] corner` The Corner object got by the specific index.
-
-**Return Value**
-
-Returns the error code.
-
-**See Also**
-
-* [CCorner]({{ site.dcv_cpp_api }}core/basic-structures/corner.html)
-* [ErrorCode]({{ site.enumerations }}core/error-code.html?src=cpp&&lang=cpp)

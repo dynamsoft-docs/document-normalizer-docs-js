@@ -1,65 +1,34 @@
 ---
 layout: default-layout
-title: CLongLinesUnit Class
-description: This page shows CLongLinesUnit class definition of Dynamsoft Document Normalizer SDK JavaScript Edition.
-keywords: GetCount, GetLongLine, CLongLinesUnit, api reference
-permalink: /programming/javascript/api-reference/long-lines-unit.html
+title: interface LongLinesUnit - Dynamsoft Core Module JS Edition API Reference
+description: This page shows the JS edition of the interfaace LongLinesUnit in Dynamsoft Core Module.
+keywords: long lines, JS
+needAutoGenerateSidebar: true
+noTitleIndex: true
 ---
 
-# CLongLinesUnit Class
+# LongLinesUnit
 
-The CLongLinesUnit class represents an intermediate result unit whose type is long lines.
+The LongLinesUnit interface inherits from IntermediateResultUnit interface in the Core.IntermediateResult namespace. It includes additional properties `longLines`.
 
 ## Definition
 
-*Namespace:* dynamsoft::ddn::intermediate_results
-
-*Assembly:* DynamsoftDocumentNormalizer.dll
-
-```cpp
-class CLongLinesUnit: CIntermediateResultUnit
+```js
+export interface LongLinesUnit extends Core.IntermediateResult.IntermediateResultUnit {
+                longLines: Array<Core.BasicStructures.LineSegment>;
+            }
 ```
 
-*Inheritance:* [CIntermediateResultUnit]({{ site.dcv_cpp_api }}core/intermediate-results/intermediate-result-unit.html) -> CLongLinesUnit
+## Attributes Summary
 
-## Methods
+| Attribute               | Type |
+|----------------------|-------------|
+| [`longLines`](#longLlines) | *Array<LongLinesUnit>* |
 
-| Method | Description |
-|--------|-------------|
-| [`GetCount`](#getcount) | Gets the count of LongLine objects in current object.|
-| [`GetLongLine`](#getlongline) | Gets a LongLine object from current object by specifying a index. |
+### longLines
 
-### GetCount
+An array of LineSegment objects, represented by Array<Core.BasicStructures.LineSegment>. It holds the long lines detected or processed as part of the intermediate result. Each LineSegment represents a line segment defined by its start and end points.
 
-Gets the count of LongLine objects in current object.
-
-```cpp
-int GetCount() 
+```js
+longLines: Array<Core.BasicStructures.LineSegment>;
 ```
-
-**Return Value**
-
-The count of LongLine objects in current object.
-
-### GetLongLine
-
-Gets a LongLine object from current object by specifying a index.
-
-```cpp
-int GetLongLine(int index, CLineSegment* line)
-```
-
-**Parameters**
-
-`[in] index` The index of the LongLine object.
-
-`[in, out] line` The LongLine object got by the specific index.
-
-**Return Value**
-
-Returns the error code.
-
-**See Also**
-
-* [CLineSegment]({{ site.dcv_cpp_api }}core/basic-structures/line-segment.html)
-* [ErrorCode]({{ site.enumerations }}core/error-code.html?src=cpp&&lang=cpp)

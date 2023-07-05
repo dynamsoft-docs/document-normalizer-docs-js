@@ -1,65 +1,34 @@
 ---
 layout: default-layout
-title: CCandidateQuadEdgesUnit Class
-description: This page shows CCandidateQuadEdgesUnit class definition of Dynamsoft Document Normalizer SDK JavaScript Edition.
-keywords: GetCount, GetCandidateQuadEdge, CCandidateQuadEdgesUnit, api reference
-permalink: /programming/javascript/api-reference/candidate-quad-edges-unit.html
+title: interface CandidateQuadEdgesUnit - Dynamsoft Core Module JS Edition API Reference
+description: This page shows the JS edition of the interfaace CandidateQuadEdgesUnit in Dynamsoft Core Module.
+keywords: candidate quads, JS
+needAutoGenerateSidebar: true
+noTitleIndex: true
 ---
 
-# CCandidateQuadEdgesUnit Class
+# CandidateQuadEdgesUnit
 
-The CCandidateQuadEdgesUnit class represents an intermediate result unit whose type is candidate quad edges.
+The CandidateQuadEdgesUnit interface extends the IntermediateResultUnit interface and represents a unit of intermediate result specifically for candidate quadrilateral edges. It includes additional properties that provide information about the edges.
 
 ## Definition
 
-*Namespace:* dynamsoft::ddn::intermediate_results
-
-*Assembly:* DynamsoftDocumentNormalizer.dll
-
-```cpp
-class CCandidateQuadEdgesUnit: CIntermediateResultUnit
+```js
+export interface CandidateQuadEdgesUnit extends Core.IntermediateResult.IntermediateResultUnit {
+                candidateQuadEdges: Array<Core.BasicStructures.Edge>;
+            }
 ```
 
-*Inheritance:* [CIntermediateResultUnit]({{ site.dcv_cpp_api }}core/intermediate-results/intermediate-result-unit.html) -> CCandidateQuadEdgesUnit
+## Attributes Summary
 
-## Methods
+| Attribute               | Type |
+|----------------------|-------------|
+| [`candidateQuadEdges`](#candidatequadEedges) | *Array<Core.BasicStructures.Edge>* |
 
-| Method | Description |
-|--------|-------------|
-| [`GetCount`](#getcount) | Gets the count of CandidateQuadEdge objects in current object.|
-| [`GetCandidateQuadEdge`](#getcandidatequadedge) | Gets a CandidateQuadEdge object from current object by specifying a index. |
+### candidateQuadEdges
 
-### GetCount
+Gets the candidate quad edges related to the intermediate result. The Edge type is defined in the Core.BasicStructures namespace.
 
-Gets the count of CandidateQuadEdge objects in current object.
-
-```cpp
-int GetCount() 
+```js
+candidateQuadEdges: Array<Core.BasicStructures.Edge>;
 ```
-
-**Return Value**
-
-The count of CandidateQuadEdge objects in current object.
-
-### GetCandidateQuadEdge
-
-Gets a CandidateQuadEdge object from current object by specifying a index.
-
-```cpp
-int GetCandidateQuadEdge(int index, CEdge* edge)
-```
-
-**Parameters**
-
-`[in] index` The index of the CandidateQuadEdge object.
-
-`[in, out] edge` The CandidateQuadEdge object got by the specific index.
-
-**Return Value**
-
-Returns the error code.
-
-**See Also**
-
-* [CEdge]({{ site.dcv_cpp_api }}core/basic-structures/edge.html)
-* [ErrorCode]({{ site.enumerations }}core/error-code.html?src=cpp&&lang=cpp)

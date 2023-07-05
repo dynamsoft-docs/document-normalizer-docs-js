@@ -1,41 +1,34 @@
 ---
 layout: default-layout
-title: CDetectedQuadElement Class
-description: This page shows CDetectedQuadElement class definition of Dynamsoft Document Normalizer SDK JavaScript Edition.
-keywords: GetConfidenceAsDocumentBoundary, CDetectedQuadElement, api reference
-permalink: /programming/javascript/api-reference/detected-quad-element.html
+title: interface DetectedQuadElement - Dynamsoft Core Module JS Edition API Reference
+description: This page shows the JS edition of the interfaace DetectedQuadElement in Dynamsoft Core Module.
+keywords: detected quad, JS
+needAutoGenerateSidebar: true
+noTitleIndex: true
 ---
 
-# CDetectedQuadElement Class
+# DetectedQuadElement
 
-The CDetectedQuadElement class stores an intermediate result whose type is detected quad.
+The DetectedQuadElement interface inherits from RegionObjectElement interface in the Core.IntermediateResult namespace. It includes additional properties `confidenceAsDocumentBoundary`.
 
 ## Definition
 
-*Namespace:* dynamsoft::ddn::intermediate_results
-
-*Assembly:* DynamsoftDocumentNormalizer.dll
-
-```cpp
-class CDetectedQuadElement: CRegionObjectElement
+```js
+export interface DetectedQuadElement extends Core.IntermediateResult.RegionObjectElement {
+                confidenceAsDocumentBoundary: number;
+            }
 ```
 
-*Inheritance:* [CRegionObjectElement]({{ site.dcv_cpp_api }}core/intermediate-results/region-object-element.html) -> CDetectedQuadElement
+## Attributes Summary
 
-## Methods
+| Attribute               | Type |
+|----------------------|-------------|
+| [`confidenceAsDocumentBoundary`](#confidenceasdocumentboundary) | *Number* |
 
-| Method | Description |
-|--------|-------------|
-| [`GetConfidenceAsDocumentBoundary`](#getconfidenceasdocumentboundary) | Gets the confidence as document boundary of current object. |
+### confidenceAsDocumentBoundary
 
-### GetConfidenceAsDocumentBoundary
+A number representing the confidence score of the detected quad element. The confidence score indicates the certainty or accuracy of the quad element being identified as a boundary of a document.
 
-Gets the confidence as document boundary of current object.
-
-```cpp
-int GetConfidenceAsDocumentBoundary() 
+```js
+confidenceAsDocumentBoundary: number;
 ```
-
-**Return Value**
-
-The confidence as document boundary of current object.

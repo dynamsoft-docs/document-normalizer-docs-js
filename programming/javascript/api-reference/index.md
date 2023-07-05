@@ -84,7 +84,9 @@ noTitleIndex: true
 - [`CaptureStateListener`]({{ site.dcv_js_api }}capture-vision-router/auxiliary-classes/capture-state-listener.html)
 - [`ImageSourceStateListener`]({{ site.dcv_js_api }}capture-vision-router/auxiliary-classes/image-source-state-listener.html)
 
-## [`CLicenseManager`]({{ site.dcv_js_api }}license/license-manager.html)
+## License Manager
+
+- [`LicenseManager`]({{ site.dcv_js_api }}license/license-manager.html)
 
 ## Basic Structure
 
