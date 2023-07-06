@@ -26,16 +26,11 @@ In this guide, you will learn step by step on how to build a document normalizer
     - [Include the SDK](#include-the-sdk)
       - [Use a CDN](#use-a-cdn)
       - [Host the SDK yourself](#host-the-sdk-yourself)
-    - [Configure the SDK](#configure-the-sdk)
-      - [Specify the license](#specify-the-license)
-      - [Specify the location of the "engine" files](#specify-the-location-of-the-engine-files)
+    - [Configure the SDK with license](#configure-the-sdk-with-license)
     - [Interact with the SDK](#interact-with-the-sdk)
-      - [Create a `DocumentNormalizer` object](#create-a-documentnormalizer-object)
-      - [Create a `CameraEnhancer` object and bind it to the `DocumentNormalizer` object](#create-a-cameraenhancer-object-and-bind-it-to-the-documentnormalizer-object)
-      - [Change the camera settings (optional)](#change-the-camera-settings-optional)
-      - [Customize the DocumentNormalizer Settings (optional)](#customize-the-documentnormalizer-settings-optional)
+      - [Create a `CaptureVisionRouter` object](#create-a-capturevisionrouter-object)
+      - [Create a `CameraEnhancer` object and bind it as input to cvr](#create-a-cameraenhancer-object-and-bind-it-as-input-to-cvr)
       - [Start the detection and normalization](#start-the-detection-and-normalization)
-    - [Customize the UI (optional)](#customize-the-ui-optional)
   - [API Documentation](#api-documentation)
   - [System Requirements](#system-requirements)
   - [Release Notes](#release-notes)
@@ -59,7 +54,7 @@ The complete code of the example is shown below:
 
 <head>
   <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-camera-enhancer@4.0.0-dev-20230621180020/dist/dce.js"></script>
-  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/cvrjs@0.20230630163122.0/dist/cvr.js"></script>
+  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/cvrjs@0.20230705144027.0/dist/cvr.js"></script>
 </head>
 <body>
   <h1>Detect A Document Boundary</h1>
@@ -70,6 +65,7 @@ The complete code of the example is shown below:
   <script>
     const uiContainer = document.querySelector("#uiContainer");
     const uiNormalize = document.querySelector("#uiNormalize");
+    Dynamsoft.CVR.LicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9");
     Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"]);
 
     let dce;
@@ -106,6 +102,8 @@ The complete code of the example is shown below:
 
 #### About the code
 
+- `Dynamsoft.CVR.LicenseManager.initLicense()`: This method is used to initialize the license using a license key string.
+
 - `Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"])`: This method is called to preload the `DocumentNormalizer` module of the CaptureVisionRouter library, Preparing for document border detection and image normalization.
 
 - `createInstance()`: This method is called to initialize the cvr variable by creating an instance of the `CaptureVisionRouter` class. The version of the `CaptureVisionRouterModule` is logged to the console.
@@ -123,7 +121,7 @@ The complete code of the example is shown below:
 
 Create a text file with the name "Detect-Boundary-From-Video-Frames.html", fill it with the code above and save. After that, open the example page in a browser, allow the page to access your camera and the video will show up on the page. After that, you can point the camera at something with a quadrilateral border to detect it.
 
-> You can also just test it at [https://jsfiddle.net/DynamsoftTeam/5vgh7rdx/](https://jsfiddle.net/DynamsoftTeam/5vgh7rdx/)
+> You can also just test it at [https://jsfiddle.net/DynamsoftTeam/]()
 
 Please note:
 
@@ -131,7 +129,7 @@ Please note:
 - On first use, you need to wait a few seconds for the SDK to initialize.
 - The license "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9" used in this sample is an online license and requires network connection to work.
 
-If the test doesn't go as expected, you can [contact us](https://www.dynamsoft.com/company/contact/?utm_source=guide&product=ddn&package=js).
+If the test doesn't go as expected, you can [contact us](https://www.dynamsoft.com/company/customer-service/#contact).
 
 ## Building your own page
 
@@ -197,10 +195,10 @@ or
 
 ### Configure the SDK with license
 
-The SDK requires a license to work, use the API `license` to specify a license key.
+The SDK requires a license to work, use the Dynamsoft.CVR.LicenseManager.initLicense() to specify a license key.
 
 ```javascript
-Dynamsoft.CVR.CaptureVisionRouter.license = "YOUR-LICENSE-KEY";
+Dynamsoft.CVR.LicenseManager.initLicense("YOUR-LICENSE-KEY");
 ```
 
 To test the SDK, you can request a 30-day trial license via the [customer portal](https://www.dynamsoft.com/customer/license/trialLicense?utm_source=guide&product=ddn&package=js).
@@ -208,11 +206,12 @@ To test the SDK, you can request a 30-day trial license via the [customer portal
 
 ### Interact with the SDK
 
-#### Create a `DocumentNormalizer` object
+#### Create a `CaptureVisionRouter` object
 
 
 
-#### Create a `CameraEnhancer` object and bind it to the `DocumentNormalizer` object
+#### Create a `CameraEnhancer` object and bind it as input to cvr
+
 
 
 #### Start the detection and normalization
