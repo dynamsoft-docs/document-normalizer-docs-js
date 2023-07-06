@@ -11,61 +11,66 @@ noTitleIndex: true
 
 # API Reference - JavaScript
 
-## Primary Class
+## Dynamsoft License
+
+- [`LicenseManager`]({{ site.dcv_js_api }}license/licese-manager.html)
+- [`LicenseVerificationListener`]({{ site.dcv_js_api }}license/license-verification-listener.html)
+
+## Capture Vision Router
 
 - [`CaptureVisionRouter`]({{ site.dcv_js_api }}capture-vision-router/capture-vision-router.html)
+- [`CaptureStateListener`]({{ site.dcv_js_api }}capture-vision-router/interfaces/capture-state-listener.html)
+- [`ImageSourceStateListener`]({{ site.dcv_js_api }}capture-vision-router/interfaces/image-source-state-listener.html)
+- [`SimplifiedCaptureVisionSettings`]({{ site.dcv_js_api }}capture-vision-router/interfaces/simplified-capture-vision-settings.html)
 
-## Input
+## Dynamsoft Core - Input
 
-<!-- - [`DirectoryFetcher`]({{ site.dcv_js_api }}utility/directory-fetcher.html) -->
-- [`CameraEnhancer`]({{ site.dce_js_api }})
 - [`ImageSourceAdapter`]({{ site.dcv_js_api }}core/basic-structures/image-source-adapter.html)
-<!-- - [`ProactiveImageSourceAdapter`]({{ site.dcv_js_api }}utility/proactive-image-source-adapter.html) -->
 
-## Final Results
+## Dynamsoft Core - BasicStructures
 
-- [`CapturedResultReceiver`]({{ site.dcv_js_api }}core/basic-structures/captured-result-receiver.html)
-- [`CapturedResultItem`]({{ site.dcv_js_api }}core/basic-structures/captured-result-item.html)
-- [`CapturedResult`]({{ site.dcv_js_api }}core/basic-structures/captured-result.html)
-<!-- - [`CapturedResultArray`]({{ site.dcv_js_api }}core/basic-structures/captured-result-array.html) -->
-- [`DetectedQuadResultItem`]({{ site.js_api }}detected-quad-result-item.html)
-- [`DetectedQuadsResult`]({{ site.js_api }}detected-quads-result.html)
-<!-- - [`DetectedQuadsResultArray`]({{ site.js_api }}detected-quads-result-array.html) -->
-- [`NormalizedImageResultItem`]({{ site.js_api }}normalized-image-result-item.html)
-- [`NormalizedImagesResult`]({{ site.js_api }}normalized-images-result.html)
-<!-- - [`NormalizedImagesResultArray`]({{ site.js_api }}normalized-images-result-array.html) -->
-- [`RawImageResultItem`]({{ site.dcv_js_api }}core/basic-structures/raw-image-result-item.html)
+- [`Arc`]({{ site.dcv_js_api }}core/basic-structures/arc.html)
+- [`Contour`]({{ site.dcv_js_api }}core/basic-structures/contour.html)
+- [`Corner`]({{ site.dcv_js_api }}core/basic-structures/corner.html)
+- [`DSFile`]({{ site.dcv_js_api }}core/basic-structures/ds-file.html)
+- [`DSImageData`]({{ site.dcv_js_api }}core/basic-structures/ds-image-data.html)
+- [`DSRect`]({{ site.dcv_js_api }}core/basic-structures/ds-rect.html)
+- [`Edge`]({{ site.dcv_js_api }}core/basic-structures/edge.html)
+- [`FileImageTag`]({{ site.dcv_js_api }}core/basic-structures/file-image-tag.html)
+- [`ImageTag`]({{ site.dcv_js_api }}core/basic-structures/image-tag.html)
+- [`LineSegment`]({{ site.dcv_js_api }}core/basic-structures/line-segment.html)
+- [`PDFReadingParameter`]({{ site.dcv_js_api }}core/basic-structures/pdf-reading-parameter.html)
+- [`Point`]({{ site.dcv_js_api }}core/basic-structures/point.html)
+- [`Polygon`]({{ site.dcv_js_api }}core/basic-structures/polygon.html)
+- [`Quadrilateral`]({{ site.dcv_js_api }}core/basic-structures/quadrilateral.html)
+- [`Rect`]({{ site.dcv_js_api }}core/basic-structures/rect.html)
+- [`VideoFrameTag`]({{ site.dcv_js_api }}core/basic-structures/video-frame-tag.html)
 
-<!-- 
-## Final Results Filters
 
-- [`CapturedResultFilter`]({{ site.dcv_js_api }}core/basic-structures/captured-result-filter.html)
-- [`MultiFrameResultCrossFilter`]({{ site.dcv_js_api }}utility/multi-frame-result-cross-filter.html) -->
+## Dynamsoft Core - IntermediateResults
 
-## Intermediate Results
-
-- [`IntermediateResultManager`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result-manager.html)
-- [`IntermediateResultReceiver`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result-receiver.html)
-- [`ObservationParameters`]({{ site.dcv_js_api }}core/intermediate-results/observed-parameters.html)
-- [`IntermediateResultExtraInfo`]({{ site.dcv_js_api }}core/structs/intermediate-result-extra-info.html)
-- [`IntermediateResult`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result.html)
-- [`IntermediateResultUnit`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result-unit.html)
-- [`PredetectedRegionsUnit`]({{ site.dcv_js_api }}core/intermediate-results/predetected-regions-unit.html)
-- [`DetectedQuadsUnit`]({{ site.js_api }}detected-quads-unit.html)
-- [`NormalizedImagesUnit`]({{ site.js_api }}normalized-image-unit.html)
-- [`RegionObjectElement`]({{ site.dcv_js_api }}core/intermediate-results/region-object-element.html)
-- [`PredetectedRegionElement`]({{ site.dcv_js_api }}core/intermediate-results/predetected-region-element.html)
-- [`DetectedQuadElement`]({{ site.js_api }}detected-quad-element.html)
-- [`NormalizedImageElement`]({{ site.js_api }}normalized-image-element.html)
 - [`BinaryImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/binary-image-unit.html)
-- [`CandidateQuadEdgesUnit`]({{ site.js_api }}candidate-quad-edges-unit.html)
+- [`CandidateQuadEdgesUnit`]({{ site.ddn_js_api }}candidate-quad-edges-unit.html)
 - [`ColourImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/colour-image-unit.html)
 - [`ContoursUnit`]({{ site.dcv_js_api }}core/intermediate-results/contours-unit.html)
-- [`CornersUnit`]({{ site.js_api }}corners-unit.html)
+- [`CornersUnit`]({{ site.ddn_js_api }}corners-unit.html)
+- [`DetectedQuadElement`]({{ site.ddn_js_api }}detected-quad-element.html)
+- [`DetectedQuadsUnit`]({{ site.ddn_js_api }}detected-quads-unit.html)
 - [`EnhancedGrayscaleImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/enhanced-grayscale-image-unit.html)
 - [`GrayscaleImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/grayscale-image-unit.html)
+- [`IntermediateResultExtraInfo`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result-extra-info.html)
+- [`IntermediateResultManager`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result-manager.html)
+- [`IntermediateResultReceiver`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result-receiver.html)
+- [`IntermediateResultUnit`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result-unit.html)
+- [`IntermediateResult`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result.html)
 - [`LineSegmentsUnit`]({{ site.dcv_js_api }}core/intermediate-results/line-segments-unit.html)
-- [`LongLinesUnit`]({{ site.js_api }}long-lines-unit.html)
+- [`LongLinesUnit`]({{ site.ddn_js_api }}long-lines-unit.html)
+- [`NormalizedImageElement`]({{ site.ddn_js_api }}normalized-image-element.html)
+- [`NormalizedImageUnit`]({{ site.ddn_js_api }}normalized-images-unit.html)
+- [`ObservationParameters`]({{ site.dcv_js_api }}core/intermediate-results/observation-parameters.html)
+- [`PredetectedRegionElement`]({{ site.dcv_js_api }}core/intermediate-results/predetected-region-element.html)
+- [`PredetectedRegionsUnit`]({{ site.dcv_js_api }}core/intermediate-results/predetected-regions-unit.html)
+- [`RegionObjectElement`]({{ site.dcv_js_api }}core/intermediate-results/region-object-element.html)
 - [`ScaledDownColourImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/scaled-down-colour-image-unit.html)
 - [`TextRemovedBinaryImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/text-removed-binary-image-unit.html)
 - [`TextZonesUnit`]({{ site.dcv_js_api }}core/intermediate-results/text-zones-unit.html)
@@ -74,59 +79,41 @@ noTitleIndex: true
 - [`TextureRemovedGrayscaleImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/texture-removed-grayscale-image-unit.html)
 - [`TransformedGrayscaleImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/transformed-grayscale-image-unit.html)
 
-## Settings
+## Dynamsoft Core - FinalResult
 
-- [`SimplifiedCaptureVisionSettings`]({{ site.dcv_js_api }}capture-vision-router/structs/simplified-capture-vision-settings.html)
-- [`PresetTemplate`]({{ site.dcv_js_api }}capture-vision-router/auxiliary-classes/preset-template.html)
-
-## State Listener
-
-- [`CaptureStateListener`]({{ site.dcv_js_api }}capture-vision-router/auxiliary-classes/capture-state-listener.html)
-- [`ImageSourceStateListener`]({{ site.dcv_js_api }}capture-vision-router/auxiliary-classes/image-source-state-listener.html)
-
-## License Manager
-
-- [`LicenseManager`]({{ site.dcv_js_api }}license/license-manager.html)
-
-## Basic Structure
-
-- [`Contour`]({{ site.dcv_js_api }}core/basic-structures/contour.html)
-- [`Corner`]({{ site.dcv_js_api }}core/basic-structures/corner.html)
-- [`Edge`]({{ site.dcv_js_api }}core/basic-structures/edge.html)
-- [`FileImageTag`]({{ site.dcv_js_api }}core/basic-structures/file-image-tag.html)
-- [`ImageData`]({{ site.dcv_js_api }}core/basic-structures/image-data.html)
-- [`ImageTag`]({{ site.dcv_js_api }}core/basic-structures/image-tag.html)
-- [`LineSegment`]({{ site.dcv_js_api }}core/basic-structures/line-segment.html)
-- [`PDFReadingParameter`]({{ site.dcv_js_api }}core/basic-structures/pdf-reading-parameter.html)
-- [`Point`]({{ site.dcv_js_api }}core/basic-structures/point.html)
-- [`Quadrilateral`]({{ site.dcv_js_api }}core/basic-structures/quadrilateral.html)
-- [`Rect`]({{ site.dcv_js_api }}core/basic-structures/rect.html)
-- [`VideoFrameTag`]({{ site.dcv_js_api }}core/basic-structures/video-frame-tag.html)
-
-## Modules
-
-- [`CaptureVisionRouterModule`]({{ site.dcv_js_api }}capture-vision-router/auxiliary-classes/capture-vision-router-module.html)
-- [`DocumentNormalizerModule`]({{ site.js_api }}document-normalizer-module.html)
-- [`CoreModule`]({{ site.dcv_js_api }}core/basic-structures/core-module.html)
-- [`LicenseModule`]({{ site.dcv_js_api }}license/license-module.html)
-- [`UtilityModule`]({{ site.dcv_js_api }}utility/utility-module.html)
-- [`ImageProcessingModule`]({{ site.dcv_js_api }}image-processing/image-processing-module.html)
+- [`CapturedResult`]({{ site.dcv_js_api }}core/basic-structures/captured-result.html)
+- [`CapturedResultFilter`]({{ site.dcv_js_api }}core/basic-structures/captured-result-filter.html)
+- [`CapturedResultItem`]({{ site.dcv_js_api }}core/basic-structures/captured-result-item.html)
+- [`CapturedResultReceiver`]({{ site.dcv_js_api }}core/basic-structures/captured-result-receiver.html)
+- [`DetectedQuadResultItem`]({{ site.ddn_js_api }}detected-quad-result-item.html)
+- [`DetectedQuadsResult`]({{ site.ddn_js_api }}detected-quads-result.html)
+- [`NormalizedImageResultItem`]({{ site.ddn_js_api }}normalized-image-result-item.html)
+- [`NormalizedImagesResult`]({{ site.ddn_js_api }}normalized-images-result.html)
+- [`RawImageResultItem`]({{ site.dcv_js_api }}core/basic-structures/raw-image-result-item.html)
 
 ## Enumerations
 
-- [`BufferOverflowProtectionMode`]({{ site.enumerations }}core/buffer-overflow-protection-mode.html?src=cpp&&lang=cpp)
-- [`CapturedResultItemType`]({{ site.enumerations }}core/captured-result-item-type.html?src=cpp&&lang=cpp)
-- [`CornerType`]({{ site.enumerations }}core/corner-type.html?src=cpp&&lang=cpp)
-- [`ErrorCode`]({{ site.enumerations }}core/error-code.html?src=cpp&&lang=cpp)
-- [`GrayscaleTransformationMode`]({{ site.enumerations }}core/grayscale-transformation-mode.html?src=cpp&&lang=cpp)
-- [`ImageCaptureDistanceMode`]({{ site.enumerations }}core/image-capture-distance-mode.html?src=cpp&&lang=cpp)
-- [`ImagePixelFormat`]({{ site.enumerations }}core/image-pixel-format.html?src=cpp&&lang=cpp)
-- [`ImageSourceState`]({{ site.enumerations }}core/image-source-state.html?src=cpp&&lang=cpp)
-- [`ImageTagType`]({{ site.enumerations }}core/image-tag-type.html?src=cpp&&lang=cpp)
-- [`IntermediateResultUnitType`]({{ site.enumerations }}core/intermediate-result-unit-type.html?src=cpp&&lang=cpp)
-- [`PDFReadingMode`]({{ site.enumerations }}core/pdf-reading-mode.html?src=cpp&&lang=cpp)
-- [`RegionObjectElementType`]({{ site.enumerations }}core/region-object-element-type.html?src=cpp&&lang=cpp)
-- [`SectionType`]({{ site.enumerations }}core/section-type.html?src=cpp&&lang=cpp)
-- [`TargetType`]({{ site.enumerations }}core/target-type.html?src=cpp&&lang=cpp)
-- [`VideoFrameQuality`]({{ site.enumerations }}core/video-frame-quality.html?src=cpp&&lang=cpp)
-- [`ColourChannelUsageType`]({{ site.enumerations}}core/colour-channel-usage-type.html?src=cpp&&lang=cpp)
+<!--- [`BarcodeFormat`]({{ site.enums }}barcode-reader/barcode-format.html?lang=js)-->
+- [`BufferOverflowProtectionMode`]({{ site.enums }}core/buffer-overflow-protection-mode.html?lang=js)
+- [`CapturedResultItemType`]({{ site.enums }}core/captured-result-item-type.html?lang=js)
+- [`CaptureState`]({{ site.enums }}capture-vision-router/capture-state.html?lang=js)
+- [`CornerType`]({{ site.enums }}core/corner-type.html?lang=js)  
+<!--- [`DeblurMode`]({{ site.enums }}barcode-reader/deblur-mode.html?lang=js)-->
+- [`ErrorCode`]({{ site.enums }}core/error-code.html?lang=js)
+<!--- [`ExtendedBarcodeResultType`]({{ site.enums }}barcode-reader/extended-barcode-result-type.html?lang=js)-->
+- [`GrayscaleTransformationMode`]({{ site.enums }}core/grayscale-transformation-mode.html?lang=js)
+<!--- [`image-capture-distance-mode`]({{ site.enums }}core/image-capture-distance-mode.html?lang=js)-->
+- [`ImagePixelFormat`]({{ site.enums }}core/image-pixel-format.html?lang=js)
+- [`ImageSourceState`]({{ site.enums }}core/image-source-state.html?lang=js)
+- [`ImageTagType`]({{ site.enums }}core/image-tag-type.html?lang=js)
+- [`IntermediateResultUnitType`]({{ site.enums }}core/intermediate-result-unit-type.html?lang=js)
+<!--- [`LocalizationMode`]({{ site.enums }}barcode-reader/localization-mode.html?lang=js)-->
+<!--- [`MappingStatus`]({{ site.enums }}code-parser/mapping-status.html?lang=js)-->
+- [`PDFReadingMode`]({{ site.enums }}core/pdf-reading-mode.html?lang=js)
+<!--- [`QRCodeErrorCorrectionLevel`]({{ site.enums }}barcode-reader/qr-code-error-correction-level.html?lang=js)-->
+- [`RegionObjectElementType`]({{ site.enums }}core/region-object-element-type.html?lang=js)
+- [`SectionType`]({{ site.enums }}core/section-type.html?lang=js)
+- [`TargetType`]({{ site.enums }}core/target-type.html?lang=js)
+<!--- [`ValidationStatus`]({{ site.enums }}code-parser/validation-status.html?lang=js)-->
+<!--- [`video-frame-quality.html`]({{ site.enums }}core/video-frame-quality.html?lang=js)-->
+- [`ColourChannelUsageType`]({{ site.enums }}core/colour-channel-usage-type.html?lang=js)
