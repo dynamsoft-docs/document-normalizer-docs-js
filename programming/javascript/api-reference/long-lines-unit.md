@@ -1,7 +1,7 @@
 ---
 layout: default-layout
 title: interface LongLinesUnit - Dynamsoft Core Module JS Edition API Reference
-description: This page shows the JS edition of the interfaace LongLinesUnit in Dynamsoft Core Module.
+description: This page shows the JS edition of the interface LongLinesUnit in Dynamsoft Core Module.
 keywords: long lines, JS
 needAutoGenerateSidebar: true
 noTitleIndex: true

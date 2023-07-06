@@ -1,71 +1,44 @@
 ---
 layout: default-layout
-title: CDetectedQuadResultItem Class
-description: This page shows CDetectedQuadResultItem class definition of Dynamsoft Document Normalizer SDK JavaScript Edition.
-keywords: GetLocation, GetConfidenceAsDocumentBoundary, GetRotationTransformMatrix, CDetectedQuadResultItem, api reference
-permalink: /programming/javascript/api-reference/detected-quad-result-item.html
+title: interface DetectedQuadResultItem - Dynamsoft Core Module JS Edition API Reference
+description: This page shows the JS edition of the interface DetectedQuadResultItem in Dynamsoft Core Module.
+keywords: detected quad, JS
+needAutoGenerateSidebar: true
+noTitleIndex: true
 ---
 
-# CDetectedQuadResultItem Class
+# DetectedQuadResultItem
 
-The CDetectedQuadResultItem class stores a captured result whose type is detected quad.
+An interface that extends the CapturedResultItem interface from the Core.BasicStructures namespace. It represents a detected quad result item and includes properties such as location (the quadrilateral's coordinates) and confidenceAsDocumentBoundary (the confidence score of the quad as a document boundary).
 
 ## Definition
 
-*Namespace:* dynamsoft::ddn
-
-*Assembly:* DynamsoftDocumentNormalizer.dll
-
-```cpp
-class CDetectedQuadResultItem: CCapturedResultItem
+```js
+export interface DetectedQuadResultItem extends Core.BasicStructures.CapturedResultItem {
+            location: Core.BasicStructures.Quadrilateral;
+            confidenceAsDocumentBoundary: number;
+        }
 ```
 
-*Inheritance:* [CCapturedResultItem]({{ site.dcv_cpp_api }}core/basic-structures/captured-result-item.html) -> CDetectedQuadResultItem
+## Attributes Summary
 
-## Methods
+| Attribute               | Type |
+|----------------------|-------------|
+| [`location`](#location) | *Core.BasicStructures.Quadrilateral* |
+| [`confidenceAsDocumentBoundary`](#confidenceasdocumentboundary) | *Number* |
 
-| Method | Description |
-|--------|-------------|
-| [`GetLocation`](#getlocation) | Gets the location of current object. |
-| [`GetConfidenceAsDocumentBoundary`](#getconfidenceasdocumentboundary) | Gets the confidence of current object as a document boundary. |
-| [`GetRotationTransformMatrix`](#getrotationtransformmatrix) | Gets the transformation matrix to transform the location coordinates to image’s natural orientation. |
+### location
 
-### GetLocation
+The detected quadrilateral's coordinates.
 
-Gets the location of current object.
-
-```cpp
-const CQuadrilateral GetLocation() 
+```js
+location: Core.BasicStructures.Quadrilateral;
 ```
 
-**Return Value**
+### confidenceAsDocumentBoundary
 
-The location of current object.
+A number representing the confidence score of the detected quad element. The confidence score indicates the certainty or accuracy of the quad element being identified as a boundary of a document.
 
-**See Also**
-
-* [CQuadrilateral]({{ site.dcv_cpp_api }}core/basic-structures/quadrilateral.html)
-
-### GetConfidenceAsDocumentBoundary
-
-Gets the confidence of current object as a document boundary.
-
-```cpp
-int GetConfidenceAsDocumentBoundary() 
+```js
+confidenceAsDocumentBoundary: number;
 ```
-
-**Return Value**
-
-The confidence as document boundary of the detected quad result.
-
-### GetRotationTransformMatrix
-
-Gets the transformation matrix to transform the location coordinates to image’s natural orientation.
-
-```cpp
-void GetRotationTransformMatrix(double matrix[9]) 
-```
-
-**Parameters**
-
-`[in] matrix` The transformation matrix.

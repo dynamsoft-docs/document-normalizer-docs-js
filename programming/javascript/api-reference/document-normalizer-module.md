@@ -1,43 +1,34 @@
 ---
 layout: default-layout
-title: class DocumentNormalizer Module - Dynamsoft Document Normalizer Classes
-description: This page shows the JavaScript edition of the class DocumentNormalizer Module in Document Normalizer Module.
-keywords: document normalizer module, JavaScript
+title: interface DocumentNormalizerModule - Dynamsoft Core Module JS Edition API Reference
+description: This page shows the JS edition of the class DocumentNormalizerModule in Dynamsoft Core Module.
+keywords: document normalizer module, JS
 needAutoGenerateSidebar: true
-needGenerateH3Content: true
-breadcrumbText: JavaScript DocumentNormalizer Module Class
-permalink: /programming/javascript/api-reference/document-normalizer-module.html
+noTitleIndex: true
 ---
 
-# DocumentNormalizer Module
+# DocumentNormalizerModule
 
-The "DocumentNormalizer" module is defined in the namespace `Dynamsoft.DDN`. At present, it consists of the class `DocumentNormalizer` and a few enumerations and interfaces.
+The DocumentNormalizerModule class provides a static method getVersion to retrieve the version of the Document Normalizer module.
 
-## DocumentNormalizer Class
+## Definition
 
-The `DocumentNormalizer` class now has only one static method which returns the version of the DocumentNormalizer Module.
+```js
+export class DocumentNormalizerModule {
+            static getVersion: () => string;
+        }
+```
 
-| API Name                                            | Description                                              |
-| --------------------------------------------------- | -------------------------------------------------------- |
-| [getVersion()](./document-normalizer.md#getversion) | Returns the version of the `DocumentNormalizer` modules. |
+## Methods Summary
 
-## Interfaces
+| Method               | Description |
+|----------------------|-------------|
+| [`getVersion`](#getversion) | Get the version of the Document Normalizer module. |
 
-In order to make the code more predictable and readable, the module defines a series of supporting interfaces:
+### getVersion
 
-### Final Result Interfaces
+Return a string representing the version of the Document Normalizer module.
 
-* [DetectedQuadResultItem](./detected-quad-result-item.md)
-* [DetectedQuadsResult](./detected-quads-result.md)
-* [NormalizedImageResultItem](./normalized-image-result-item.md)
-* [NormalizedImagesResult](./normalized-images-result.md)
-
-### Intermediate Result Interfaces
-
-* [CandidateQuadEdgesUnit](./candidate-quad-edges-unit.md)
-* [CornersUnit](./corners-unit.md)
-* [DetectedQuadElement](./detected-quad-element.md)
-* [DetectedQuadsUnit](./detected-quads-unit.md)
-* [LongLinesUnit](./long-lines-unit.md)
-* [NormalizedImageElement](./normalized-image-element.md)
-* [NormalizedImagesUnit](./normalized-images-unit.md)
+```js
+static getVersion: () => string;
+```

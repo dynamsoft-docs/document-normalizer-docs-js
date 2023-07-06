@@ -1,7 +1,7 @@
 ---
 layout: default-layout
 title: interface NormalizedImageElement - Dynamsoft Core Module JS Edition API Reference
-description: This page shows the JS edition of the interfaace NormalizedImageElement in Dynamsoft Core Module.
+description: This page shows the JS edition of the interface NormalizedImageElement in Dynamsoft Core Module.
 keywords: normalized image, JS
 needAutoGenerateSidebar: true
 noTitleIndex: true

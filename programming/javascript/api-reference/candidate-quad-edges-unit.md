@@ -1,7 +1,7 @@
 ---
 layout: default-layout
 title: interface CandidateQuadEdgesUnit - Dynamsoft Core Module JS Edition API Reference
-description: This page shows the JS edition of the interfaace CandidateQuadEdgesUnit in Dynamsoft Core Module.
+description: This page shows the JS edition of the interface CandidateQuadEdgesUnit in Dynamsoft Core Module.
 keywords: candidate quads, JS
 needAutoGenerateSidebar: true
 noTitleIndex: true
