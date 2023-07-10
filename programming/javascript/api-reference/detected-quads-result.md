@@ -13,7 +13,7 @@ An interface representing the result of detected quads. It includes properties s
 
 ## Definition
 
-```js
+```ts
 export interface DetectedQuadsResult {
             readonly sourceImageHashId: string;
             readonly sourceImageTag: Core.BasicStructures.ImageTag;
@@ -33,7 +33,7 @@ export interface DetectedQuadsResult {
 
 Gets the hash ID of the source image.
 
-```js
+```ts
 readonly sourceImageHashId: string;
 ```
 
@@ -41,7 +41,7 @@ readonly sourceImageHashId: string;
 
 Gets the tag of the source image.
 
-```js
+```ts
 readonly sourceImageTag: Core.BasicStructures.ImageTag;
 ```
 
@@ -49,6 +49,6 @@ readonly sourceImageTag: Core.BasicStructures.ImageTag;
 
 It stores the quadrilaterals detected during processing.
 
-```js
+```ts
 quadsResultItems: Array<DetectedQuadsResult>;
 ```

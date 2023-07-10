@@ -13,7 +13,7 @@ The DetectedQuadsUnit interface inherits from IntermediateResultUnit interface i
 
 ## Definition
 
-```js
+```ts
 export interface DetectedQuadsUnit extends Core.IntermediateResult.IntermediateResultUnit {
                 detectedQuads: Array<DetectedQuadElement>;
             }
@@ -29,6 +29,6 @@ export interface DetectedQuadsUnit extends Core.IntermediateResult.IntermediateR
 
 An array of DetectedQuadElement objects and it holds the detected quads. Each DetectedQuadElement represents a single set of detected quads.
 
-```js
+```ts
 detectedQuads: Array<DetectedQuadElement>;
 ```

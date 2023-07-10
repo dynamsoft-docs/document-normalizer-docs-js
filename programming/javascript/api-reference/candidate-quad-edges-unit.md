@@ -13,7 +13,7 @@ The CandidateQuadEdgesUnit interface extends the IntermediateResultUnit interfac
 
 ## Definition
 
-```js
+```ts
 export interface CandidateQuadEdgesUnit extends Core.IntermediateResult.IntermediateResultUnit {
                 candidateQuadEdges: Array<Core.BasicStructures.Edge>;
             }
@@ -29,6 +29,6 @@ export interface CandidateQuadEdgesUnit extends Core.IntermediateResult.Intermed
 
 Gets the candidate quad edges related to the intermediate result. The Edge type is defined in the Core.BasicStructures namespace.
 
-```js
+```ts
 candidateQuadEdges: Array<Core.BasicStructures.Edge>;
 ```

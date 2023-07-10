@@ -13,7 +13,7 @@ An interface represents the result of normalized images. It includes properties 
 
 ## Definition
 
-```js
+```ts
 export interface NormalizedImagesResult {
             readonly sourceImageHashId: string;
             readonly sourceImageTag: Core.BasicStructures.ImageTag;
@@ -33,7 +33,7 @@ export interface NormalizedImagesResult {
 
 Gets the hash ID of the source image.
 
-```js
+```ts
 readonly sourceImageHashId: string;
 ```
 
@@ -41,7 +41,7 @@ readonly sourceImageHashId: string;
 
 Gets the tag of the source image.
 
-```js
+```ts
 readonly sourceImageTag: Core.BasicStructures.ImageTag;
 ```
 
@@ -49,6 +49,6 @@ readonly sourceImageTag: Core.BasicStructures.ImageTag;
 
 An array of NormalizedImageResultItem objects, represented by Array<NormalizedImageResultItem>.
 
-```js
+```ts
 normalizedImageResultItems: Array<NormalizedImageResultItem>;
 ```

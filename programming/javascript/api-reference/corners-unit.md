@@ -13,7 +13,7 @@ The CornersUnit interface extends the IntermediateResultUnit interface and repre
 
 ## Definition
 
-```js
+```ts
 export interface CornersUnit extends Core.IntermediateResult.IntermediateResultUnit {
                 corners: Array<Core.BasicStructures.Corner>;
             }
@@ -29,6 +29,6 @@ export interface CornersUnit extends Core.IntermediateResult.IntermediateResultU
 
 It stores the candidate corners detected during processing. The corner type is defined in the Core.BasicStructures namespace.
 
-```js
+```ts
 corners: Array<Core.BasicStructures.Corner>;
 ```

@@ -13,7 +13,7 @@ An interface that extends the CapturedResultItem interface from the Core.BasicSt
 
 ## Definition
 
-```js
+```ts
 export interface DetectedQuadResultItem extends Core.BasicStructures.CapturedResultItem {
             location: Core.BasicStructures.Quadrilateral;
             confidenceAsDocumentBoundary: number;
@@ -31,7 +31,7 @@ export interface DetectedQuadResultItem extends Core.BasicStructures.CapturedRes
 
 The detected quadrilateral's coordinates.
 
-```js
+```ts
 location: Core.BasicStructures.Quadrilateral;
 ```
 
@@ -39,6 +39,6 @@ location: Core.BasicStructures.Quadrilateral;
 
 A number representing the confidence score of the detected quad element. The confidence score indicates the certainty or accuracy of the quad element being identified as a boundary of a document.
 
-```js
+```ts
 confidenceAsDocumentBoundary: number;
 ```

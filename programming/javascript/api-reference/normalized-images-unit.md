@@ -13,7 +13,7 @@ The NormalizedImagesUnit interface inherits from IntermediateResultUnit interfac
 
 ## Definition
 
-```js
+```ts
 export interface NormalizedImagesUnit extends Core.IntermediateResult.IntermediateResultUnit {
                 normalizedImages: Array<NormalizedImagesUnit>;
             }
@@ -29,6 +29,6 @@ export interface NormalizedImagesUnit extends Core.IntermediateResult.Intermedia
 
 An array of NormalizedImageElement objects. It holds the normalized image elements, each NormalizedImageElement represents an image that has been normalized (cropped and standardized).
 
-```js
+```ts
 normalizedImages: Array<NormalizedImagesUnit>;
 ```

@@ -13,7 +13,7 @@ An interface that extends the CapturedResultItem interface from the Core.BasicSt
 
 ## Definition
 
-```js
+```ts
 export interface NormalizedImageResultItem extends Core.BasicStructures.CapturedResultItem {
             imageData: Core.BasicStructures.DSImageData;
             location: Core.BasicStructures.Quadrilateral;
@@ -45,7 +45,7 @@ export interface NormalizedImageResultItem extends Core.BasicStructures.Captured
 
  A property of type DSImageData from the Core.BasicStructures namespace. It holds the image data for the normalized image.
 
-```js
+```ts
 imageData: Core.BasicStructures.DSImageData;
 ```
 
@@ -53,13 +53,13 @@ imageData: Core.BasicStructures.DSImageData;
 
  A property of type Quadrilateral from the Core.BasicStructures namespace. It represents the location of the normalized image as a quadrilateral.
 
-```js
+```ts
 location: Core.BasicStructures.Quadrilateral;
 ```
 
 ### toCanvas
 
-```js
+```ts
 toCanvas: () => HTMLCanvasElement;
 ```
 
@@ -69,7 +69,7 @@ Returns an HTMLCanvasElement representing the normalized image.
 
 ### toImage
 
-```js
+```ts
 toImage: (MIMEType: "image/png" | "image/jpeg") => HTMLImageElement;
 ```
 
@@ -83,7 +83,7 @@ Returns an HTMLImageElement representing the normalized image with the specified
 
 ### toBlob
 
-```js
+```ts
 toBlob: (MIMEType: "image/png" | "image/jpeg") => Promise<Blob>;
 ```
 
@@ -97,7 +97,7 @@ Returns a Promise that resolves to a Blob representing the normalized image with
 
 ### saveToFile
 
-```js
+```ts
 saveToFile: (name: string, download?: boolean) => Promise<File>;
 ```
 

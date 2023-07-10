@@ -13,7 +13,7 @@ The DetectedQuadElement interface inherits from RegionObjectElement interface in
 
 ## Definition
 
-```js
+```ts
 export interface DetectedQuadElement extends Core.IntermediateResult.RegionObjectElement {
                 confidenceAsDocumentBoundary: number;
             }
@@ -29,6 +29,6 @@ export interface DetectedQuadElement extends Core.IntermediateResult.RegionObjec
 
 A number representing the confidence score of the detected quad element. The confidence score indicates the certainty or accuracy of the quad element being identified as a boundary of a document.
 
-```js
+```ts
 confidenceAsDocumentBoundary: number;
 ```

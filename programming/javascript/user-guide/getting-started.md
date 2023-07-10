@@ -98,6 +98,7 @@ The complete code of the example is shown below:
   </a>
 </p>
 -->
+
 -----
 
 #### About the code
@@ -115,7 +116,7 @@ The complete code of the example is shown below:
     - Initializes the dce variable by creating an instance of the `CameraEnhancer` with the previously created view.
     - Sets the input for the `CaptureVisionRouter` (cvr) to be the dce instance.
     - Opens the camera feed using `dce.open()`.
-    - Starts capturing and detecting document boundaries using `cvr.startCapturing()`, and default template "detect-document-boundaries" is used.
+    - Starts capturing and detecting document boundaries using `cvr.startCapturing()`, and preset template "detect-document-boundaries" is used.
 
 ### Test the code
 
@@ -203,12 +204,14 @@ Dynamsoft.CVR.LicenseManager.initLicense("YOUR-LICENSE-KEY");
 
 To test the SDK, you can request a 30-day trial license via the [customer portal](https://www.dynamsoft.com/customer/license/trialLicense?utm_source=guide&product=ddn&package=js).
 
-
 ### Interact with the SDK
 
 #### Create a `CaptureVisionRouter` object
 
-
+```js
+let cvr;
+cvr = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
+```
 
 #### Create a `CameraEnhancer` object and bind it as input to cvr
 

@@ -13,7 +13,7 @@ The NormalizedImageElement interface inherits from RegionObjectElement interface
 
 ## Definition
 
-```js
+```ts
 export interface NormalizedImageElement extends Core.IntermediateResult.RegionObjectElement {
                 imageData: Core.BasicStructures.DSImageData;
                 referencedElement: Core.IntermediateResult.RegionObjectElement;
@@ -31,7 +31,7 @@ export interface NormalizedImageElement extends Core.IntermediateResult.RegionOb
 
 A property that holds image data represented by the DSImageData type, defined in the Core.BasicStructures namespace. 
 
-```js
+```ts
 imageData: Core.BasicStructures.DSImageData;
 ```
 
@@ -39,6 +39,6 @@ imageData: Core.BasicStructures.DSImageData;
 
 A property that holds a reference to another RegionObjectElement from the Core.IntermediateResult namespace. This property is used to establish a connection or reference between the normalized image element and the original region object that it refers to.
 
-```js
+```ts
 referencedElement: Core.IntermediateResult.RegionObjectElement;
 ```
