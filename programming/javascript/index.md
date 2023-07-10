@@ -19,5 +19,6 @@ breadcrumbText: JavaScript
 
 ## Release Notes
 
+- [Version 2.x]({{site.js}}release-notes/javascript-.html)
 - [Version 1.x]({{site.js}}release-notes/javascript-1.html)
 
