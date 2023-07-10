@@ -11,7 +11,7 @@ js_release_notes: /document-normalizer/docs/web/programming/javascript/release-n
 
 programming: /document-normalizer/docs/web/programming/
 
-enums: /capture-vision/docs/core/enums/
+enumerations: /document-normalizer/docs/web/programming/enumerations/
 parameters_reference_ddn: /document-normalizer/docs/core/parameters/reference/
 
 dcv_js_api: /capture-vision/docs/web/programming/javascript/api-reference/
