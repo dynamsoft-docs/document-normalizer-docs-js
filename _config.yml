@@ -6,7 +6,7 @@ docRootName: "Document Normalizer JS Edition"
 docHomePage: /document-normalizer/docs/web/programming/javascript/
 
 js: /document-normalizer/docs/web/programming/javascript/
-ddn_js_api: /document-normalizer/docs/web/programming/javascript/api-reference/
+js_api: /document-normalizer/docs/web/programming/javascript/api-reference/
 js_release_notes: /document-normalizer/docs/web/programming/javascript/release-notes/
 
 programming: /document-normalizer/docs/web/programming/
