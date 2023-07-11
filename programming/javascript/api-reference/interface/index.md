@@ -70,61 +70,61 @@ The APIs for this class include
 
 | Method               | Description |
 |----------------------|-------------|
-| [license](initialize.md#license) | Uses an alphanumeric string to specify the license. |
-| [createInstance()](initialize.md#createinstance) | Creates a `DocumentNormalizer` instance. |
-| [dispose()](initialize.md#dispose) | Dispose the DocumentNormalizer instance. |
-| [disposed](initialize.md#disposed) | Returns whether the instance has been disposed. |
-| [engineResourcePath](initialize.md#engineresourcepath) | Specifies the path from where the engine and models, etc. can be loaded. |
-| [loadWasm()](initialize.md#loadwasm) | Loads the engine. |
-| [isWasmLoaded()](initialize.md#iswasmloaded) | Returns whether the engine has been loaded. |
-| [getVersion()](initialize.md#getversion) | Returns the version of the library. |
+| [license()]({{ site.js_api }}initialize.html#license) | Uses an alphanumeric string to specify the license. |
+| [createInstance()]({{ site.js_api }}initialize.html#createinstance) | Creates a `DocumentNormalizer` instance. |
+| [dispose()]({{ site.js_api }}initialize.html#dispose) | Dispose the DocumentNormalizer instance. |
+| [disposed()](initialize.html#disposed) | Returns whether the instance has been disposed. |
+| [engineResourcePath()](initialize.html#engineresourcepath) | Specifies the path from where the engine and models, etc. can be loaded. |
+| [loadWasm()]({{ site.js_api }}initialize.html#loadwasm) | Loads the engine. |
+| [isWasmLoaded()]({{ site.js_api }}initialize.html#iswasmloaded) | Returns whether the engine has been loaded. |
+| [getVersion()]({{ site.js_api }}initialize.html#getversion) | Returns the version of the library. |
 
 ## Video Detecting Methods
 
 | Method               | Description |
 |----------------------|-------------|
-| [setImageSource()](normalize.md#setimagesource) | Sets an image source for continous scanning. |
-| [onQuadDetected](normalize.md#onquaddetected) | This event is triggered when a new quadrilateral is detected. |
-| [setQuadResultFilter()](normalize.md#setquadresultfilter) | Sets a function to filter a detected quadrilateral. |
-| [confirmQuadForNormalization()](normalize.md#confirmquadfornormalization) | Confirms which quadrilateral will be referred for later normalization. |
-| [normalizeWithConfirmedQuad()](normalize.md#normalizewithconfirmedquad) | Normalizes the image whith a selected quadrilateral. |
-| [startScanning()](normalize.md#startscanning) | Opens the camera and starts continuous scanning of incoming images. |
-| [pauseScanning()](normalize.md#pausescanning) | Pauses continuous scanning but keep the video stream. |
-| [resumeScanning()](normalize.md#resumescanning) | Resumes continuous scanning. |
-| [stopScanning()](normalize.md#stopscanning) | Stops continuous scanning and closes the video stream. |
+| [setImageSource()]({{ site.js_api }}normalize.html#setimagesource) | Sets an image source for continous scanning. |
+| [onQuadDetected()]({{ site.js_api }}normalize.html#onquaddetected) | This event is triggered when a new quadrilateral is detected. |
+| [setQuadResultFilter()]({{ site.js_api }}normalize.html#setquadresultfilter) | Sets a function to filter a detected quadrilateral. |
+| [confirmQuadForNormalization()]({{ site.js_api }}normalize.html#confirmquadfornormalization) | Confirms which quadrilateral will be referred for later normalization. |
+| [normalizeWithConfirmedQuad()]({{ site.js_api }}normalize.html#normalizewithconfirmedquad) | Normalizes the image whith a selected quadrilateral. |
+| [startScanning()]({{ site.js_api }}normalize.html#startscanning) | Opens the camera and starts continuous scanning of incoming images. |
+| [pauseScanning()]({{ site.js_api }}normalize.html#pausescanning) | Pauses continuous scanning but keep the video stream. |
+| [resumeScanning()]({{ site.js_api }}normalize.html#resumescanning) | Resumes continuous scanning. |
+| [stopScanning()]({{ site.js_api }}normalize.html#stopscanning) | Stops continuous scanning and closes the video stream. |
 
 ## Detect and Normalize Methods
 
 | Method               | Description |
 |----------------------|-------------|
-| [detectQuad()](normalize.md#detectquad) | Detects quadrilaterals from an image. |
-| [normalize()](normalize.md#normalize) | Normalizes the source image based on the settings in options. |
+| [detectQuad()]({{ site.js_api }}normalize.html#detectquad) | Detects quadrilaterals from an image. |
+| [normalize()]({{ site.js_api }}normalize.html#normalize) | Normalizes the source image based on the settings in options. |
 
 ## Scan Settings Methods
 
 | Method               | Description |
 |----------------------|-------------|
-| [getScanSettings()](settings.md#getscansettings) | Returns the current [`ScanSettings`](./interfaces/scansettings.md). |
-| [updateScanSettings()](settings.md#updatescansettings) | Updates scan settings with the object passed in. |
+| [getScanSettings()]({{ site.js_api }}settings.html#getscansettings) | Returns the current [`ScanSettings`]({{ site.js_api }}interfaces/scansettings.html). |
+| [updateScanSettings()]({{ site.js_api }}settings.html#updatescansettings) | Updates scan settings with the object passed in. |
 
 ## Runtime Settings Methods
 
 | Method               | Description |
 |----------------------|-------------|
-| [getRuntimeSettings()](settings.md#getruntimesettings) | Gets runtime settings with a template represented by a JSON object. |
-| [setRuntimeSettings()](settings.md#setputruntimesettings) | Sets runtime settings with a JSON object. |
-| [resetRuntimeSettings()](settings.md#resetputruntimesettings) | Resets all parameters to default values. |
+| [getRuntimeSettings()]({{ site.js_api }}settings.html#getruntimesettings) | Gets runtime settings with a template represented by a JSON object. |
+| [setRuntimeSettings()]({{ site.js_api }}settings.html#setputruntimesettings) | Sets runtime settings with a JSON object. |
+| [resetRuntimeSettings()]({{ site.js_api }}settings.html#resetputruntimesettings) | Resets all parameters to default values. |
 
 ## Interfaces
 
-* [`DetectedQuadResult`](./interfaces/detected-quad-result.md)
-* [`NormalizedImageResult`](./interfaces/normalized-image-result.md)
-* [`ScanSettings`](./interfaces/scansettings.md)
-* [`Quadrilateral`](./interfaces/quadrilateral.md)
-* [`Point`](./interfaces/point.md)
-* [`ImageSource`](./interfaces/imagesource.md)
-* [`DDNImage`](./interfaces/ddn-image.md)
-* [`DSImage`](./interfaces/dsimage.md)
+* [`DetectedQuadResult`]({{ site.js_api }}interfaces/detected-quad-result.html)
+* [`NormalizedImageResult`]({{ site.js_api }}interfaces/normalized-image-result.html)
+* [`ScanSettings`]({{ site.js_api }}interfaces/scansettings.html)
+* [`Quadrilateral`]({{ site.js_api }}interfaces/quadrilateral.html)
+* [`Point`]({{ site.js_api }}interfaces/point.html)
+* [`ImageSource`]({{ site.js_api }}interfaces/imagesource.html)
+* [`DDNImage`]({{ site.js_api }}interfaces/ddn-image.html)
+* [`DSImage`]({{ site.js_api }}interfaces/dsimage.html)
 
 <!-- ## Enumerations
 
