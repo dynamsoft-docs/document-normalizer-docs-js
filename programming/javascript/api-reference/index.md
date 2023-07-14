@@ -13,7 +13,7 @@ noTitleIndex: true
 
 ## Dynamsoft License
 
-- [`LicenseManager`]({{ site.dcv_js_api }}license/licese-manager.html)
+- [`LicenseManager`]({{ site.dcv_js_api }}license/license-manager.html)
 - [`LicenseVerificationListener`]({{ site.dcv_js_api }}license/license-verification-listener.html)
 
 ## Capture Vision Router
