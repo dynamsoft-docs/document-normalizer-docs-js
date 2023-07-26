@@ -17,7 +17,7 @@ In this guide, you will learn step by step on how to build a document normalizer
 
 <span style="font-size:20px">Table of Contents</span>
 
-- [User Guide - JavaScript](#javascript-user-guide)
+- [JavaScript User Guide](#javascript-user-guide)
   - [Example Usage](#example-usage)
     - [Check the code](#check-the-code)
       - [About the code](#about-the-code)
@@ -29,9 +29,9 @@ In this guide, you will learn step by step on how to build a document normalizer
     - [Configure the SDK with license](#configure-the-sdk-with-license)
     - [Interact with the SDK](#interact-with-the-sdk)
       - [Create a `CaptureVisionRouter` object](#create-a-capturevisionrouter-object)
-      - [Create a `CameraEnhancer` object and bind it as input to cvr](#create-a-cameraenhancer-object-and-bind-it-as-input-to-cvr)
+      - [Create a `CameraEnhancer` object and bind it as input to router](#create-a-cameraenhancer-object-and-bind-it-as-input-to-router)
       - [Start the detection](#start-the-detection)
-      - [Normalize an image](#normalize an image)
+      - [Normalize an image](#normalize-an-image)
   - [API Documentation](#api-documentation)
   - [System Requirements](#system-requirements)
   - [Release Notes](#release-notes)
@@ -58,35 +58,31 @@ The complete code of the example is shown below:
 </head>
 <body>
   <h1>Detect And Normalize A Document</h1>
-  <button onclick="start()">start capturing</button>
+  <button onclick="start()">Start Capturing</button>
   <div id="uiNormalize"></div>
   <div id="uiContainer" style="width: 100vw; height: 60vh; margin-top: 10px;display: none;"></div>
 
   <script>
+        let router = null;
+        let cameraEnhancer = null;
     const uiContainer = document.querySelector("#uiContainer");
     const uiNormalize = document.querySelector("#uiNormalize");
     Dynamsoft.CVR.LicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9");
     Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"]);
 
-    let dce;
-    let cvr;
-    
-    async function createInstance() {
-      cvr = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
-      console.log(Dynamsoft.CVR.CaptureVisionRouterModule.getVersion());
-    }
-    createInstance();
-    async function start() {
+    (async function() {
+    router = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
       if (dce) return;
       uiContainer.style.display = "block";
       let view = await Dynamsoft.DCE.CameraView.createInstance();
       dce = await Dynamsoft.DCE.CameraEnhancer.createInstance(view);
       dce.setResolution({ width: 1920, height: 1080 });
       uiContainer.append(view.getUIElement());
-      cvr.setInput(dce);
+      router.setInput(dce);
       await dce.open();
-      await cvr.startCapturing("detect-document-boundaries");
-    }
+      await router.startCapturing("detect-document-boundaries");
+    
+          })();
   </script>
 </body>
 </html>
@@ -103,24 +99,24 @@ The complete code of the example is shown below:
 
 #### About the code
 
-- `Dynamsoft.CVR.LicenseManager.initLicense()`: This method is used to initialize the license using a license key string.
+- `Dynamsoft.CVR.LicenseManager.initLicense()`: this method initializes the license using a license key string.
 
-- `Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"])`: This method is called to preload the `DocumentNormalizer` module of the CaptureVisionRouter library, Preparing for document border detection and image normalization.
+- `Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"])`: this method preloads the `DocumentNormalizer` module of the CaptureVisionRouter library, preparing for document border detection and image normalization.
 
-- `createInstance()`: This method is called to initialize the cvr variable by creating an instance of the `CaptureVisionRouter` class. The version of the `CaptureVisionRouterModule` is logged to the console.
+- `createInstance()`: this method creates an instance of the `CaptureVisionRouter` class.
 
 - `start()` : This method is defined, which performs the following tasks:
     - Checks if dce is already initialized and returns if it is (prevents reinitialization).
     - Makes the `uiContainer` visible by changing its display style property to "block."
     - Creates an instance of the `CameraView`, sets its resolution to 1920x1080, and appends its UI element to the `uiContainer`.
     - Initializes the dce variable by creating an instance of the `CameraEnhancer` with the previously created view.
-    - Sets the input for the `CaptureVisionRouter` (cvr) to be the dce instance.
+    - Sets the input for the `CaptureVisionRouter` (router) to be the dce instance.
     - Opens the camera feed using `dce.open()`.
-    - Starts capturing and detecting document boundaries using `cvr.startCapturing()`, and preset template "detect-document-boundaries" is used.
+    - Starts capturing and detecting document boundaries using `router.startCapturing()`, and preset template "detect-document-boundaries" is used.
 
 ### Test the code
 
-Create a text file with the name "Detect-Boundary-From-Video-Frames.html", fill it with the code above and save. After that, open the example page in a browser, allow the page to access your camera and the video will show up on the page. After clicking "start capturing" button, you will see the detected boundaries displayed in real time on the video.
+Create a text file with the name "Detect-Boundary-From-Video-Frames.html", fill it with the code above and save. After that, open the example page in a browser, allow the page to access your camera and the video will show up on the page. After clicking the "Start Capturing" button, you will see the detected boundaries displayed in real time on the video.
 
 > You can also just test it at [https://jsfiddle.net/DynamsoftTeam/]()
 
@@ -214,11 +210,11 @@ To test the SDK, you can request a 30-day trial license via the [customer portal
 Create an instance of Capture Vision Router.
 
 ```js
-let cvr;
-cvr = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
+let router;
+router = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
 ```
 
-#### Create a `CameraEnhancer` object and bind it as input to cvr
+#### Create a `CameraEnhancer` object and bind it as input to router
 
 The CameraEnhancer object is necessary to access the camera to display the video stream and draw the found quads. In some cases, a different camera might be required instead of the default one. Also, a different resolution might work better. To change the camera or the resolution, we use the CameraEnhancer object. Learn more [here](https://www.dynamsoft.com/camera-enhancer/docs/programming/javascript/api-reference/camera-control.html?ver=4.0.0&utm_source=guide&product=ddn&package=js).
 
@@ -227,7 +223,7 @@ let view;
 let dce;
 view = await Dynamsoft.DCE.CameraView.createInstance();
 dce = await Dynamsoft.DCE.CameraEnhancer.createInstance(view);
-cvr.setInput(dce);
+router.setInput(dce);
 ```
 
 #### Start the detection
@@ -240,9 +236,9 @@ let crr = {
                 items = pResult.quadsResultItems;
             }
         };
-cvr.addResultReceiver(crr);
+router.addResultReceiver(crr);
 dce.open();
-cvr.startCapturing("detect-document-boundary");
+router.startCapturing("detect-document-boundary");
 ```
 
 #### Normalize an image
@@ -252,7 +248,7 @@ There is a slight difference between the way you handle individual images and th
 ```js
 let imagefilepath;
 const uiNormalize = document.querySelector("#uiNormalize");
-results = await cvr.capture(imagefilepath, "detect-and-normalize-document");
+results = await router.capture(imagefilepath, "detect-and-normalize-document");
 results.items.forEach(async (item) => {
   if (item.type === 16) {
       uiNormalize.innerHTML = "";
@@ -294,11 +290,11 @@ DDN-JS SDK requires the following features to work:
 
 The following table is a list of supported browsers based on the above requirements:
 
-  Browser Name | Version
-  :-: | :-:
-  Chrome | v85+ on desktop, v94+ on Android
-  Firefox | v99+ on desktop and Android
-  Safari | v15+ on iOS
+  | Browser Name |             Version              |
+  | :----------: | :------------------------------: |
+  |    Chrome    | v85+ on desktop, v94+ on Android |
+  |   Firefox    |   v99+ on desktop and Android    |
+  |    Safari    |           v15+ on iOS            |
 
 Apart from the browsers, the operating systems may impose some limitations of their own that could restrict the use of the SDK.
 
