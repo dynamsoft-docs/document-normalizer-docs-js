@@ -209,7 +209,7 @@ To test the SDK, you can request a 30-day trial license via the [customer portal
 
 ### Interact with the SDK
 
-#### Create a `CaptureVisionRouter` object
+#### Create a CaptureVisionRouter object
 
 Create an instance of Capture Vision Router.
 
@@ -218,7 +218,7 @@ let cvr;
 cvr = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
 ```
 
-#### Create a `CameraEnhancer` object and bind it as input to cvr
+#### Create a CameraEnhancer object and bind it as input to cvr
 
 The CameraEnhancer object is necessary to access the camera to display the video stream and draw the found quads. In some cases, a different camera might be required instead of the default one. Also, a different resolution might work better. To change the camera or the resolution, we use the CameraEnhancer object. Learn more [here](https://www.dynamsoft.com/camera-enhancer/docs/programming/javascript/api-reference/camera-control.html?ver=4.0.0&utm_source=guide&product=ddn&package=js).
 
