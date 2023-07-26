@@ -1,29 +1,23 @@
 ---
 layout: default-layout
-title: Dynamsoft Document Normalizer for JavaScript - User Guide
-description: This is the user guide of Dynamsoft Document Normalizer for JavaScript SDK.
-keywords: user guide, javascript
+title: User Guide Index - Dynamsoft Capture Vision JavaScript Edition
+description: This is the index page for Dynamsoft Capture Vision User Guide.
+keywords: CaptureVision, Capture, User Guide, javascript, js
 needAutoGenerateSidebar: true
-needGenerateH4Content: true
+needGenerateH3Content: true
 noTitleIndex: true
+breadcrumbText: User Guide
 ---
 
-# Document Normalizer for Your Website - User Guide
+# JavaScript User Guide
 
-Dynamsoft Document Normalizer JavaScript Edition (DDN-JS) is equipped with industry-leading quadrilateral detection and image normalization algorithms. Using its well-designed API, you can turn your web page into a document normalizer with a few lines of code.
+In this guide, you will learn step by step on how to build a document normalizer application with Dynamsoft Capture Vision SDK using JavaScript language.
 
-![version](https://img.shields.io/npm/v/dynamsoft-document-normalizer.svg)
-![downloads](https://img.shields.io/npm/dm/dynamsoft-document-normalizer.svg)
-![jsdelivr](https://img.shields.io/jsdelivr/npm/hm/dynamsoft-document-normalizer.svg)
-![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/dynamsoft-document-normalizer.svg)
-
-Once the DDN-JS SDK is integrated into your web pages, your users can access a connected camera through their browser, point it at the document and detect the document's boundaries in real-time. Once a detection looks promising, users can enter edit mode to fine-tune the boundaries before using them to obtain a normalized image of the document. The normalization process now includes cropping, perspective correction, brightness adjustment, contrast adjustment, and color mode conversion.
-
-In this guide, you will learn how to integrate this SDK into your website step by step.
+> Read more on [Dynamsoft Capture Vision Features]({{site.dcv_introduction}})
 
 <span style="font-size:20px">Table of Contents</span>
 
-- [Document Normalizer for Your Website - User Guide](#document-normalizer-for-your-website---user-guide)
+- [User Guide - JavaScript](#javascript-user-guide)
   - [Example Usage](#example-usage)
     - [Check the code](#check-the-code)
       - [About the code](#about-the-code)
@@ -32,20 +26,15 @@ In this guide, you will learn how to integrate this SDK into your website step b
     - [Include the SDK](#include-the-sdk)
       - [Use a CDN](#use-a-cdn)
       - [Host the SDK yourself](#host-the-sdk-yourself)
-    - [Configure the SDK](#configure-the-sdk)
-      - [Specify the license](#specify-the-license)
-      - [Specify the location of the "engine" files](#specify-the-location-of-the-engine-files)
+    - [Configure the SDK with license](#configure-the-sdk-with-license)
     - [Interact with the SDK](#interact-with-the-sdk)
-      - [Create a `DocumentNormalizer` object](#create-a-documentnormalizer-object)
-      - [Create a `CameraEnhancer` object and bind it to the `DocumentNormalizer` object](#create-a-cameraenhancer-object-and-bind-it-to-the-documentnormalizer-object)
-      - [Change the camera settings (optional)](#change-the-camera-settings-optional)
-      - [Customize the DocumentNormalizer Settings (optional)](#customize-the-documentnormalizer-settings-optional)
-      - [Start the detection and normalization](#start-the-detection-and-normalization)
-    - [Customize the UI (optional)](#customize-the-ui-optional)
+      - [Create a `CaptureVisionRouter` object](#create-a-capturevisionrouter-object)
+      - [Create a `CameraEnhancer` object and bind it as input to cvr](#create-a-cameraenhancer-object-and-bind-it-as-input-to-cvr)
+      - [Start the detection](#start-the-detection)
+      - [Normalize an image](#normalize-an-image)
   - [API Documentation](#api-documentation)
   - [System Requirements](#system-requirements)
   - [Release Notes](#release-notes)
-  - [Next Steps](#next-steps)
 
 ## Example Usage
 
@@ -62,86 +51,78 @@ The complete code of the example is shown below:
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@3.2.0/dist/dce.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@1.0.12/dist/ddn.js"></script>
+  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-camera-enhancer@4.0.0-dev-20230621180020/dist/dce.js"></script>
+  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/cvrjs@0.20230705144027.0/dist/cvr.js"></script>
 </head>
 <body>
-    <h1>Capture A Document</h1>
-    <button id="confirmQuadForNormalization">Edit Boundaries</button>
-    <button id="normalizeWithConfirmedQuad">Normalize and Capture</button>
-    <div id="div-ui-container" style="margin-top: 10px;height: 70vh;"></div>
-    <div id="normalized-result"></div>
-    <script>
-        let normalizer = null;
-        let cameraEnhancer = null;
+  <h1>Detect And Normalize A Document</h1>
+  <button onclick="start()">start capturing</button>
+  <div id="uiNormalize"></div>
+  <div id="uiContainer" style="width: 100vw; height: 60vh; margin-top: 10px;display: none;"></div>
 
-        // You can visit https://www.dynamsoft.com/customer/license/trialLicense?utm_source=npm&product=ddn&package=js to get your own trial license good for 30 days.
-        Dynamsoft.DDN.DocumentNormalizer.license = "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9";
+  <script>
+    const uiContainer = document.querySelector("#uiContainer");
+    const uiNormalize = document.querySelector("#uiNormalize");
+    Dynamsoft.CVR.LicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9");
+    Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"]);
 
-        (async function() {
-            cameraEnhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance();
-            normalizer = await Dynamsoft.DDN.DocumentNormalizer.createInstance();
-            await normalizer.setImageSource(cameraEnhancer, { resultsHighlightBaseShapes: Dynamsoft.DCE.DrawingItem });
-
-            await document.getElementById('div-ui-container').append(cameraEnhancer.getUIElement());
-            
-            // Triggered when a quadrilateral is detected from a video frame.
-            normalizer.onQuadDetected = (quadResults, sourceImage) => {
-              console.log(quadResults);
-            };
-
-            // Click the button to pause the video and edit a quadrilateral.
-            document.getElementById('confirmQuadForNormalization').addEventListener("click", () => {
-              normalizer.confirmQuadForNormalization();
-            });
-
-            // Click the button to normalize with the selected/adjusted quadrilateral.
-            document.getElementById('normalizeWithConfirmedQuad').addEventListener("click", async () => {
-              const normalizedImageResult = await normalizer.normalizeWithConfirmedQuad();
-              if(normalizedImageResult) {
-                // Show the normalized image in a Canvas
-                const cvs = normalizedImageResult.image.toCanvas();
-                document.querySelector("#normalized-result").appendChild(cvs);
-                console.log(normalizedImageResult);
-              }
-            });
-            // Start scanning document boundaries.
-            await normalizer.startScanning(true);
-          })();
-    </script>
+    let dce;
+    let cvr;
+    
+    async function createInstance() {
+      cvr = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
+      console.log(Dynamsoft.CVR.CaptureVisionRouterModule.getVersion());
+    }
+    createInstance();
+    async function start() {
+      if (dce) return;
+      uiContainer.style.display = "block";
+      let view = await Dynamsoft.DCE.CameraView.createInstance();
+      dce = await Dynamsoft.DCE.CameraEnhancer.createInstance(view);
+      dce.setResolution({ width: 1920, height: 1080 });
+      uiContainer.append(view.getUIElement());
+      cvr.setInput(dce);
+      await dce.open();
+      await cvr.startCapturing("detect-document-boundaries");
+    }
+  </script>
 </body>
-
 </html>
 ```
-
+<!--
 <p align="center" style="text-align:center; white-space: normal; ">
   <a target="_blank" href="https://jsfiddle.net/DynamsoftTeam/5vgh7rdx/" title="Run via JSFiddle">
     <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/jsfiddle.svg" alt="Run via JSFiddle" width="20" height="20" style="width:20px;height:20px;">
   </a>
 </p>
+-->
 
 -----
 
 #### About the code
 
-- `DocumentNormalizer.createInstance()`: this method creates a `DocumentNormalizer` object called `normalizer`.
+- `Dynamsoft.CVR.LicenseManager.initLicense()`: This method is used to initialize the license using a license key string.
 
-- `CameraEnhancer.createInstance()`: this method creates a `CameraEnhancer` object called `cameraEnhancer`, which is used to control the camera as well as the default user interface. Once `CameraEnhancer` is bound to `normalizer` via `setImageSource()`, the `normalizer` will get video frames from the camera for detection and normalization.
+- `Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"])`: This method is called to preload the `DocumentNormalizer` module of the CaptureVisionRouter library, Preparing for document border detection and image normalization.
 
-- `onQuadDetected`: this event is triggered every time the SDK finds at least one quadrilateral after scanning a video frame. The `quadResults` object contains all the found quadrilaterals. In this example, the results are logged in the browser console.
+- `createInstance()`: This method is called to initialize the cvr variable by creating an instance of the `CaptureVisionRouter` class. The version of the `CaptureVisionRouterModule` is logged to the console.
 
-- `startScanning(true)`: starts continuous video frame scanning. It returns a `Promise` which resovles when the camera is opened, the video shows up on the page and begins to scan (which means the `normalizer` starts to get frames for detection).
-
-- `confirmQuadForNormalization()`: pauses the video stream and enter "editor mode" where the quadrilaterals in current frame are selectable and editable. You can select one quadrilateral that surrounds the target document and edit it to be as accurate as possible.
-
-- `normalizeWithConfirmedQuad()`: normalizes the image with the quadrilateral to obtain an image of the document as "normalizedImageResult".
+- `start()` : This method is defined, which performs the following tasks:
+    - Checks if dce is already initialized and returns if it is (prevents reinitialization).
+    - Makes the `uiContainer` visible by changing its display style property to "block."
+    - Creates an instance of the `CameraView`, sets its resolution to 1920x1080, and appends its UI element to the `uiContainer`.
+    - Initializes the dce variable by creating an instance of the `CameraEnhancer` with the previously created view.
+    - Sets the input for the `CaptureVisionRouter` (cvr) to be the dce instance.
+    - Opens the camera feed using `dce.open()`.
+    - Starts capturing and detecting document boundaries using `cvr.startCapturing()`, and preset template "detect-document-boundaries" is used.
 
 ### Test the code
 
-Create a text file with the name "Normalize-Video-Frames.html", fill it with the code above and save. After that, open the example page in a browser, allow the page to access your camera and the video will show up on the page. After that, you can point the camera at something with a quadrilateral border to detect it.
+Create a text file with the name "Detect-Boundary-From-Video-Frames.html", fill it with the code above and save. After that, open the example page in a browser, allow the page to access your camera and the video will show up on the page. After clicking "start capturing" button, you will see the detected boundaries displayed in real time on the video.
 
-> You can also just test it at [https://jsfiddle.net/DynamsoftTeam/5vgh7rdx/](https://jsfiddle.net/DynamsoftTeam/5vgh7rdx/)
+> You can also just test it at [https://jsfiddle.net/DynamsoftTeam/]()
 
 Please note:
 
@@ -149,11 +130,11 @@ Please note:
 - On first use, you need to wait a few seconds for the SDK to initialize.
 - The license "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9" used in this sample is an online license and requires network connection to work.
 
-If the test doesn't go as expected, you can [contact us](https://www.dynamsoft.com/company/contact/?utm_source=guide&product=ddn&package=js).
+If the test doesn't go as expected, you can [contact us](https://www.dynamsoft.com/company/customer-service/#contact).
 
 ## Building your own page
 
-In this section, we'll break down and show all the steps required to build a web page for document capturing with DDN-JS.
+In this section, we'll break down and show all the steps required to build a web page for document capturing from video stream with DDN-JS.
 
 ### Include the SDK
 
@@ -161,18 +142,18 @@ In this section, we'll break down and show all the steps required to build a web
 
 The simplest way to include the SDK is to use either the [jsDelivr](https://jsdelivr.com/) or [UNPKG](https://unpkg.com/) CDN. The "hello world" example above uses **jsDelivr**. We should also include the SDK Dynamsoft Camera Enhancer which provides camera support.
 
-- jsDeliv
+- jsDelivr
 
   ```html
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@1.0.12/dist/ddn.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@3.2.0/dist/dce.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.0.0/dist/ddn.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
   ```
 
 - UNPKG
 
   ```html
-  <script src="https://unpkg.com/dynamsoft-document-normalizer@1.0.12/dist/ddn.js"></script>
-  <script src="https://unpkg.com/dynamsoft-camera-enhancer@3.2.0/dist/dce.js"></script>
+  <script src="https://unpkg.com/dynamsoft-document-normalizer@2.0.0/dist/ddn.js"></script>
+  <script src="https://unpkg.com/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
   ```
 
 #### Host the SDK yourself
@@ -186,236 +167,105 @@ To download the SDK:
 - yarn
 
   ```cmd
-  yarn add dynamsoft-document-normalizer@1.0.12
+  yarn add dynamsoft-document-normalizer@2.0.0
   ```
 
 - npm
 
   ```cmd
-  npm install dynamsoft-document-normalizer@1.0.12
+  npm install dynamsoft-document-normalizer@2.0.0
   ```
 
 Depending on how you downloaded the SDK and where you put it, you can typically include it like this:
 
   ```html
-  <script src="/dynamsoft-document-normalizer-js-1.0.12/dist/ddn.js"></script>
+  <script src="/dynamsoft-capture-vision-router-js/dist/cvr.js"></script>
+  <script src="/dynamsoft-document-normalizer-js-2.0.0/dist/ddn.js"></script>
   ```
 
 or
 
   ```html
+  <script src="/node_modules/dynamsoft-capture-vision-router/dist/cvr.js"></script>
   <script src="/node_modules/dynamsoft-document-normalizer/dist/ddn.js"></script>
   ```
 
 or
 
   ```ts
+  import { CaptureVisionRouter } from 'dynamsoft-capture-vision-router';
   import { DocumentNormalizer } from 'dynamsoft-document-normalizer';
   ```
 
-### Configure the SDK
+### Configure the SDK with license
 
-Before using the SDK, you need to configure a few things.
-
-#### Specify the license
-
-The SDK requires a license to work, use the API `license` to specify a license key.
+The SDK requires a license to work, use the Dynamsoft.CVR.LicenseManager.initLicense() to specify a license key.
 
 ```javascript
-Dynamsoft.DDN.DocumentNormalizer.license = "YOUR-LICENSE-KEY";
+Dynamsoft.CVR.LicenseManager.initLicense("YOUR-LICENSE-KEY");
 ```
 
 To test the SDK, you can request a 30-day trial license via the [customer portal](https://www.dynamsoft.com/customer/license/trialLicense?utm_source=guide&product=ddn&package=js).
 
-#### Specify the location of the "engine" files
-
-If the engine files (\*.worker.js, \*.wasm.js and \*.wasm, etc.) are NOT in the same location with the main SDK file (ddn.js), you can use the API `engineResourcePath` to specify the engine path, for example:
-
-```javascript
-// The following code uses the jsDelivr CDN, feel free to change it to your own location of these files.
-Dynamsoft.DDN.DocumentNormalizer.engineResourcePath = "https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@1.0.12/dist/";
-```
-
 ### Interact with the SDK
 
-#### Create a `DocumentNormalizer` object
+#### Create a CaptureVisionRouter object
 
-To use the SDK, we first create a `DocumentNormalizer` object.
+Create an instance of Capture Vision Router.
 
-```javascript
-Dynamsoft.DDN.DocumentNormalizer.license = "YOUR-LICENSE-KEY";
-let normalizer = null;
-try {
-    normalizer = await Dynamsoft.DDN.DocumentNormalizer.createInstance();
-} catch (ex) {
-    console.error(ex);
-}
+```js
+let cvr;
+cvr = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
 ```
 
-#### Create a `CameraEnhancer` object and bind it to the `DocumentNormalizer` object
+#### Create a CameraEnhancer object and bind it as input to cvr
 
-The `CameraEnhancer` object is necessary to access the camera to display the video stream and draw the found quads.
+The CameraEnhancer object is necessary to access the camera to display the video stream and draw the found quads. In some cases, a different camera might be required instead of the default one. Also, a different resolution might work better. To change the camera or the resolution, we use the CameraEnhancer object. Learn more [here](https://www.dynamsoft.com/camera-enhancer/docs/programming/javascript/api-reference/camera-control.html?ver=4.0.0&utm_source=guide&product=ddn&package=js).
 
-```javascript
-let cameraEnhancer = null;
-cameraEnhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance();
-let options = {
-    resultsHighlightBaseShapes: Dynamsoft.DCE.DrawingItem
-};
-await normalizer.setImageSource(cameraEnhancer, options);
+```js
+let view;
+let dce;
+view = await Dynamsoft.DCE.CameraView.createInstance();
+dce = await Dynamsoft.DCE.CameraEnhancer.createInstance(view);
+cvr.setInput(dce);
 ```
 
-#### Change the camera settings (optional)
+#### Start the detection
 
-In some cases, a different camera might be required instead of the default one. Also, a different resolution might work better. To change the camera or the resolution, we use the `CameraEnhancer` object. Learn more [here](https://www.dynamsoft.com/camera-enhancer/docs/programming/javascript/api-reference/camera-control.html?ver=3.2.0&utm_source=guide&product=ddn&package=js).
+Define the captured result receiver to accept the detected boundaries, And set it as the output results. Finally, call the method startCapturing() to start processing all the continuous input.
 
-```javascript
-// The following lines set which camera and what resolution to use.
-let allCameras = await cameraEnhancer.getAllCameras();
-await cameraEnhancer.selectCamera(allCameras[0]);
-await cameraEnhancer.setResolution(1280, 720);
+```js
+let crr = {
+            async onDetectedQuadsReceived(pResult) {
+                items = pResult.quadsResultItems;
+            }
+        };
+cvr.addResultReceiver(crr);
+dce.open();
+cvr.startCapturing("detect-document-boundary");
 ```
 
-#### Customize the DocumentNormalizer Settings (optional)
+#### Normalize an image
 
-Check out the following code:
+There is a slight difference between the way you handle individual images and the way you handle video streams. The code snippet shown here does border detection and normalization on a static image. We use method capture() to accomplish this process.
 
-```javascript
-// Sets up the scanner behavior
-let scanSettings = await normalizer.getScanSettings();
-// Sets a scan interval in milliseconds so the SDK may release the CPU from time to time.
-// (setting this value larger is a simple way to save battery power and reduce device heating).
-scanSettings.intervalTime = 100; // The default is 0.
-await normalizer.updateScanSettings(scanSettings);
-
-// Sets up the runtime settings
-let runtimeSettings = await normalizer.getRuntimeSettings();
-runtimeSettings.ImageParameterArray[0].BinarizationModes[0].ThresholdCompensation = 3;
-runtimeSettings.ImageParameterArray[0].ScaleDownThreshold = 512;
-await normalizer.setRuntimeSettings(runtimeSettings);
-
-// or uses a built-in runtime setting template "lowcontrast"
-await normalizer.setRuntimeSettings("lowcontrast");
-
-// Resets the runtime setting to default
-await normalizer.resetRuntimeSettings();
-```
-
-As you can see from the above code snippets, there are two types of configurations:
-
-- `get/updateScanSettings`: Configures the scanning behavior of the normalizer which only includes `intervalTime` for now.
-
-- `get/set/resetRuntimeSettings`: Configures the normalizer engine with a built-in template or a template represented by a JSON object. This will override the previous RuntimeSettings.
-
-#### Start the detection and normalization
-
-After attaching an event handler to the event `onQuadDetected`. We can call `startScanning(true)` to start the detection process.
-
-For user interaction, we should also add buttons for fucntions that invoke `confirmQuadForNormalization()` and `normalizeWithConfirmedQuad()`.
-
-```javascript
-// Triggered when a quadrilateral is detected from a video frame.
-normalizer.onQuadDetected = (quadResults, sourceImage) => {
-  console.log(quadResults);
-};
-
-// Click the button to pause the video and edit a quadrilateral.
-document.getElementById('confirmQuadForNormalization').addEventListener("click", () => {
-  normalizer.confirmQuadForNormalization();
-});
-
-// Click the button to normalize with the selected/adjusted quadrilateral.
-document.getElementById('normalizeWithConfirmedQuad').addEventListener("click", async () => {
-  const normalizedImageResult = await normalizer.normalizeWithConfirmedQuad();
-  if(normalizedImageResult) {
-    // Show the normalized image in a Canvas
-    const cvs = normalizedImageResult.image.toCanvas();
-    document.querySelector("#normalized-result").appendChild(cvs);
-    console.log(normalizedImageResult);
+```js
+let imagefilepath;
+const uiNormalize = document.querySelector("#uiNormalize");
+results = await cvr.capture(imagefilepath, "detect-and-normalize-document");
+results.items.forEach(async (item) => {
+  if (item.type === 16) {
+      uiNormalize.innerHTML = "";
+      uiNormalize.appendChild(item.toImage());
+      console.log(await item.saveToFile("sample.jpeg"));
   }
-});
-// Start scanning document boundaries.
-await normalizer.startScanning(true);
+})
 ```
-
-### Customize the UI (optional)
-
-The built-in UI of the `DocumentNormalizer` object is defined in the file `dist/ddn.ui.html` . There are 4 ways to customize it:
-
-- Modify the file `ddn.ui.html` directly.
-
-  This option is only possible when you host this file on your own web server instead of using a CDN. Note that this file is put in the **dist** directory of the **dynamsoft-camera-enhancer** package.
-
-- Copy the file `ddn.ui.html` to your application, modify it and pass its URL to the API `setUIElement` to set it as the default UI.
-
-  ```javascript
-  await cameraEnhancer.setUIElement("THE-URL-TO-THE-FILE");
-  ```
-
-- Append the default UI element to your page, customize it before showing it.
-
-  ```html
-  <div id="camera-container"></div>
-  ```
-
-  ```javascript
-  document.getElementById('camera-container').appendChild(cameraEnhancer.getUIElement());
-  document.getElementsByClassName('dce-btn-close')[0].hidden = true; // Hide the close button
-  ```
-
-- Build the UI element into your own web page and specify it with the API `setUIElement(HTMLElement)`.
-
-  - Embed the video
-
-    ```html
-    <div id="div-ui-container" style="width:100%;height:100%;">
-        <div class="dce-video-container" style="position:relative;width:100%;height:500px;"></div>
-    </div>
-    <script>
-        (async () => {
-            let cameraEnhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance();
-            let normalizer = await Dynamsoft.DDN.DocumentNormalizer.createInstance();
-            let options = {
-              resultsHighlightBaseShapes: Dynamsoft.DCE.DrawingItem
-            };
-            await normalizer.setImageSource(cameraEnhancer, options);
-
-            await document.getElementById('div-ui-container').append(cameraEnhancer.getUIElement());
-        })();
-    </script>
-    ```
-
-    > The video element will be created and appended to the DIV element with the class `dce-video-container` , make sure the class name is the same. Also note that the CSS property `position` of the DIV element must be either `relative` , `absolute` , `fixed` , or `sticky` .
-
-  - Add the camera list and resolution list
-
-    If the class names for these lists match the default ones, `dce-sel-camera` and `dce-sel-resolution` , the SDK will automatically populate the lists and handle the camera/resolution switching.
-
-    ```html
-    <div id="div-ui-container">
-        <select class="dce-sel-camera"></select>
-        <select class="dce-sel-resolution"></select>
-        <br>
-        <div class="dce-video-container" style="position:relative;width:100%;height:500px;"></div>
-    </div>
-    ```
-
-    > By default, only 3 hard-coded resolutions (1920 x 1080, 1280 x 720, 640 x 480), are populated as options. You can show a customized set of options by hardcoding them.
-
-    ```html
-    <select class="dce-sel-resolution">
-        <option class="dce-opt-gotResolution" value="got"></option>
-        <option data-width="1280" data-height="720">1280x720</option>
-        <option data-width="1920" data-height="1080">1920x1080</option>
-    </select>
-    ```
-
-    > Generally, you need to provide a resolution that the camera supports. However, in case a camera does not support the specified resolution, it usually uses the closest supported resolution. As a result, the selected resolution may not be the actual resolution. In this case, add an option with the class name `dce-opt-gotResolution` (as shown above) and the SDK will then use it to show the **actual resolution**.
 
 ## API Documentation
 
 You can check out the detailed documentation about the APIs of the SDK at
-[https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/api-reference/?ver=latest](https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/api-reference/?ver=latest).
+[https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/api-reference/index.html?ver=latest](https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/api-reference/index.html?ver=latest).
 
 ## System Requirements
 
@@ -455,10 +305,3 @@ Apart from the browsers, the operating systems may impose some limitations of th
 ## Release Notes
 
 Learn about what are included in each release at [https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/release-notes/?ver=latest](https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/release-notes/?ver=latest).
-
-## Next Steps
-
-Now that you have got the SDK integrated, you can choose to move forward in the following directions
-
-1. Check out the [official samples](https://github.com/Dynamsoft/document-normalizer-javascript-samples).
-2. Learn about the available [APIs](https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/api-reference/?ver=latest).
