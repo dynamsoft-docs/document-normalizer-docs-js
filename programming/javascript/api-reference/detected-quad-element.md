@@ -19,9 +19,7 @@ export interface DetectedQuadElement extends Core.IntermediateResult.RegionObjec
             }
 ```
 
-## Attributes Summary
-
-| Attribute               | Type |
+| Properties              | Type |
 |----------------------|-------------|
 | [`confidenceAsDocumentBoundary`](#confidenceasdocumentboundary) | *Number* |
 

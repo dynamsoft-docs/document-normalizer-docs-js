@@ -19,9 +19,7 @@ export interface DetectedQuadsUnit extends Core.IntermediateResult.IntermediateR
             }
 ```
 
-## Attributes Summary
-
-| Attribute               | Type |
+| Properties              | Type |
 |----------------------|-------------|
 | [`detectedQuads`](#detectedquads) | *Array<DetectedQuadsUnit>* |
 

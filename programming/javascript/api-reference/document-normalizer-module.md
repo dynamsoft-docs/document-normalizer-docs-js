@@ -15,13 +15,11 @@ The DocumentNormalizerModule class provides a static method getVersion to retrie
 
 ```ts
 export class DocumentNormalizerModule {
-            static getVersion: () => string;
+            static getVersion(): string;
         }
 ```
 
-## Methods Summary
-
-| Method               | Description |
+| API Name               | Description |
 |----------------------|-------------|
 | [`getVersion`](#getversion) | Get the version of the Document Normalizer module. |
 
@@ -30,5 +28,5 @@ export class DocumentNormalizerModule {
 Return a string representing the version of the Document Normalizer module.
 
 ```ts
-static getVersion: () => string;
+static getVersion(): string;
 ```

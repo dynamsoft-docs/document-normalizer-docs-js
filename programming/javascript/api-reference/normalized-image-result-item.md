@@ -17,28 +17,21 @@ An interface that extends the CapturedResultItem interface from the Core.BasicSt
 export interface NormalizedImageResultItem extends Core.BasicStructures.CapturedResultItem {
             imageData: Core.BasicStructures.DSImageData;
             location: Core.BasicStructures.Quadrilateral;
-            toCanvas: () => HTMLCanvasElement;
-            toImage: (MIMEType: "image/png" | "image/jpeg") => HTMLImageElement;
-            toBlob: (MIMEType: "image/png" | "image/jpeg") => Promise<Blob>;
-            saveToFile: (name: string, download?: boolean) => Promise<File>;
+            toCanvas(): HTMLCanvasElement;
+            toImage(MIMEType: "image/png" | "image/jpeg"): HTMLImageElement;
+            toBlob(MIMEType: "image/png" | "image/jpeg"): Promise<Blob>;
+            saveToFile(name: string, download?: boolean): Promise<File>;
         }
 ```
 
-## Attributes Summary
-
-| Attribute               | Type |
+| API Name               | Description |
 |----------------------|-------------|
-| [`imageData`](#imagedata) | *Core.BasicStructures.Quadrilateral* |
-| [`location`](#location) | *Core.BasicStructures.Quadrilateral* |
-
-## Methods Summary
-
-| Method               | Description |
-|----------------------|-------------|
-| [`toCanvas`](#toCanvas) | Returns an HTMLCanvasElement representing the normalized image. |
-| [`toImage`](#toImage) | Returns an HTMLImageElement representing the normalized image with the specified MIME type. |
-| [`toBlob`](#toBlob) | Returns a Promise that resolves to a Blob representing the normalized image with the specified MIME type. |
-| [`saveToFile`](#saveToFile) | Saves the normalized image to a File object in memory and optionally downloads it to the local drive. |
+| [`imageData`](#imagedata) | A property holds the image data for the normalized image. |
+| [`location`](#location) | A property represents the location of the normalized image as a quadrilateral. |
+| [`toCanvas`](#tocanvas) | Returns an HTMLCanvasElement representing the normalized image. |
+| [`toImage`](#toimage) | Returns an HTMLImageElement representing the normalized image with the specified MIME type. |
+| [`toBlob`](#toblob) | Returns a Promise that resolves to a Blob representing the normalized image with the specified MIME type. |
+| [`saveToFile`](#savetofile) | Saves the normalized image to a File object in memory and optionally downloads it to the local drive. |
 
 
 ### imageData
@@ -60,7 +53,7 @@ location: Core.BasicStructures.Quadrilateral;
 ### toCanvas
 
 ```ts
-toCanvas: () => HTMLCanvasElement;
+toCanvas(): HTMLCanvasElement;
 ```
 
 **Return Value**
@@ -70,7 +63,7 @@ Returns an HTMLCanvasElement representing the normalized image.
 ### toImage
 
 ```ts
-toImage: (MIMEType: "image/png" | "image/jpeg") => HTMLImageElement;
+toImage(MIMEType: "image/png" | "image/jpeg"): HTMLImageElement;
 ```
 
 **Parameters**
@@ -84,7 +77,7 @@ Returns an HTMLImageElement representing the normalized image with the specified
 ### toBlob
 
 ```ts
-toBlob: (MIMEType: "image/png" | "image/jpeg") => Promise<Blob>;
+toBlob(MIMEType: "image/png" | "image/jpeg"): Promise<Blob>;
 ```
 
 **Parameters**
@@ -98,7 +91,7 @@ Returns a Promise that resolves to a Blob representing the normalized image with
 ### saveToFile
 
 ```ts
-saveToFile: (name: string, download?: boolean) => Promise<File>;
+saveToFile(name: string, download?: boolean): Promise<File>;
 ```
 
 **Parameters**
