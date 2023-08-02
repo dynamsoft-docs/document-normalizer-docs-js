@@ -1,26 +1,27 @@
 ---
 layout: default-layout
-title: User Guide Index - Dynamsoft Capture Vision JavaScript Edition
-description: This is the index page for Dynamsoft Capture Vision User Guide.
-keywords: CaptureVision, Capture, User Guide, javascript, js
+title: User Guide - Dynamsoft Document Normalizer JavaScript Edition
+description: This is the User Guide page for Dynamsoft Document Normalizer.
+keywords: CaptureVision, Dynamsoft Document, User Guide, javascript, js
 needAutoGenerateSidebar: true
 needGenerateH3Content: true
 noTitleIndex: true
 breadcrumbText: User Guide
 ---
 
-# JavaScript User Guide
+# Dynamsoft Document Normalizer JavaScript Edition User Guide
 
-In this guide, you will learn step by step on how to build a document normalizer application with Dynamsoft Capture Vision SDK using JavaScript language.
+With Dynamsoft Document Normalizer JavaScript edition, you can take pictures of documents with your camera and normalize them to obtain high-quality images for further processing or archiving directly in your website.
 
-> Read more on [Dynamsoft Capture Vision Features]({{site.dcv_introduction}})
+> Dynamsoft Document Normalizer v2.0 and above is based on Dynamsoft Capture Vision Architecture. To learn more, read [Introduction to Dynamsoft Capture Vision]({{site.dcv_introduction}}).
+
+In this guide, you will learn step by step on how to build such a solution.
 
 <span style="font-size:20px">Table of Contents</span>
 
-- [User Guide - JavaScript](#javascript-user-guide)
+- [Dynamsoft Document Normalizer JavaScript Edition User Guide](#dynamsoft-document-normalizer-javascript-edition-user-guide)
   - [Example Usage](#example-usage)
-    - [Check the code](#check-the-code)
-      - [About the code](#about-the-code)
+    - [About the code](#about-the-code)
     - [Test the code](#test-the-code)
   - [Building your own page](#building-your-own-page)
     - [Include the SDK](#include-the-sdk)
@@ -28,8 +29,8 @@ In this guide, you will learn step by step on how to build a document normalizer
       - [Host the SDK yourself](#host-the-sdk-yourself)
     - [Configure the SDK with license](#configure-the-sdk-with-license)
     - [Interact with the SDK](#interact-with-the-sdk)
-      - [Create a `CaptureVisionRouter` object](#create-a-capturevisionrouter-object)
-      - [Create a `CameraEnhancer` object and bind it as input to cvr](#create-a-cameraenhancer-object-and-bind-it-as-input-to-cvr)
+      - [Create a CaptureVisionRouter object](#create-a-capturevisionrouter-object)
+      - [Create a CameraEnhancer object and bind it as input to cvr](#create-a-cameraenhancer-object-and-bind-it-as-input-to-cvr)
       - [Start the detection](#start-the-detection)
       - [Normalize an image](#normalize-an-image)
   - [API Documentation](#api-documentation)
@@ -38,15 +39,12 @@ In this guide, you will learn step by step on how to build a document normalizer
 
 ## Example Usage
 
-Let's start by testing an example of the SDK which demonstrates how to detect quadrilaterals (document boundaries) from a live video stream and use a selected quadrilateral to obtain a normalized image of the document. To run the example, the following are required
+The document capture process consists of two steps
 
-1. Internet connection
-2. [A supported browser](#system-requirements)
-3. An accessible Camera
+1. Detect the document boundaries
+2. Normalize the document based on the detected boundaries
 
-### Check the code
-
-The complete code of the example is shown below:
+The following sample code demonstrates the process:
 
 ```html
 <!DOCTYPE html>
@@ -91,6 +89,7 @@ The complete code of the example is shown below:
 </body>
 </html>
 ```
+
 <!--
 <p align="center" style="text-align:center; white-space: normal; ">
   <a target="_blank" href="https://jsfiddle.net/DynamsoftTeam/5vgh7rdx/" title="Run via JSFiddle">
@@ -101,13 +100,13 @@ The complete code of the example is shown below:
 
 -----
 
-#### About the code
+### About the code
 
 - `Dynamsoft.CVR.LicenseManager.initLicense()`: This method is used to initialize the license using a license key string.
 
-- `Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"])`: This method is called to preload the `DocumentNormalizer` module of the CaptureVisionRouter library, Preparing for document border detection and image normalization.
+- `Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"])`: This method is called to preload the `DocumentNormalizer` module,preparing for document border detection and image normalization.
 
-- `createInstance()`: This method is called to initialize the cvr variable by creating an instance of the `CaptureVisionRouter` class. The version of the `CaptureVisionRouterModule` is logged to the console.
+- `createInstance()`: This method is called to initialize the `cvr` variable by creating an instance of the `CaptureVisionRouter` class.
 
 - `start()` : This method is defined, which performs the following tasks:
     - Checks if dce is already initialized and returns if it is (prevents reinitialization).
@@ -119,6 +118,12 @@ The complete code of the example is shown below:
     - Starts capturing and detecting document boundaries using `cvr.startCapturing()`, and preset template "detect-document-boundaries" is used.
 
 ### Test the code
+
+The sample code requires the following to run
+
+1. Internet connection
+2. [A supported browser](#system-requirements)
+3. An accessible Camera
 
 Create a text file with the name "Detect-Boundary-From-Video-Frames.html", fill it with the code above and save. After that, open the example page in a browser, allow the page to access your camera and the video will show up on the page. After clicking "start capturing" button, you will see the detected boundaries displayed in real time on the video.
 
@@ -294,11 +299,11 @@ DDN-JS SDK requires the following features to work:
 
 The following table is a list of supported browsers based on the above requirements:
 
-  Browser Name | Version
-  :-: | :-:
-  Chrome | v85+ on desktop, v94+ on Android
-  Firefox | v99+ on desktop and Android
-  Safari | v15+ on iOS
+  | Browser Name |             Version              |
+  | :----------: | :------------------------------: |
+  |    Chrome    | v85+ on desktop, v94+ on Android |
+  |   Firefox    |   v99+ on desktop and Android    |
+  |    Safari    |           v15+ on iOS            |
 
 Apart from the browsers, the operating systems may impose some limitations of their own that could restrict the use of the SDK.
 

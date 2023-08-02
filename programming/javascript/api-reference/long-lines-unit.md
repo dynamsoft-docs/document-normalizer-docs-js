@@ -19,11 +19,9 @@ export interface LongLinesUnit extends Core.IntermediateResult.IntermediateResul
             }
 ```
 
-## Attributes Summary
-
-| Attribute               | Type |
+| Properties               | Type |
 |----------------------|-------------|
-| [`longLines`](#longLlines) | *Array<LongLinesUnit>* |
+| [`longLines`](#longllines) | *Array<LongLinesUnit>* |
 
 ### longLines
 

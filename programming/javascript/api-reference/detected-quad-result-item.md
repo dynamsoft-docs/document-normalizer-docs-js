@@ -20,9 +20,7 @@ export interface DetectedQuadResultItem extends Core.BasicStructures.CapturedRes
         }
 ```
 
-## Attributes Summary
-
-| Attribute               | Type |
+| Properties             | Type |
 |----------------------|-------------|
 | [`location`](#location) | *Core.BasicStructures.Quadrilateral* |
 | [`confidenceAsDocumentBoundary`](#confidenceasdocumentboundary) | *Number* |

@@ -20,9 +20,7 @@ export interface NormalizedImageElement extends Core.IntermediateResult.RegionOb
             }
 ```
 
-## Attributes Summary
-
-| Attribute               | Type |
+| Properties               | Type |
 |----------------------|-------------|
 | [`imageData`](#imagedata) | *Core.BasicStructures.DSImageData* |
 | [`referencedElement`](#referencedelement) | *Core.IntermediateResult.RegionObjectElement* |

@@ -21,9 +21,7 @@ export interface DetectedQuadsResult {
         }
 ```
 
-## Attributes Summary
-
-| Attribute               | Type |
+| Properties            | Type |
 |----------------------|-------------|
 | [`sourceImageHashId`](#sourceimagehashid) | *String* |
 | [`sourceImageTag`](#sourceimagetag) | *Core.BasicStructures.ImageTag* |

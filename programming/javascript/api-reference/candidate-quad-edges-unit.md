@@ -19,11 +19,9 @@ export interface CandidateQuadEdgesUnit extends Core.IntermediateResult.Intermed
             }
 ```
 
-## Attributes Summary
-
-| Attribute               | Type |
+| Properties               | Type |
 |----------------------|-------------|
-| [`candidateQuadEdges`](#candidatequadEedges) | *Array<Core.BasicStructures.Edge>* |
+| [`candidateQuadEdges`](#candidatequadedges) | *Array<Core.BasicStructures.Edge>* |
 
 ### candidateQuadEdges
 

@@ -19,9 +19,7 @@ export interface CornersUnit extends Core.IntermediateResult.IntermediateResultU
             }
 ```
 
-## Attributes Summary
-
-| Attribute               | Type |
+| Properties              | Type |
 |----------------------|-------------|
 | [`corners`](#corners) | *Array<Core.BasicStructures.Corner>* |
 

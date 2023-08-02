@@ -19,9 +19,7 @@ export interface NormalizedImagesUnit extends Core.IntermediateResult.Intermedia
             }
 ```
 
-## Attributes Summary
-
-| Attribute               | Type |
+| Properties               | Type |
 |----------------------|-------------|
 | [`normalizedImages`](#normalizedimages) | *Array<NormalizedImagesUnit>* |
 
