@@ -51,8 +51,11 @@ The following sample code demonstrates the process:
 <html lang="en">
 
 <head>
-  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-camera-enhancer@4.0.0-dev-20230621180020/dist/dce.js"></script>
-  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/cvrjs@0.20230705144027.0/dist/cvr.js"></script>
+  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-core@3.0.10/dist/core.js"></script>
+  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-utility@1.0.10/dist/utility.js"></script>
+  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-document-normalizer@2.0.10/dist/ddn.js"></script>
+  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
+  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-capture-vision-router@2.0.10/dist/cvr.js"></script>
 </head>
 <body>
   <h1>Detect And Normalize A Document</h1>
@@ -109,13 +112,13 @@ The following sample code demonstrates the process:
 - `createInstance()`: This method is called to initialize the `cvr` variable by creating an instance of the `CaptureVisionRouter` class.
 
 - `start()` : This method is defined, which performs the following tasks:
-    - Checks if dce is already initialized and returns if it is (prevents reinitialization).
-    - Makes the `uiContainer` visible by changing its display style property to "block."
-    - Creates an instance of the `CameraView`, sets its resolution to 1920x1080, and appends its UI element to the `uiContainer`.
-    - Initializes the dce variable by creating an instance of the `CameraEnhancer` with the previously created view.
-    - Sets the input for the `CaptureVisionRouter` (cvr) to be the dce instance.
-    - Opens the camera feed using `dce.open()`.
-    - Starts capturing and detecting document boundaries using `cvr.startCapturing()`, and preset template "detect-document-boundaries" is used.
+  - Checks if dce is already initialized and returns if it is (prevents reinitialization).
+  - Makes the `uiContainer` visible by changing its display style property to "block."
+  - Creates an instance of the `CameraView`, sets its resolution to 1920x1080, and appends its UI element to the `uiContainer`.
+  - Initializes the dce variable by creating an instance of the `CameraEnhancer` with the previously created view.
+  - Sets the input for the `CaptureVisionRouter` (cvr) to be the dce instance.
+  - Opens the camera feed using `dce.open()`.
+  - Starts capturing and detecting document boundaries using `cvr.startCapturing()`, and preset template "detect-document-boundaries" is used.
 
 ### Test the code
 
@@ -150,14 +153,14 @@ The simplest way to include the SDK is to use either the [jsDelivr](https://jsde
 - jsDelivr
 
   ```html
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.0.0/dist/ddn.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.0.10/dist/ddn.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
   ```
 
 - UNPKG
 
   ```html
-  <script src="https://unpkg.com/dynamsoft-document-normalizer@2.0.0/dist/ddn.js"></script>
+  <script src="https://unpkg.com/dynamsoft-document-normalizer@2.0.10/dist/ddn.js"></script>
   <script src="https://unpkg.com/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
   ```
 
@@ -172,27 +175,27 @@ To download the SDK:
 - yarn
 
   ```cmd
-  yarn add dynamsoft-document-normalizer@2.0.0
+  yarn add dynamsoft-document-normalizer@2.0.10
   ```
 
 - npm
 
   ```cmd
-  npm install dynamsoft-document-normalizer@2.0.0
+  npm install dynamsoft-document-normalizer@2.0.10
   ```
 
 Depending on how you downloaded the SDK and where you put it, you can typically include it like this:
 
   ```html
-  <script src="/dynamsoft-capture-vision-router-js/dist/cvr.js"></script>
-  <script src="/dynamsoft-document-normalizer-js-2.0.0/dist/ddn.js"></script>
+  <script src="/dynamsoft-capture-vision-router-js-2.0.10/dist/cvr.js"></script>
+  <script src="/dynamsoft-document-normalizer-js-2.0.10/dist/ddn.js"></script>
   ```
 
 or
 
   ```html
-  <script src="/node_modules/dynamsoft-capture-vision-router/dist/cvr.js"></script>
-  <script src="/node_modules/dynamsoft-document-normalizer/dist/ddn.js"></script>
+  <script src="/node_modules/dynamsoft-capture-vision-router-js-2.0.10/dist/cvr.js"></script>
+  <script src="/node_modules/dynamsoft-document-normalizer-js-2.0.10/dist/ddn.js"></script>
   ```
 
 or
