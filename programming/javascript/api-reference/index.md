@@ -89,7 +89,7 @@ noTitleIndex: true
 - [`DetectedQuadsResult`]({{ site.ddn_js_api }}detected-quads-result.html)
 - [`NormalizedImageResultItem`]({{ site.ddn_js_api }}normalized-image-result-item.html)
 - [`NormalizedImagesResult`]({{ site.ddn_js_api }}normalized-images-result.html)
-- [`RawImageResultItem`]({{ site.dcv_js_api }}core/basic-structures/raw-image-result-item.html)
+- [`OriginalImageResultItem`]({{ site.dcv_js_api }}core/basic-structures/original-image-result-item.html)
 
 ## Enumerations
 

@@ -1,13 +1,8 @@
 ---
 layout: default-layout
 title: Dynamsoft Document Normalizer for JavaScript SDK - Release Notes
-<<<<<<< HEAD
-description: This is the release notes page of Dynamsoft Document Normalizer for JavaScript SDK v2.0.0.
-keywords: release notes, javascript, version 2
-=======
 description: This is the release notes page of Dynamsoft Document Normalizer for JavaScript SDK v2.x.
 keywords: release notes, javascript
->>>>>>> ee68dd3b23458645a1ab5283b978acf152b77bb4
 needAutoGenerateSidebar: true
 needGenerateH3Content: false
 noTitleIndex: true
@@ -15,13 +10,10 @@ noTitleIndex: true
 
 # Release Notes for Dynamsoft Document Normalizer JavaScript SDK
 
-## 2.0.0 (08/04/2023)
+## 2.0.10 (08/  /2023)
 
 ### Changelog
 
-<<<<<<< HEAD
-`DynamsoftDocumentNormalizer` SDK has been refactored to integrate with `DynamsoftCaptureVision (DCV)` architecture.
-=======
 `DynamsoftDocumentNormalizer` SDK has been refactored to integrate with `DynamsoftCaptureVision (DCV)` architecture, which is newly established to aggregate the features of functional products powered by Dynamsoft. The features are designed to be pluggable, customizable and interactable. In addition, the functional products share the computation so that their processing speed is much higher than working individually.
 
 * Class `CaptureVisionRouter` is added to replace class `DocumentNormalizer`. The `DocumentNormalizer` as a functional products are pluggable and passively called by CVR when they are required. The APIs can be migrated as following mapping:
@@ -39,4 +31,3 @@ noTitleIndex: true
 * The parameter template system has been comprehensively upgraded.
   * Extended the feature of the ROI system.
   * The image processing parameters are separated from the task parameters so that the template settings become more clear and concise.
->>>>>>> ee68dd3b23458645a1ab5283b978acf152b77bb4
