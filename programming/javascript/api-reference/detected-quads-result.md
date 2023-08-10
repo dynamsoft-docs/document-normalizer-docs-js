@@ -9,38 +9,38 @@ noTitleIndex: true
 
 # DetectedQuadsResult
 
-An interface representing the result of detected quads. It includes properties such as sourceImageHashId, sourceImageTag, and quadsResultItems (an array of `DetectedQuadResultItem` objects).
+An interface representing the result of detected quads. It includes properties such as originalImageHashId, originalImageTag, and quadsResultItems (an array of `DetectedQuadResultItem` objects).
 
 ## Definition
 
 ```ts
 export interface DetectedQuadsResult {
-            readonly sourceImageHashId: string;
-            readonly sourceImageTag: Core.BasicStructures.ImageTag;
+            readonly originalImageHashId: string;
+            readonly originalImageTag: Core.BasicStructures.ImageTag;
             quadsResultItems: Array<DetectedQuadsResult>;
         }
 ```
 
 | Properties            | Type |
 |----------------------|-------------|
-| [`sourceImageHashId`](#sourceimagehashid) | *String* |
-| [`sourceImageTag`](#sourceimagetag) | *Core.BasicStructures.ImageTag* |
+| [`originalImageHashId`](#originalimagehashid) | *String* |
+| [`originalImageTag`](#originalimagetag) | *Core.BasicStructures.ImageTag* |
 | [`quadsResultItems`](#quadsresultitems) | *Array<DetectedQuadsResult>* |
 
-### sourceImageHashId
+### originalImageHashId
 
-Gets the hash ID of the source image.
+Gets the hash ID of the original image.
 
 ```ts
-readonly sourceImageHashId: string;
+readonly originalImageHashId: string;
 ```
 
-### sourceImageTag
+### originalImageTag
 
-Gets the tag of the source image.
+Gets the tag of the original image.
 
 ```ts
-readonly sourceImageTag: Core.BasicStructures.ImageTag;
+readonly originalImageTag: Core.BasicStructures.ImageTag;
 ```
 
 ### quadsResultItems

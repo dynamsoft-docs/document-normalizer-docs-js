@@ -9,38 +9,38 @@ noTitleIndex: true
 
 # NormalizedImagesResult
 
-An interface represents the result of normalized images. It includes properties such as sourceImageHashId, sourceImageTag, and normalizedImageResultItems (an array of `NormalizedImageResultItem` objects).
+An interface represents the result of normalized images. It includes properties such as originalImageHashId, originalImageTag, and normalizedImageResultItems (an array of `NormalizedImageResultItem` objects).
 
 ## Definition
 
 ```ts
 export interface NormalizedImagesResult {
-            readonly sourceImageHashId: string;
-            readonly sourceImageTag: Core.BasicStructures.ImageTag;
+            readonly originalImageHashId: string;
+            readonly originalImageTag: Core.BasicStructures.ImageTag;
             normalizedImageResultItems: Array<NormalizedImageResultItem>;
         }
 ```
 
 | Properties              | Type |
 |----------------------|-------------|
-| [`sourceImageHashId`](#sourceimagehashid) | *String* |
-| [`sourceImageTag`](#sourceimagetag) | *Core.BasicStructures.ImageTag* |
+| [`originalImageHashId`](#originalimagehashid) | *String* |
+| [`originalImageTag`](#originalimagetag) | *Core.BasicStructures.ImageTag* |
 | [`normalizedImageResultItems`](#normalizedimageresultitems) | *Array<NormalizedImagesResult>* |
 
-### sourceImageHashId
+### originalImageHashId
 
-Gets the hash ID of the source image.
+Gets the hash ID of the original image.
 
 ```ts
-readonly sourceImageHashId: string;
+readonly originalImageHashId: string;
 ```
 
-### sourceImageTag
+### originalImageTag
 
-Gets the tag of the source image.
+Gets the tag of the original image.
 
 ```ts
-readonly sourceImageTag: Core.BasicStructures.ImageTag;
+readonly originalImageTag: Core.BasicStructures.ImageTag;
 ```
 
 ### normalizedImageResultItems
