@@ -11,7 +11,7 @@ breadcrumbText: User Guide
 
 # Dynamsoft Document Normalizer JavaScript Edition User Guide
 
-With Dynamsoft Document Normalizer JavaScript edition, you can take pictures of documents with your camera and normalize them to obtain high-quality images for further processing or archiving directly in your website.
+With Dynamsoft Document Normalizer JavaScript edition, you can add to your website the ability to take pictures of documents with your camera and normalize them to obtain high-quality images for further processing or archiving purposes.
 
 > Dynamsoft Document Normalizer v2.0 and above is based on Dynamsoft Capture Vision Architecture. To learn more, read [Introduction to Dynamsoft Capture Vision]({{site.dcv_introduction}}).
 
