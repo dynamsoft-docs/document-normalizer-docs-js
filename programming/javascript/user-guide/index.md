@@ -13,7 +13,7 @@ breadcrumbText: User Guide
 
 With Dynamsoft Document Normalizer JavaScript edition, you can add to your website the ability to take pictures of documents with your camera and normalize them to obtain high-quality images for further processing or archiving purposes.
 
-> Dynamsoft Document Normalizer v2.0 and above is based on Dynamsoft Capture Vision Architecture. To learn more, read [Introduction to Dynamsoft Capture Vision]({{site.dcv_introduction}}).
+> Dynamsoft Document Normalizer v2.0.10 and above is based on Dynamsoft Capture Vision Architecture. To learn more, read [Introduction to Dynamsoft Capture Vision]({{site.dcv_introduction}}).
 
 In this guide, you will learn step by step on how to build such a solution.
 
@@ -33,9 +33,9 @@ In this guide, you will learn step by step on how to build such a solution.
       - [Create a CameraEnhancer object and bind it as input to cvr](#create-a-cameraenhancer-object-and-bind-it-as-input-to-cvr)
       - [Start the detection](#start-the-detection)
       - [Normalize an image](#normalize-an-image)
-  - [API Documentation](#api-documentation)
   - [System Requirements](#system-requirements)
   - [Release Notes](#release-notes)
+  - [Next steps](#next-steps)
 
 ## Example Usage
 
@@ -44,7 +44,7 @@ The document capture process consists of two steps
 1. Detect the document boundaries
 2. Normalize the document based on the detected boundaries
 
-The following sample code demonstrates the process:
+For demonstration purposes, the following sample code implements the border detection function:
 
 ```html
 <!DOCTYPE html>
@@ -58,7 +58,7 @@ The following sample code demonstrates the process:
   <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-capture-vision-router@2.0.10/dist/cvr.js"></script>
 </head>
 <body>
-  <h1>Detect And Normalize A Document</h1>
+  <h1>Detect A Document Boundary</h1>
   <button onclick="start()">start capturing</button>
   <div id="uiNormalize"></div>
   <div id="uiContainer" style="width: 100vw; height: 60vh; margin-top: 10px;display: none;"></div>
@@ -128,9 +128,9 @@ The sample code requires the following to run
 2. [A supported browser](#system-requirements)
 3. An accessible Camera
 
-Create a text file with the name "Detect-Boundary-From-Video-Frames.html", fill it with the code above and save. After that, open the example page in a browser, allow the page to access your camera and the video will show up on the page. After clicking "start capturing" button, you will see the detected boundaries displayed in real time on the video.
+Create a text file with the name "Detect-A-Document-Boundary.html", fill it with the code above and save. After that, open the example page in a browser, allow the page to access your camera and the video will show up on the page. After that, you will see the detected boundaries displayed in real time on the video.
 
-> You can also just test it at [https://jsfiddle.net/DynamsoftTeam/]()
+<!--> You can also just test it at [https://jsfiddle.net/DynamsoftTeam/]()-->
 
 Please note:
 
@@ -146,6 +146,12 @@ In this section, we'll break down and show all the steps required to build a web
 
 ### Include the SDK
 
+#### Dependency packages
+
+1. `core`: The foundation upon which Dynamsoft SDKs implements their functionality. It consists of basic classes, interfaces and enumerations shared between all Dynamsoft SDKs.
+2. `utility`: Defines auxiliary classes shared between all Dynamsoft SDKs.
+3. `cvr`: The cornerstone of the Dynamsoft Capture Vision architecture.
+
 #### Use a CDN
 
 The simplest way to include the SDK is to use either the [jsDelivr](https://jsdelivr.com/) or [UNPKG](https://unpkg.com/) CDN. The "hello world" example above uses **jsDelivr**. We should also include the SDK Dynamsoft Camera Enhancer which provides camera support.
@@ -153,15 +159,21 @@ The simplest way to include the SDK is to use either the [jsDelivr](https://jsde
 - jsDelivr
 
   ```html
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-core@3.0.10/dist/core.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-utility@1.0.10/dist/utility.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.0.10/dist/ddn.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.0.10/dist/cvr.js"></script>
   ```
 
 - UNPKG
 
   ```html
+  <script src="https://unpkg.com/dynamsoft-core@3.0.10/dist/core.js"></script>
+  <script src="https://unpkg.com/dynamsoft-utility@1.0.10/dist/utility.js"></script>
   <script src="https://unpkg.com/dynamsoft-document-normalizer@2.0.10/dist/ddn.js"></script>
   <script src="https://unpkg.com/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
+  <script src="https://unpkg.com/dynamsoft-capture-vision-router@2.0.10/dist/cvr.js"></script>
   ```
 
 #### Host the SDK yourself
@@ -187,22 +199,31 @@ To download the SDK:
 Depending on how you downloaded the SDK and where you put it, you can typically include it like this:
 
   ```html
-  <script src="/dynamsoft-capture-vision-router-js-2.0.10/dist/cvr.js"></script>
+  <script src="/dynamsoft-core-js-3.0.10/dist/core.js"></script>
+  <script src="/dynamsoft-utility-js-1.0.10/dist/utility.js"></script>
   <script src="/dynamsoft-document-normalizer-js-2.0.10/dist/ddn.js"></script>
+  <script src="/dynamsoft-camera-enhancer-js-4.0.0/dist/dce.js"></script>
+  <script src="/dynamsoft-capture-vision-router-js-2.0.10/dist/cvr.js"></script>
   ```
 
 or
 
   ```html
-  <script src="/node_modules/dynamsoft-capture-vision-router-js-2.0.10/dist/cvr.js"></script>
+  <script src="/node_modules/dynamsoft-core-js-3.0.10/dist/core.js"></script>
+  <script src="/node_modules/dynamsoft-utility-js-1.0.10/dist/utility.js"></script>
   <script src="/node_modules/dynamsoft-document-normalizer-js-2.0.10/dist/ddn.js"></script>
+  <script src="/node_modules/dynamsoft-camera-enhancer-js-4.0.0/dist/dce.js"></script>
+  <script src="/node_modules/dynamsoft-capture-vision-router-js-2.0.10/dist/cvr.js"></script>
   ```
 
 or
 
   ```ts
-  import { CaptureVisionRouter } from 'dynamsoft-capture-vision-router';
+  import { Core } from 'dynamsoft-core';
+  import { Utility } from 'dynamsoft-utility';
   import { DocumentNormalizer } from 'dynamsoft-document-normalizer';
+  import { CameraEnhancer } from 'dynamsoft-camera-enhancer';
+  import { CaptureVisionRouter } from 'dynamsoft-capture-vision-router';
   ```
 
 ### Configure the SDK with license
@@ -222,8 +243,7 @@ To test the SDK, you can request a 30-day trial license via the [customer portal
 Create an instance of Capture Vision Router.
 
 ```js
-let cvr;
-cvr = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
+let cvr = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
 ```
 
 #### Create a CameraEnhancer object and bind it as input to cvr
@@ -231,16 +251,14 @@ cvr = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
 The CameraEnhancer object is necessary to access the camera to display the video stream and draw the found quads. In some cases, a different camera might be required instead of the default one. Also, a different resolution might work better. To change the camera or the resolution, we use the CameraEnhancer object. Learn more [here](https://www.dynamsoft.com/camera-enhancer/docs/programming/javascript/api-reference/camera-control.html?ver=4.0.0&utm_source=guide&product=ddn&package=js).
 
 ```js
-let view;
-let dce;
-view = await Dynamsoft.DCE.CameraView.createInstance();
-dce = await Dynamsoft.DCE.CameraEnhancer.createInstance(view);
+let view = await Dynamsoft.DCE.CameraView.createInstance();
+let dce = await Dynamsoft.DCE.CameraEnhancer.createInstance(view);
 cvr.setInput(dce);
 ```
 
 #### Start the detection
 
-Define the captured result receiver to accept the detected boundaries, And set it as the output results. Finally, call the method startCapturing() to start processing all the continuous input.
+Define the captured result receiver to accept the detected boundaries, And set it as the output results. Finally, call the method startCapturing() to start processing all the continuous inputs.
 
 ```js
 let crr = {
@@ -255,13 +273,14 @@ cvr.startCapturing("detect-document-boundary");
 
 #### Normalize an image
 
-There is a slight difference between the way you handle individual images and the way you handle video streams. The code snippet shown here does border detection and normalization on a static image. We use method capture() to accomplish this process.
+There is a slight difference between the way you handle individual images and video streams. The code snippet shown here does border detection and normalization on a static image. We use method capture() to accomplish this process.
 
 ```js
-let imagefilepath;
+let imagefilepath = "YOUR-IMAGE-FILE-PATH";
 const uiNormalize = document.querySelector("#uiNormalize");
 results = await cvr.capture(imagefilepath, "detect-and-normalize-document");
 results.items.forEach(async (item) => {
+  // Or it could be written like this -> item.type === EnumCapturedResultItemType.CRIT_NORMALIZED_IMAGE
   if (item.type === 16) {
       uiNormalize.innerHTML = "";
       uiNormalize.appendChild(item.toImage());
@@ -270,10 +289,7 @@ results.items.forEach(async (item) => {
 })
 ```
 
-## API Documentation
-
-You can check out the detailed documentation about the APIs of the SDK at
-[https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/api-reference/index.html?ver=latest](https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/api-reference/index.html?ver=latest).
+Please note: Method `capture()` only process an image or single page file.
 
 ## System Requirements
 
@@ -313,3 +329,10 @@ Apart from the browsers, the operating systems may impose some limitations of th
 ## Release Notes
 
 Learn about what are included in each release at [https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/release-notes/?ver=latest](https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/release-notes/?ver=latest).
+
+## Next Steps
+
+Now that you have got the SDK integrated, you can choose to move forward in the following directions
+
+1. Check out the [official samples](https://github.com/Dynamsoft/document-normalizer-javascript-samples).
+2. Learn about the available [APIs](https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/api-reference/?ver=latest).
