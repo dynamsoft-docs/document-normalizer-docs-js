@@ -14,7 +14,7 @@ An interface that extends the CapturedResultItem interface from the Core.BasicSt
 ## Definition
 
 ```ts
-export interface NormalizedImageResultItem extends Core.BasicStructures.CapturedResultItem {
+interface NormalizedImageResultItem extends Core.BasicStructures.CapturedResultItem {
             imageData: Core.BasicStructures.DSImageData;
             location: Core.BasicStructures.Quadrilateral;
             toCanvas(): HTMLCanvasElement;

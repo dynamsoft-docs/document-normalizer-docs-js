@@ -14,7 +14,7 @@ The CandidateQuadEdgesUnit interface extends the IntermediateResultUnit interfac
 ## Definition
 
 ```ts
-export interface CandidateQuadEdgesUnit extends Core.IntermediateResult.IntermediateResultUnit {
+interface CandidateQuadEdgesUnit extends Core.IntermediateResult.IntermediateResultUnit {
                 candidateQuadEdges: Array<Core.BasicStructures.Edge>;
             }
 ```

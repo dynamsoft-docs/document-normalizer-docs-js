@@ -14,7 +14,7 @@ An interface that extends the CapturedResultItem interface from the Core.BasicSt
 ## Definition
 
 ```ts
-export interface DetectedQuadResultItem extends Core.BasicStructures.CapturedResultItem {
+interface DetectedQuadResultItem extends Core.BasicStructures.CapturedResultItem {
             location: Core.BasicStructures.Quadrilateral;
             confidenceAsDocumentBoundary: number;
         }
@@ -23,7 +23,7 @@ export interface DetectedQuadResultItem extends Core.BasicStructures.CapturedRes
 | Properties             | Type |
 |----------------------|-------------|
 | [`location`](#location) | *Core.BasicStructures.Quadrilateral* |
-| [`confidenceAsDocumentBoundary`](#confidenceasdocumentboundary) | *Number* |
+| [`confidenceAsDocumentBoundary`](#confidenceasdocumentboundary) | *number* |
 
 ### location
 

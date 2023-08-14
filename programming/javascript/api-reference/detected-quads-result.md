@@ -14,18 +14,18 @@ An interface representing the result of detected quads. It includes properties s
 ## Definition
 
 ```ts
-export interface DetectedQuadsResult {
+interface DetectedQuadsResult {
             readonly originalImageHashId: string;
             readonly originalImageTag: Core.BasicStructures.ImageTag;
-            quadsResultItems: Array<DetectedQuadsResult>;
+            quadsResultItems: Array<DetectedQuadResultItem>;
         }
 ```
 
 | Properties            | Type |
 |----------------------|-------------|
-| [`originalImageHashId`](#originalimagehashid) | *String* |
+| [`originalImageHashId`](#originalimagehashid) | *string* |
 | [`originalImageTag`](#originalimagetag) | *Core.BasicStructures.ImageTag* |
-| [`quadsResultItems`](#quadsresultitems) | *Array<DetectedQuadsResult>* |
+| [`quadsResultItems`](#quadsresultitems) | *Array<DetectedQuadResultItem>* |
 
 ### originalImageHashId
 
@@ -48,5 +48,5 @@ readonly originalImageTag: Core.BasicStructures.ImageTag;
 It stores the quadrilaterals detected during processing.
 
 ```ts
-quadsResultItems: Array<DetectedQuadsResult>;
+quadsResultItems: Array<DetectedQuadResultItem>;
 ```

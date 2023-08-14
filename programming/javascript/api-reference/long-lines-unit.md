@@ -14,7 +14,7 @@ The LongLinesUnit interface inherits from IntermediateResultUnit interface in th
 ## Definition
 
 ```ts
-export interface LongLinesUnit extends Core.IntermediateResult.IntermediateResultUnit {
+interface LongLinesUnit extends Core.IntermediateResult.IntermediateResultUnit {
                 longLines: Array<Core.BasicStructures.LineSegment>;
             }
 ```

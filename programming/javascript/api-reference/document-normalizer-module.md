@@ -14,7 +14,7 @@ The DocumentNormalizerModule class provides a static method getVersion to retrie
 ## Definition
 
 ```ts
-export class DocumentNormalizerModule {
+class DocumentNormalizerModule {
             static getVersion(): string;
         }
 ```

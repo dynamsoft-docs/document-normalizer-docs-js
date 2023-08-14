@@ -14,7 +14,7 @@ The NormalizedImagesUnit interface inherits from IntermediateResultUnit interfac
 ## Definition
 
 ```ts
-export interface NormalizedImagesUnit extends Core.IntermediateResult.IntermediateResultUnit {
+interface NormalizedImagesUnit extends Core.IntermediateResult.IntermediateResultUnit {
                 normalizedImages: Array<NormalizedImagesUnit>;
             }
 ```
