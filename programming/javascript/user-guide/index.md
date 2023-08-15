@@ -15,81 +15,82 @@ With Dynamsoft Document Normalizer JavaScript edition, you can add to your websi
 
 > Dynamsoft Document Normalizer v2.0.10 and above is based on Dynamsoft Capture Vision Architecture. To learn more, read [Introduction to Dynamsoft Capture Vision]({{site.dcv_introduction}}).
 
-In this guide, you will learn step by step on how to build such a solution.
+In this guide, you'll learn step-by-step how to build such a simple solution in a web page.
 
 <span style="font-size:20px">Table of Contents</span>
 
 - [Dynamsoft Document Normalizer JavaScript Edition User Guide](#dynamsoft-document-normalizer-javascript-edition-user-guide)
-  - [Example Usage](#example-usage)
+  - [Getting started](#getting-started)
     - [About the code](#about-the-code)
     - [Test the code](#test-the-code)
   - [Building your own page](#building-your-own-page)
     - [Include the SDK](#include-the-sdk)
       - [Use a CDN](#use-a-cdn)
       - [Host the SDK yourself](#host-the-sdk-yourself)
-    - [Configure the SDK with license](#configure-the-sdk-with-license)
-    - [Interact with the SDK](#interact-with-the-sdk)
-      - [Create a CaptureVisionRouter object](#create-a-capturevisionrouter-object)
-      - [Create a CameraEnhancer object and bind it as input to cvr](#create-a-cameraenhancer-object-and-bind-it-as-input-to-cvr)
+    - [Configure the license](#configure-the-license)
+    - [Use the SDK](#use-the-sdk)
+      - [Create a CaptureVisionRouter instance](#create-a-capturevisionrouter-instance)
+      - [Create a CameraEnhancer instance as the input](#create-a-cameraenhancer-instance-as-the-input)
       - [Start the detection](#start-the-detection)
-      - [Normalize an image](#normalize-an-image)
+      - [Review and adjust a found boundary](#review-and-adjust-a-found-boundary)
+      - [Normalize a document based on its adjusted boundary](#normalize-a-document-based-on-its-adjusted-boundary)
   - [System Requirements](#system-requirements)
   - [Release Notes](#release-notes)
-  - [Next steps](#next-steps)
+  - [Next Steps](#next-steps)
 
-## Example Usage
+## Getting started
 
-The document capture process consists of two steps
+The solution consists of two steps
 
 1. Detect the document boundaries
 2. Normalize the document based on the detected boundaries
 
-For demonstration purposes, the following sample code implements the border detection function:
+The following sample code sets up the SDK and implements boundary detection on a web page, which is just the first step in capturing a normalized image of your document. We'll cover the second step later in [Building Your Own Page](#building-your-own-page).
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-core@3.0.10/dist/core.js"></script>
-  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-utility@1.0.10/dist/utility.js"></script>
-  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-document-normalizer@2.0.10/dist/ddn.js"></script>
-  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
-  <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-capture-vision-router@2.0.10/dist/cvr.js"></script>
+    <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-core@3.0.10/dist/core.js"></script>
+    <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-utility@1.0.10/dist/utility.js"></script>
+    <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-document-normalizer@2.0.10/dist/ddn.js"></script>
+    <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
+    <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-capture-vision-router@2.0.10/dist/cvr.js"></script>
 </head>
 <body>
-  <h1>Detect A Document Boundary</h1>
-  <button onclick="start()">start capturing</button>
-  <div id="uiNormalize"></div>
-  <div id="uiContainer" style="width: 100vw; height: 60vh; margin-top: 10px;display: none;"></div>
+    <h1>Detect the Boundary of the Document</h1>
+    <button onclick="start()">Start Capturing</button>
+    <div id="uiNormalize"></div>
+    <div id="uiContainer" style="width: 50vw; height: 45vh; margin-top: 10px; display: none;"></div>
 
-  <script>
-    const uiContainer = document.querySelector("#uiContainer");
-    const uiNormalize = document.querySelector("#uiNormalize");
-    Dynamsoft.CVR.LicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9");
-    Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"]);
+    <script>
+        const uiContainer = document.querySelector("#uiContainer");
+        const uiNormalize = document.querySelector("#uiNormalize");
+        let cameraEnhancer;
+        let router;
 
-    let dce;
-    let cvr;
-    
-    async function createInstance() {
-      cvr = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
-      console.log(Dynamsoft.CVR.CaptureVisionRouterModule.getVersion());
-    }
-    createInstance();
-    async function start() {
-      if (dce) return;
-      uiContainer.style.display = "block";
-      let view = await Dynamsoft.DCE.CameraView.createInstance();
-      dce = await Dynamsoft.DCE.CameraEnhancer.createInstance(view);
-      dce.setResolution({ width: 1920, height: 1080 });
-      uiContainer.append(view.getUIElement());
-      cvr.setInput(dce);
-      await dce.open();
-      await cvr.startCapturing("detect-document-boundaries");
-    }
-  </script>
+        (async function() {
+            Dynamsoft.CVR.LicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9");
+            Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"]);
+            router = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
+            let view = await Dynamsoft.DCE.CameraView.createInstance();
+            cameraEnhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance(view);
+            cameraEnhancer.setResolution({
+                width: 1920,
+                height: 1080
+            });
+            uiContainer.append(view.getUIElement());
+            router.setInput(cameraEnhancer);
+        })();
+        async function start() {
+            uiContainer.style.display = "block";
+            await cameraEnhancer.open();
+            await router.startCapturing("detect-document-boundaries");
+        }
+    </script>
 </body>
+
 </html>
 ```
 
@@ -105,32 +106,29 @@ For demonstration purposes, the following sample code implements the border dete
 
 ### About the code
 
-- `Dynamsoft.CVR.LicenseManager.initLicense()`: This method is used to initialize the license using a license key string.
+- `Dynamsoft.CVR.LicenseManager.initLicense()`: initializes the license using a license key string.
 
-- `Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"])`: This method is called to preload the `DocumentNormalizer` module,preparing for document border detection and image normalization.
+- `Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"])`: preloads the `DocumentNormalizer` module, saving time in preparing for document border detection and image normalization.
 
-- `createInstance()`: This method is called to initialize the `cvr` variable by creating an instance of the `CaptureVisionRouter` class.
+- `Dynamsoft.CVR.CaptureVisionRouter.createInstance()`: initializes the `router` variable by creating an instance of the `CaptureVisionRouter` class.
 
-- `start()` : This method is defined, which performs the following tasks:
-  - Checks if dce is already initialized and returns if it is (prevents reinitialization).
-  - Makes the `uiContainer` visible by changing its display style property to "block."
-  - Creates an instance of the `CameraView`, sets its resolution to 1920x1080, and appends its UI element to the `uiContainer`.
-  - Initializes the dce variable by creating an instance of the `CameraEnhancer` with the previously created view.
-  - Sets the input for the `CaptureVisionRouter` (cvr) to be the dce instance.
-  - Opens the camera feed using `dce.open()`.
-  - Starts capturing and detecting document boundaries using `cvr.startCapturing()`, and preset template "detect-document-boundaries" is used.
+- `Dynamsoft.DCE.CameraEnhancer.createInstance(view)`: initializes the `cameraEnhancer` variable by creating an instance of the `CameraEnhancer` class.
+
+- `setInput()`: sets `cameraEnhancer` as the image source to `router`.
+
+- `startCapturing("detect-document-boundaries")` : starts to run images through a pre-defined process which, in the case of "detect-document-boundaries", tries to find the boundary of a document present in the image(s).
 
 ### Test the code
 
-The sample code requires the following to run
+Create a text file called "Detect-A-Document-Boundary.html", fill it with the code above and save it. After that, open the example page in your browser, allow the page to access your camera, and the video will be displayed on the page. Afterwards, you will see the detected boundaries displayed on the video in real time. 
 
-1. Internet connection
-2. [A supported browser](#system-requirements)
-3. An accessible Camera
-
-Create a text file with the name "Detect-A-Document-Boundary.html", fill it with the code above and save. After that, open the example page in a browser, allow the page to access your camera and the video will show up on the page. After that, you will see the detected boundaries displayed in real time on the video.
-
-<!--> You can also just test it at [https://jsfiddle.net/DynamsoftTeam/]()-->
+> NOTE:
+> 
+> The sample code requires the following to run:
+> 
+> 1. Internet connection
+> 2. [A supported browser](#system-requirements)
+> 3. An accessible Camera
 
 Please note:
 
@@ -138,23 +136,27 @@ Please note:
 - On first use, you need to wait a few seconds for the SDK to initialize.
 - The license "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9" used in this sample is an online license and requires network connection to work.
 
+<!--> You can also just test it at [https://jsfiddle.net/DynamsoftTeam/]()-->
+
 If the test doesn't go as expected, you can [contact us](https://www.dynamsoft.com/company/customer-service/#contact).
 
 ## Building your own page
 
-In this section, we'll break down and show all the steps required to build a web page for document capturing from video stream with DDN-JS.
+In this section, we'll break down and show all the steps needed to build the solution in a web page.
 
 ### Include the SDK
 
-#### Dependency packages
+To build the solution, we need to include five packages
 
-1. `core`: The foundation upon which Dynamsoft SDKs implements their functionality. It consists of basic classes, interfaces and enumerations shared between all Dynamsoft SDKs.
-2. `utility`: Defines auxiliary classes shared between all Dynamsoft SDKs.
-3. `cvr`: The cornerstone of the Dynamsoft Capture Vision architecture.
+1. `dynamsoft-core`: includes basic classes, interfaces, and enumerations that are shared between all Dynamsoft SDKs.
+2. `dynamsoft-utility`: defines auxiliary classes shared between all Dynamsoft SDKs.
+5. `dynamsoft-document-normalizer`: provides functions to detect boundaries or perform normalization.
+4. `dynamsoft-camera-enhancer`: supplies image frames captured from video input.
+3. `dynamsoft-capture-vision-router`: defines the class `CaptureVisionRouter`, which controls the whole process.
 
 #### Use a CDN
 
-The simplest way to include the SDK is to use either the [jsDelivr](https://jsdelivr.com/) or [UNPKG](https://unpkg.com/) CDN. The "hello world" example above uses **jsDelivr**. We should also include the SDK Dynamsoft Camera Enhancer which provides camera support.
+The simplest way to include the SDK is to use either the [jsDelivr](https://jsdelivr.com/) or [UNPKG](https://unpkg.com/) CDN.
 
 - jsDelivr
 
@@ -226,59 +228,83 @@ or
   import { CaptureVisionRouter } from 'dynamsoft-capture-vision-router';
   ```
 
-### Configure the SDK with license
+### Configure the license
 
-The SDK requires a license to work, use the Dynamsoft.CVR.LicenseManager.initLicense() to specify a license key.
+The SDK requires a license to work, use `Dynamsoft.License.LicenseManager.initLicense()` to specify a license key.
 
 ```javascript
-Dynamsoft.CVR.LicenseManager.initLicense("YOUR-LICENSE-KEY");
+Dynamsoft.License.LicenseManager.initLicense("YOUR-LICENSE-KEY");
 ```
 
-To test the SDK, you can request a 30-day trial license via the [customer portal](https://www.dynamsoft.com/customer/license/trialLicense?utm_source=guide&product=ddn&package=js).
+To test the SDK, you can request a 30-day trial license via the [customer portal](https://www.dynamsoft.com/customer/license/trialLicense?utm_source=guide&architecture=dcv&product=ddn&package=js).
 
-### Interact with the SDK
+### Use the SDK
 
-#### Create a CaptureVisionRouter object
+#### Create a CaptureVisionRouter instance
 
-Create an instance of Capture Vision Router.
+Create an instance of `CaptureVisionRouter`.
 
 ```js
-let cvr = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
+let router = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
 ```
 
-#### Create a CameraEnhancer object and bind it as input to cvr
+#### Create a CameraEnhancer instance as the input
 
-The CameraEnhancer object is necessary to access the camera to display the video stream and draw the found quads. In some cases, a different camera might be required instead of the default one. Also, a different resolution might work better. To change the camera or the resolution, we use the CameraEnhancer object. Learn more [here](https://www.dynamsoft.com/camera-enhancer/docs/programming/javascript/api-reference/camera-control.html?ver=4.0.0&utm_source=guide&product=ddn&package=js).
+The `CameraEnhancer` instance is necessary to access the camera to display the video stream and draw the found document boundary. 
+
+```html
+<div id="uiContainer" style="width: 50vw; height: 45vh; margin-top: 10px; display: none;"></div>
+```
 
 ```js
+// Create a CameraView to host the UI element such as the HTMLVideoElement
 let view = await Dynamsoft.DCE.CameraView.createInstance();
-let dce = await Dynamsoft.DCE.CameraEnhancer.createInstance(view);
-cvr.setInput(dce);
+// Establish the connection to the CameraView elements
+cameraEnhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance(view);
+// Append the CameraView UI to the DOM
+const uiContainer = document.querySelector("#uiContainer");
+uiContainer.append(view.getUIElement());
+// Set the CameraEnhancer instance as the input to router
+router.setInput(cameraEnhancer);
 ```
+
+In some cases, a different camera might be required instead of the default one. Also, a different resolution might work better. To change the camera or the resolution, we use the `CameraEnhancer` instance (`cameraEnhancer` in our case). Learn more [here](https://www.dynamsoft.com/camera-enhancer/docs/programming/javascript/api-reference/camera-control.html?ver=4.0.0&utm_source=guide&product=ddn&package=js).
 
 #### Start the detection
 
-Define the captured result receiver to accept the detected boundaries, And set it as the output results. Finally, call the method startCapturing() to start processing all the continuous inputs.
+Define a callback function to accept the detected document boundaries. Then, as the last step, call the method `startCapturing()` to start the process.
+
+> Read more on [`CapturedResultReceiver`]({{ site.dcv_js_api }}core/basic-structures/captured-result-receiver.html)
 
 ```js
 let crr = {
-            async onDetectedQuadsReceived(pResult) {
-                items = pResult.quadsResultItems;
-            }
-        };
-cvr.addResultReceiver(crr);
-dce.open();
-cvr.startCapturing("detect-document-boundary");
+    onDetectedQuadsReceived(pResult) {
+        items = pResult.quadsResultItems;
+    }
+};
+router.addResultReceiver(crr);
+cameraEnhancer.open();
+router.startCapturing("detect-document-boundary");
 ```
 
-#### Normalize an image
+The steps of the workflow is as follows
 
+1. `cameraEnhancer` streams the video, captures live video frames and stores them in a buffer.
+2. `router` gets the video frames from `cameraEnhancer` and passes them to be processed by an internal `DocumentNormalizer` instance.
+3. The internal `DocumentNormalizer` instance returns the found document boundaries, known as `quadsResultItems`, to `router`.
+4. `router` outputs the `quadsResultItems` via the callback function `onDetectedQuadsReceived`.
+
+#### Review and adjust a found boundary
+
+#### Normalize a document based on its adjusted boundary
+
+<!-- 
 There is a slight difference between the way you handle individual images and video streams. The code snippet shown here does border detection and normalization on a static image. We use method capture() to accomplish this process.
 
 ```js
 let imagefilepath = "YOUR-IMAGE-FILE-PATH";
 const uiNormalize = document.querySelector("#uiNormalize");
-results = await cvr.capture(imagefilepath, "detect-and-normalize-document");
+results = await router.capture(imagefilepath, "detect-and-normalize-document");
 results.items.forEach(async (item) => {
   // Or it could be written like this -> item.type === EnumCapturedResultItemType.CRIT_NORMALIZED_IMAGE
   if (item.type === 16) {
@@ -290,10 +316,11 @@ results.items.forEach(async (item) => {
 ```
 
 Please note: Method `capture()` only process an image or single page file.
+ -->
 
 ## System Requirements
 
-DDN-JS SDK requires the following features to work:
+The SDK requires the following features to work:
 
 - Secure context (HTTPS deployment)
 
@@ -328,11 +355,11 @@ Apart from the browsers, the operating systems may impose some limitations of th
 
 ## Release Notes
 
-Learn about what are included in each release at [https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/release-notes/?ver=latest](https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/release-notes/?ver=latest).
+Learn what are included in each release at [https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/release-notes/?ver=latest](https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/release-notes/?ver=latest).
 
 ## Next Steps
 
 Now that you have got the SDK integrated, you can choose to move forward in the following directions
 
 1. Check out the [official samples](https://github.com/Dynamsoft/document-normalizer-javascript-samples).
-2. Learn about the available [APIs](https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/api-reference/?ver=latest).
+2. Learn about the available [APIs](https://www.dynamsoft.com/document-normalizer/docs/web/programming/javascript/api-reference/?ver=latest).
