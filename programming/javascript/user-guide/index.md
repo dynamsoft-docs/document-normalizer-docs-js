@@ -55,8 +55,8 @@ The following sample code sets up the SDK and implements boundary detection on a
     <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-core@3.0.10/dist/core.js"></script>
     <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-utility@1.0.10/dist/utility.js"></script>
     <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-document-normalizer@2.0.10/dist/ddn.js"></script>
-    <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
     <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-capture-vision-router@2.0.10/dist/cvr.js"></script>
+    <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
 </head>
 <body>
     <h1>Detect the Boundary of the Document</h1>
@@ -136,7 +136,7 @@ Please note:
 - On first use, you need to wait a few seconds for the SDK to initialize.
 - The license "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9" used in this sample is an online license and requires network connection to work.
 
-<!--> You can also just test it at [https://jsfiddle.net/DynamsoftTeam/]()-->
+<!-- You can also just test it at [https://jsfiddle.net/DynamsoftTeam/]()-->
 
 If the test doesn't go as expected, you can [contact us](https://www.dynamsoft.com/company/customer-service/#contact).
 
@@ -150,9 +150,9 @@ To build the solution, we need to include five packages
 
 1. `dynamsoft-core`: includes basic classes, interfaces, and enumerations that are shared between all Dynamsoft SDKs.
 2. `dynamsoft-utility`: defines auxiliary classes shared between all Dynamsoft SDKs.
-5. `dynamsoft-document-normalizer`: provides functions to detect boundaries or perform normalization.
-4. `dynamsoft-camera-enhancer`: supplies image frames captured from video input.
-3. `dynamsoft-capture-vision-router`: defines the class `CaptureVisionRouter`, which controls the whole process.
+3. `dynamsoft-document-normalizer`: provides functions to detect boundaries or perform normalization.
+4. `dynamsoft-capture-vision-router`: defines the class `CaptureVisionRouter`, which controls the whole process.
+5. `dynamsoft-camera-enhancer`: supplies image frames captured from video input.
 
 #### Use a CDN
 
@@ -164,8 +164,8 @@ The simplest way to include the SDK is to use either the [jsDelivr](https://jsde
   <script src="https://cdn.jsdelivr.net/npm/dynamsoft-core@3.0.10/dist/core.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dynamsoft-utility@1.0.10/dist/utility.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.0.10/dist/ddn.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.0.10/dist/cvr.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
   ```
 
 - UNPKG
@@ -174,8 +174,8 @@ The simplest way to include the SDK is to use either the [jsDelivr](https://jsde
   <script src="https://unpkg.com/dynamsoft-core@3.0.10/dist/core.js"></script>
   <script src="https://unpkg.com/dynamsoft-utility@1.0.10/dist/utility.js"></script>
   <script src="https://unpkg.com/dynamsoft-document-normalizer@2.0.10/dist/ddn.js"></script>
-  <script src="https://unpkg.com/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
   <script src="https://unpkg.com/dynamsoft-capture-vision-router@2.0.10/dist/cvr.js"></script>
+  <script src="https://unpkg.com/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
   ```
 
 #### Host the SDK yourself
@@ -204,8 +204,8 @@ Depending on how you downloaded the SDK and where you put it, you can typically 
   <script src="/dynamsoft-core-js-3.0.10/dist/core.js"></script>
   <script src="/dynamsoft-utility-js-1.0.10/dist/utility.js"></script>
   <script src="/dynamsoft-document-normalizer-js-2.0.10/dist/ddn.js"></script>
-  <script src="/dynamsoft-camera-enhancer-js-4.0.0/dist/dce.js"></script>
   <script src="/dynamsoft-capture-vision-router-js-2.0.10/dist/cvr.js"></script>
+  <script src="/dynamsoft-camera-enhancer-js-4.0.0/dist/dce.js"></script>
   ```
 
 or
@@ -214,8 +214,8 @@ or
   <script src="/node_modules/dynamsoft-core-js-3.0.10/dist/core.js"></script>
   <script src="/node_modules/dynamsoft-utility-js-1.0.10/dist/utility.js"></script>
   <script src="/node_modules/dynamsoft-document-normalizer-js-2.0.10/dist/ddn.js"></script>
-  <script src="/node_modules/dynamsoft-camera-enhancer-js-4.0.0/dist/dce.js"></script>
   <script src="/node_modules/dynamsoft-capture-vision-router-js-2.0.10/dist/cvr.js"></script>
+  <script src="/node_modules/dynamsoft-camera-enhancer-js-4.0.0/dist/dce.js"></script>
   ```
 
 or
@@ -224,8 +224,8 @@ or
   import { Core } from 'dynamsoft-core';
   import { Utility } from 'dynamsoft-utility';
   import { DocumentNormalizer } from 'dynamsoft-document-normalizer';
-  import { CameraEnhancer } from 'dynamsoft-camera-enhancer';
   import { CaptureVisionRouter } from 'dynamsoft-capture-vision-router';
+  import { CameraEnhancer } from 'dynamsoft-camera-enhancer';
   ```
 
 ### Configure the license
@@ -250,7 +250,7 @@ let router = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
 
 #### Create a CameraEnhancer instance as the input
 
-The `CameraEnhancer` instance is necessary to access the camera to display the video stream and draw the found document boundary. 
+The `CameraEnhancer` instance is necessary to access the camera to display the video stream and draw the found document boundary.
 
 ```html
 <div id="uiContainer" style="width: 50vw; height: 45vh; margin-top: 10px; display: none;"></div>
@@ -296,7 +296,70 @@ The steps of the workflow is as follows
 
 #### Review and adjust a found boundary
 
+```html
+<button onclick="editBoundary()">Edit Boundary</button>
+<div id="div-image-container" style="width: 80vw; height: 70vh">
+    <div class="dce-image-container" style="width: 100%; height: 100%"></div></div>
+</div>
+```
+
+```js
+const imageContainer = document.querySelector("#div-image-container");
+let items;
+async function editBoundary() {
+    imageEditorView = await Dynamsoft.DCE.ImageEditorView.createInstance(imageContainer);
+    layer = imageEditorView.createDrawingLayer();
+    uiContainer.style.display = "none";
+    imageContainer.style.display = "block";
+    image = cameraEnhancer.fetchImage();
+    imageEditorView.setOriginalImage(image);
+    quads = [];
+    for (let i = 0; i < items.length; i++) {
+        const points = items[i].location.points;
+        const quad = new Dynamsoft.DCE.DrawingItem.QuadDrawingItem({ points });
+        quads.push(quad);
+        layer.addDrawingItems(quads);
+    }
+    router.stopCapturing();
+}
+```
+
+The steps of manually correction of boundary are
+
+1. Creates an instance of `imageEditorView` and attaches it to the imageContainer element.
+2. Fetches the captured image using `fetchImage()` and sets it as the original image.
+3. Edit the boundaries, then save the new quadrilateral information to `quads`.
+
 #### Normalize a document based on its adjusted boundary
+
+```html
+<button onclick="normalizeImage()">Normalize Image</button>
+```
+
+```js
+let image;
+async function normalizeImage() {
+    imageContainer.style.display = "none";
+    uiNormalize.innerHTML = "";
+    let seletedItems = imageEditorView.getSelectedDrawingItems();
+    for (let i = 0; i < seletedItems.length; i++) {
+        await router.resetSettings();
+        let quad = seletedItems[i].getQuad();
+        let newSettings = await router.getSimplifiedSettings("normalize-document");
+        newSettings.roi.points = quad.points;
+        newSettings.roiMeasuredInPercentage = 0;
+        await router.updateSettings("normalize-document", newSettings);
+        let norRes = await router.capture(image, "normalize-document");
+        uiNormalize.append(norRes.items[0].toCanvas());
+    }
+}
+```
+
+The last steps of Image Normalization are:
+
+1. Using `getQuad()` to retrieve the boundary quad of the current selected item.
+2. Retrieves `simplifiedSettings` for normalization, updates the `quad` as the region of interest(ROI).
+3. Do only normalize process by using preset template "normalize-document".
 
 <!-- 
 There is a slight difference between the way you handle individual images and video streams. The code snippet shown here does border detection and normalization on a static image. We use method capture() to accomplish this process.
