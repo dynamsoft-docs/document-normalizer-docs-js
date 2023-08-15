@@ -14,14 +14,14 @@ The DetectedQuadElement interface inherits from RegionObjectElement interface in
 ## Definition
 
 ```ts
-export interface DetectedQuadElement extends Core.IntermediateResult.RegionObjectElement {
+interface DetectedQuadElement extends Core.IntermediateResult.RegionObjectElement {
                 confidenceAsDocumentBoundary: number;
             }
 ```
 
 | Properties              | Type |
 |----------------------|-------------|
-| [`confidenceAsDocumentBoundary`](#confidenceasdocumentboundary) | *Number* |
+| [`confidenceAsDocumentBoundary`](#confidenceasdocumentboundary) | *number* |
 
 ### confidenceAsDocumentBoundary
 
