@@ -27,10 +27,9 @@ In this guide, you'll learn step-by-step how to build such a simple solution in 
     - [Include the SDK](#include-the-sdk)
       - [Use a CDN](#use-a-cdn)
       - [Host the SDK yourself](#host-the-sdk-yourself)
-    - [Configure the license](#configure-the-license)
-    - [Use the SDK](#use-the-sdk)
-      - [Create a CaptureVisionRouter instance](#create-a-capturevisionrouter-instance)
-      - [Create a CameraEnhancer instance as the input](#create-a-cameraenhancer-instance-as-the-input)
+    - [Define necessary HTML elements](#define-necessary-html-elements)
+    - [Prepare the SDK for the Task](#prepare-the-sdk-for-the-task)
+    - [Define the functions](#define-the-functions)
       - [Start the detection](#start-the-detection)
       - [Review and adjust a found boundary](#review-and-adjust-a-found-boundary)
       - [Normalize a document based on its adjusted boundary](#normalize-a-document-based-on-its-adjusted-boundary)
@@ -52,39 +51,40 @@ The following sample code sets up the SDK and implements boundary detection on a
 <html lang="en">
 
 <head>
-    <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-core@3.0.10/dist/core.js"></script>
-    <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-utility@1.0.10/dist/utility.js"></script>
-    <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-document-normalizer@2.0.10/dist/ddn.js"></script>
-    <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-capture-vision-router@2.0.10/dist/cvr.js"></script>
-    <script src="https://npm.scannerproxy.com/cdn/@scannerproxy/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-core@3.0.10/dist/core.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-utility@1.0.10/dist/utility.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.0.10/dist/ddn.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.0.10/dist/cvr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
 </head>
+
 <body>
     <h1>Detect the Boundary of the Document</h1>
-    <button onclick="start()">Start Capturing</button>
-    <div id="uiNormalize"></div>
-    <div id="uiContainer" style="width: 50vw; height: 45vh; margin-top: 10px; display: none;"></div>
+    <button onclick="startDetecting()">Start Detecting</button>
+    <div id="cameraViewContainer" style="width: 50vw; height: 45vh; margin-top: 10px; display: none"></div>
 
     <script>
-        const uiContainer = document.querySelector("#uiContainer");
-        const uiNormalize = document.querySelector("#uiNormalize");
-        let cameraEnhancer;
+        const cameraViewContainer = document.querySelector(
+            "#cameraViewContainer"
+        );
         let router;
+        let cameraEnhancer;
 
         (async function() {
-            Dynamsoft.CVR.LicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9");
+            Dynamsoft.License.LicenseManager.initLicense(
+                "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9"
+            );
             Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"]);
             router = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
             let view = await Dynamsoft.DCE.CameraView.createInstance();
-            cameraEnhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance(view);
-            cameraEnhancer.setResolution({
-                width: 1920,
-                height: 1080
-            });
-            uiContainer.append(view.getUIElement());
+            cameraEnhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance(
+                view
+            );
+            cameraViewContainer.append(view.getUIElement());
             router.setInput(cameraEnhancer);
         })();
-        async function start() {
-            uiContainer.style.display = "block";
+        async function startDetecting() {
+            cameraViewContainer.style.display = "block";
             await cameraEnhancer.open();
             await router.startCapturing("detect-document-boundaries");
         }
@@ -110,11 +110,15 @@ The following sample code sets up the SDK and implements boundary detection on a
 
 - `Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"])`: preloads the `DocumentNormalizer` module, saving time in preparing for document border detection and image normalization.
 
-- `Dynamsoft.CVR.CaptureVisionRouter.createInstance()`: initializes the `router` variable by creating an instance of the `CaptureVisionRouter` class.
+- `Dynamsoft.CVR.CaptureVisionRouter.createInstance()`: initializes the `router` variable by creating an instance of the `CaptureVisionRouter` class. An instance of `CaptureVisionRouter` is the core of any solution based on Dynamsoft Capture Vision architecture.
+
+  > Read more on [what is CaptureVisionRouter](https://www.dynamsoft.com/capture-vision/docs/core/architecture/#capture-vision-router)
 
 - `Dynamsoft.DCE.CameraEnhancer.createInstance(view)`: initializes the `cameraEnhancer` variable by creating an instance of the `CameraEnhancer` class.
 
 - `setInput()`: sets `cameraEnhancer` as the image source to `router`.
+
+  > In some cases, a different camera might be required instead of the default one. Also, a different resolution might work better. To change the camera or the resolution, use the `CameraEnhancer` instance `cameraEnhancer`. Learn more [here](https://www.dynamsoft.com/camera-enhancer/docs/programming/javascript/api-reference/camera-control.html?ver=4.0.0&utm_source=guide&product=ddn&package=js).
 
 - `startCapturing("detect-document-boundaries")` : starts to run images through a pre-defined process which, in the case of "detect-document-boundaries", tries to find the boundary of a document present in the image(s).
 
@@ -134,7 +138,7 @@ Please note:
 
 - Although the page should work properly when opened directly as a file ("file:///"), it's recommended that you deploy it to a web server and access it via HTTPS.
 - On first use, you need to wait a few seconds for the SDK to initialize.
-- The license "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9" used in this sample is an online license and requires network connection to work.
+- The license "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9" used in this sample is an online license good for 24 hours and requires network connection to work. To test the SDK further, you can request a 30-day trial license via the [customer portal](https://www.dynamsoft.com/customer/license/trialLicense?utm_source=guide&architecture=dcv&product=ddn&package=js).
 
 <!-- You can also just test it at [https://jsfiddle.net/DynamsoftTeam/]()-->
 
@@ -228,51 +232,64 @@ or
   import { CameraEnhancer } from 'dynamsoft-camera-enhancer';
   ```
 
-### Configure the license
+### Define necessary HTML elements
 
-The SDK requires a license to work, use `Dynamsoft.License.LicenseManager.initLicense()` to specify a license key.
-
-```javascript
-Dynamsoft.License.LicenseManager.initLicense("YOUR-LICENSE-KEY");
-```
-
-To test the SDK, you can request a 30-day trial license via the [customer portal](https://www.dynamsoft.com/customer/license/trialLicense?utm_source=guide&architecture=dcv&product=ddn&package=js).
-
-### Use the SDK
-
-#### Create a CaptureVisionRouter instance
-
-Create an instance of `CaptureVisionRouter`.
-
-```js
-let router = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
-```
-
-#### Create a CameraEnhancer instance as the input
-
-The `CameraEnhancer` instance is necessary to access the camera to display the video stream and draw the found document boundary.
+For this solution, we define two buttons and three `<div>` elements.
 
 ```html
-<div id="uiContainer" style="width: 50vw; height: 45vh; margin-top: 10px; display: none;"></div>
+<button onclick="startDetecting()">Start Detecting</button>
+<button onclick="normalizeImage()">Normalize Image</button>
+<div id="cameraViewContainer" style="width: 50vw; height: 45vh; margin-top: 10px; display: none"></div>
+<div id="imageEditorViewContainer" style="width: 80vw; height: 50vh"></div>
+<div id="normalizedImageContainer"></div>
 ```
 
 ```js
-// Create a CameraView to host the UI element such as the HTMLVideoElement
-let view = await Dynamsoft.DCE.CameraView.createInstance();
-// Establish the connection to the CameraView elements
-cameraEnhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance(view);
-// Append the CameraView UI to the DOM
-const uiContainer = document.querySelector("#uiContainer");
-uiContainer.append(view.getUIElement());
-// Set the CameraEnhancer instance as the input to router
-router.setInput(cameraEnhancer);
+const cameraViewContainer = document.querySelector(
+    "#cameraViewContainer"
+);
+const imageEditorViewContainer = document.querySelector(
+    "#imageEditorViewContainer"
+);
+const normalizedImageContainer = document.querySelector(
+    "#normalizedImageContainer"
+);
 ```
 
-In some cases, a different camera might be required instead of the default one. Also, a different resolution might work better. To change the camera or the resolution, we use the `CameraEnhancer` instance (`cameraEnhancer` in our case). Learn more [here](https://www.dynamsoft.com/camera-enhancer/docs/programming/javascript/api-reference/camera-control.html?ver=4.0.0&utm_source=guide&product=ddn&package=js).
+### Prepare the SDK for the Task
+
+The following function executes as soon as the page loads to get the SDK prepared:
+
+```js
+let router;
+let cameraEnhancer;
+let imageEditorView;
+(async function() {
+    Dynamsoft.License.LicenseManager.initLicense(
+        "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9"
+    );
+    Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"]);
+    router = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
+    let view = await Dynamsoft.DCE.CameraView.createInstance();
+    cameraEnhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance(
+        view
+    );
+    cameraEnhancer.setResolution({
+        width: 1920,
+        height: 1080,
+    });
+    cameraViewContainer.append(view.getUIElement());
+    router.setInput(cameraEnhancer);
+})();
+```
+
+The code was explained earlier. Please refer to [About the Code](#about-the-code).
+
+### Define the functions
 
 #### Start the detection
 
-Define a callback function to accept the detected document boundaries. Then, as the last step, call the method `startCapturing()` to start the process.
+Before we start the detection process with `startDetecting()`, we need to define a callback function to accept the detected document boundaries. The callback function is defined based on the `CapturedResultReceiver` interface.
 
 > Read more on [`CapturedResultReceiver`]({{ site.dcv_js_api }}core/basic-structures/captured-result-receiver.html)
 
@@ -280,11 +297,24 @@ Define a callback function to accept the detected document boundaries. Then, as 
 let crr = {
     onDetectedQuadsReceived(pResult) {
         items = pResult.quadsResultItems;
+        console.log(items);
     }
 };
-router.addResultReceiver(crr);
-cameraEnhancer.open();
-router.startCapturing("detect-document-boundary");
+```
+
+And we define the function like this:
+
+```js
+async function startDetecting() {
+    // Show the cameraView
+    cameraViewContainer.style.display = "block";
+    // Specifiy the result receiver
+    router.addResultReceiver(crr);
+    // Start streaming the video
+    await cameraEnhancer.open();
+    // Use the built-in template "detect-document-boundaries" to start a boundary detecting task
+    await router.startDetecting("detect-document-boundaries");
+}
 ```
 
 The steps of the workflow is as follows
@@ -294,92 +324,153 @@ The steps of the workflow is as follows
 3. The internal `DocumentNormalizer` instance returns the found document boundaries, known as `quadsResultItems`, to `router`.
 4. `router` outputs the `quadsResultItems` via the callback function `onDetectedQuadsReceived`.
 
+> Also note that the `quadsResultItems` are drawn over the video automatically to show the detection in action.
+
 #### Review and adjust a found boundary
 
-```html
-<button onclick="editBoundary()">Edit Boundary</button>
-<div id="div-image-container" style="width: 80vw; height: 70vh">
-    <div class="dce-image-container" style="width: 100%; height: 100%"></div></div>
-</div>
-```
+The SDK tries to find the boundary of the document in each and every image processed. This happens very fast and we don't always get the perfect boundary for normalization. Therefore, we can draw the image and the boundary in the `ImageEditorView` and let the user adjust the boundary before proceed to normalization.
+
+To do this, we define the function `editBoundary()` like this
 
 ```js
-const imageContainer = document.querySelector("#div-image-container");
-let items;
-async function editBoundary() {
-    imageEditorView = await Dynamsoft.DCE.ImageEditorView.createInstance(imageContainer);
-    layer = imageEditorView.createDrawingLayer();
-    uiContainer.style.display = "none";
-    imageContainer.style.display = "block";
-    image = cameraEnhancer.fetchImage();
-    imageEditorView.setOriginalImage(image);
-    quads = [];
-    for (let i = 0; i < items.length; i++) {
-        const points = items[i].location.points;
-        const quad = new Dynamsoft.DCE.DrawingItem.QuadDrawingItem({ points });
-        quads.push(quad);
-        layer.addDrawingItems(quads);
-    }
+async function editBoundary(imageData, points) {
+    // Stop the previous detecting task since we assume we have found a good boundary
     router.stopCapturing();
+    // Create an ImageEditorView inside the div "imageEditorViewContainer"
+    if (imageEditorView == undefined) {
+        imageEditorView = await Dynamsoft.DCE.ImageEditorView.createInstance(
+            imageEditorViewContainer
+        );
+    }
+    // Create a drawinglayer to draw the quad
+    let layer;
+    if (imageEditorView.getAllDrawingLayers().length > 0)
+        layer = imageEditorView.getAllDrawingLayers()[0];
+    else layer = imageEditorView.createDrawingLayer();
+    // Hide the cameraView and show the imageEditorView
+    cameraViewContainer.style.display = "none";
+    imageEditorViewContainer.style.display = "block";
+    // Draw the image in the imageEditorView first
+    imageEditorView.setOriginalImage(imageData);
+    // Draw the quad
+    const quad = new Dynamsoft.DCE.DrawingItem.QuadDrawingItem({
+        points,
+    });
+    layer.setDrawingItems([quad]);
 }
 ```
 
-The steps of manually correction of boundary are
+Since we will need the original image returned, we update `startDetecting()` like this:
 
-1. Creates an instance of `imageEditorView` and attaches it to the imageContainer element.
-2. Fetches the captured image using `fetchImage()` and sets it as the original image.
-3. Edit the boundaries, then save the new quadrilateral information to `quads`.
+```js
+async function startDetecting() {
+    cameraViewContainer.style.display = "block";
+    router.addResultReceiver(crr);
+    await cameraEnhancer.open();
+    // Update the settings for "detect-document-boundaries" to return the original image
+    let settings = await router.getSimplifiedSettings(
+        "detect-document-boundaries"
+    );
+    settings.capturedResultItemTypes +=
+        Dynamsoft.Core.EnumCapturedResultItemType.CRIT_ORIGINAL_IMAGE;
+    await router.updateSettings("detect-document-boundaries", settings);
+    await router.startCapturing("detect-document-boundaries");
+}
+```
+
+Then we update the callback function to do 2 things:
+
+1. Detect whether a found boundary is good by checking its property `confidenceAsDocumentBoundary`
+2. If a good boundray is found, carry on to invoke the function `editBoundary()`
+  > Note that in order to get both the boundary result and the original image, we use the callback function `onCapturedResultReceived` instead
+
+```js
+let crr = {
+    onCapturedResultReceived: (result) => {
+        let confidentBoundaryPoints = null;
+        let readyToAdjustBoundary = false;
+        if (result.items && result.items.length > 0) {
+            for (let i = 0; i < result.items.length; i++) {
+                let resultItem = result.items[i];
+                if (
+                    resultItem.type ==
+                    Dynamsoft.Core.EnumCapturedResultItemType.CRIT_DETECTED_QUAD
+                ) {
+                    // Check the confidence score of the found boundary
+                    if (resultItem.confidenceAsDocumentBoundary > 75) {
+                        readyToAdjustBoundary = true;
+                        confidentBoundaryPoints = resultItem.location.points;
+                    }
+                }
+            }
+        }
+        if (result.items && result.items.length > 0) {
+            for (let i = 0; i < result.items.length; i++) {
+                let resultItem = result.items[i];
+                if (
+                    resultItem.type ==
+                    Dynamsoft.Core.EnumCapturedResultItemType.CRIT_ORIGINAL_IMAGE
+                ) {
+                    if (readyToAdjustBoundary && confidentBoundaryPoints) {
+                        // When the boundary is good, carry on to invoke editBoundary()
+                        editBoundary(resultItem.imageData, confidentBoundaryPoints);
+                    }
+                }
+            }
+        }
+    },
+};
+```
+
+Now, the behavior will be
+
+1. The page constantly detect the boundary of the document in the video
+2. When the found boundary has a confidence score of 75 or more, the page hides the video stream and draw both the image and the boundary in the "imageEditorViewer"
+3. The user can adjust the boundary to be more precise
 
 #### Normalize a document based on its adjusted boundary
 
-```html
-<button onclick="normalizeImage()">Normalize Image</button>
-```
+After the user has adjusted the boundary or determined that the found boundary is good enough, he can press the button "Normaize Image" to carry out the normalization as the last step of the solution.
+
+The function `normalizeImage()` is defined like this:
 
 ```js
-let image;
 async function normalizeImage() {
-    imageContainer.style.display = "none";
-    uiNormalize.innerHTML = "";
+    // Hide the imageEditorView
+    imageEditorViewContainer.style.display = "none";
+    // Remove the old normalized image if any
+    normalizedImageContainer.innerHTML = "";
+    // Get the boundary from the imageEditorView
+    let boundaryQuad = null;
     let seletedItems = imageEditorView.getSelectedDrawingItems();
-    for (let i = 0; i < seletedItems.length; i++) {
-        await router.resetSettings();
-        let quad = seletedItems[i].getQuad();
-        let newSettings = await router.getSimplifiedSettings("normalize-document");
-        newSettings.roi.points = quad.points;
-        newSettings.roiMeasuredInPercentage = 0;
-        await router.updateSettings("normalize-document", newSettings);
-        let norRes = await router.capture(image, "normalize-document");
-        uiNormalize.append(norRes.items[0].toCanvas());
+    if (seletedItems.length == 0) {
+        let layer = imageEditorView.getAllDrawingLayers()[0];
+        boundaryQuad = layer.getDrawingItems()[0];
+    } else {
+        boundaryQuad = seletedItems[0];
     }
+    // Get the original image to normalize
+    let originalImage = imageEditorView.getOriginalImage();
+    await router.resetSettings();
+    let quad = boundaryQuad.getQuad();
+    // Update the template "normalize-document" with the boundary
+    let newSettings = await router.getSimplifiedSettings(
+        "normalize-document"
+    );
+    newSettings.roi.points = quad.points;
+    newSettings.roiMeasuredInPercentage = 0;
+    await router.updateSettings("normalize-document", newSettings);
+    // Normalize and show the result image
+    let normalizeResult = await router.capture(originalImage, "normalize-document");
+    normalizedImageContainer.append(normalizeResult.items[0].toCanvas());
 }
 ```
 
-The last steps of Image Normalization are:
+The added behavior is
 
-1. Using `getQuad()` to retrieve the boundary quad of the current selected item.
-2. Retrieves `simplifiedSettings` for normalization, updates the `quad` as the region of interest(ROI).
-3. Do only normalize process by using preset template "normalize-document".
-
-<!-- 
-There is a slight difference between the way you handle individual images and video streams. The code snippet shown here does border detection and normalization on a static image. We use method capture() to accomplish this process.
-
-```js
-let imagefilepath = "YOUR-IMAGE-FILE-PATH";
-const uiNormalize = document.querySelector("#uiNormalize");
-results = await router.capture(imagefilepath, "detect-and-normalize-document");
-results.items.forEach(async (item) => {
-  // Or it could be written like this -> item.type === EnumCapturedResultItemType.CRIT_NORMALIZED_IMAGE
-  if (item.type === 16) {
-      uiNormalize.innerHTML = "";
-      uiNormalize.appendChild(item.toImage());
-      console.log(await item.saveToFile("sample.jpeg"));
-  }
-})
-```
-
-Please note: Method `capture()` only process an image or single page file.
- -->
+1. The user hits "Normalize Image"
+2. The page gets the boundary normzlie the image based on it
+3. The normalized image shows up on the page
 
 ## System Requirements
 
