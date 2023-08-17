@@ -28,14 +28,14 @@ In this guide, you'll learn step-by-step how to build such a simple solution in 
       - [Use a CDN](#use-a-cdn)
       - [Host the SDK yourself](#host-the-sdk-yourself)
     - [Define necessary HTML elements](#define-necessary-html-elements)
-    - [Prepare the SDK for the Task](#prepare-the-sdk-for-the-task)
+    - [Prepare the SDK for the task](#prepare-the-sdk-for-the-task)
     - [Define the functions](#define-the-functions)
       - [Start the detection](#start-the-detection)
       - [Review and adjust a found boundary](#review-and-adjust-a-found-boundary)
       - [Normalize a document based on its adjusted boundary](#normalize-a-document-based-on-its-adjusted-boundary)
-  - [System Requirements](#system-requirements)
-  - [Release Notes](#release-notes)
-  - [Next Steps](#next-steps)
+  - [System requirements](#system-requirements)
+  - [Release notes](#release-notes)
+  - [Next steps](#next-steps)
 
 ## Getting started
 
@@ -256,7 +256,7 @@ const normalizedImageContainer = document.querySelector(
 );
 ```
 
-### Prepare the SDK for the Task
+### Prepare the SDK for the task
 
 The following function executes as soon as the page loads to get the SDK prepared:
 
@@ -472,7 +472,7 @@ The added behavior is
 2. The page gets the boundary normzlie the image based on it
 3. The normalized image shows up on the page
 
-## System Requirements
+## System requirements
 
 The SDK requires the following features to work:
 
@@ -507,11 +507,11 @@ The following table is a list of supported browsers based on the above requireme
 
 Apart from the browsers, the operating systems may impose some limitations of their own that could restrict the use of the SDK.
 
-## Release Notes
+## Release notes
 
 Learn what are included in each release at [https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/release-notes/?ver=latest](https://www.dynamsoft.com/document-normalizer/docs/programming/javascript/release-notes/?ver=latest).
 
-## Next Steps
+## Next steps
 
 Now that you have got the SDK integrated, you can choose to move forward in the following directions
 
