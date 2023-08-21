@@ -380,7 +380,7 @@ async function startDetecting() {
 
 Then we update the callback function to do 2 things:
 
-1. Detect whether a found boundary is good by checking its property `confidenceAsDocumentBoundary`
+1. Detect whether a found boundary is good by checking whether the boundary can be detected for 30 consecutive frames
 
 2. If a good boundary is found, carry on to invoke the function `editBoundary()`
 
@@ -429,7 +429,7 @@ let crr = {
 Now, the behavior will be
 
 1. The page constantly detect the boundary of the document in the video
-2. When the found boundary has a confidence score of 75 or more, the page hides the video stream and draw both the image and the boundary in the "imageEditorViewer"
+2. When the found boundary is stable enough, the page hides the video stream and draw both the image and the boundary in the "imageEditorViewer"
 3. The user can adjust the boundary to be more precise
 
 #### Normalize a document based on its adjusted boundary
