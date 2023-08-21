@@ -324,9 +324,15 @@ async function startDetecting() {
     router.addResultReceiver(resultReceiver);
     // Starts streaming the video
     await cameraEnhancer.open();
+<<<<<<< HEAD
     // Uses the built-in template "detect-document-boundaries" to start a boundary detecting task
     await router.startCapturing("detect-document-boundaries");
 }
+=======
+    // Use the built-in template "detect-document-boundaries" to start a boundary detecting task
+    await router.startDetecting("detect-document-boundaries");
+};
+>>>>>>> 71d37032d49d1e7c0a14293d5dc7cfff596fa496
 ```
 
 The steps of the workflow is as follows
@@ -388,7 +394,7 @@ async function startDetecting() {
         Dynamsoft.Core.EnumCapturedResultItemType.CRIT_ORIGINAL_IMAGE;
     await router.updateSettings("detect-document-boundaries", settings);
     await router.startCapturing("detect-document-boundaries");
-}
+};
 ```
 
 Then we update the callback function to do 2 things:
@@ -422,7 +428,7 @@ Now, the behavior will be
 
 #### Normalize a document based on its adjusted boundary
 
-After the user has adjusted the boundary or determined that the found boundary is good enough, he can press the button "Normaize Image" to carry out the normalization as the last step of the solution.
+After the user has adjusted the boundary or determined that the found boundary is good enough, he can press the button "Normalize Image" to carry out the normalization as the last step of the solution.
 
 The function `normalizeImage()` is defined like this:
 
@@ -469,7 +475,7 @@ async function normalizeImage() {
 The added behavior is
 
 1. The user hits "Normalize Image"
-2. The page gets the boundary normzlie the image based on it
+2. The page gets the boundary normalize the image based on it
 3. The normalized image shows up on the page
 
 ## System requirements
