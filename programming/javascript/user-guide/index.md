@@ -51,6 +51,7 @@ The following sample code sets up the SDK and implements boundary detection on a
 <html lang="en">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-core@3.0.10/dist/core.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-utility@1.0.10/dist/utility.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.0.10/dist/ddn.js"></script>
@@ -148,15 +149,31 @@ If the test doesn't go as expected, you can [contact us](https://www.dynamsoft.c
 
 In this section, we'll break down and show all the steps needed to build the solution in a web page.
 
+We'll build on this skeleton page:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+    <h1>Detect the Boundary of the Document</h1>
+    <script>
+    </script>
+</body>
+</html>
+```
+
 ### Include the SDK
 
 To build the solution, we need to include five packages
 
-1. `dynamsoft-core`: includes basic classes, interfaces, and enumerations that are shared between all Dynamsoft SDKs.
-2. `dynamsoft-utility`: defines auxiliary classes shared between all Dynamsoft SDKs.
-3. `dynamsoft-document-normalizer`: provides functions to detect boundaries or perform normalization.
-4. `dynamsoft-capture-vision-router`: defines the class `CaptureVisionRouter`, which controls the whole process.
-5. `dynamsoft-camera-enhancer`: supplies image frames captured from video input.
+1. `dynamsoft-core`: Required, it includes basic classes, interfaces, and enumerations that are shared between all Dynamsoft SDKs.
+2. `dynamsoft-utility`: Optional, it defines auxiliary classes shared between all Dynamsoft SDKs.
+3. `dynamsoft-document-normalizer`: Required, it provides functions to detect boundaries or perform normalization.
+4. `dynamsoft-capture-vision-router`: Required, it defines the class `CaptureVisionRouter`, which controls the whole process.
+5. `dynamsoft-camera-enhancer`: Required, it supplies image frames captured from video input.
 
 #### Use a CDN
 
@@ -238,7 +255,7 @@ For this solution, we define two buttons and three `<div>` elements.
 
 ```html
 <button onclick="startDetecting()">Start Detecting</button>
-<button onclick="normalizeImage()">Normalize Image</button>
+<button id="btn_normalize" onclick="normalizeImage()" disabled>Normalize Image</button>
 <div id="cameraViewContainer" style="width: 50vw; height: 45vh; margin-top: 10px; display: none"></div>
 <div id="imageEditorViewContainer" style="width: 80vw; height: 50vh"></div>
 <div id="normalizedImageContainer"></div>
@@ -274,10 +291,6 @@ let imageEditorView;
     cameraEnhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance(
         view
     );
-    cameraEnhancer.setResolution({
-        width: 1920,
-        height: 1080,
-    });
     cameraViewContainer.append(view.getUIElement());
     router.setInput(cameraEnhancer);
 })();
@@ -294,11 +307,10 @@ Before we start the detection process with `startDetecting()`, we need to define
 > Read more on [`CapturedResultReceiver`]({{ site.dcv_js_api }}core/basic-structures/captured-result-receiver.html)
 
 ```js
-let crr = {
-    onDetectedQuadsReceived(pResult) {
-        items = pResult.quadsResultItems;
-        console.log(items);
-    }
+const resultReceiver = new Dynamsoft.CVR.CapturedResultReceiver();
+resultReceiver.onDetectedQuadsReceived = (result) => {
+    items = result.quadsResultItems;
+    console.log(items);
 };
 ```
 
@@ -306,14 +318,14 @@ And we define the function like this:
 
 ```js
 async function startDetecting() {
-    // Show the cameraView
+    // Shows the cameraView
     cameraViewContainer.style.display = "block";
-    // Specifiy the result receiver
-    router.addResultReceiver(crr);
-    // Start streaming the video
+    // Specifies the result receiver
+    router.addResultReceiver(resultReceiver);
+    // Starts streaming the video
     await cameraEnhancer.open();
-    // Use the built-in template "detect-document-boundaries" to start a boundary detecting task
-    await router.startDetecting("detect-document-boundaries");
+    // Uses the built-in template "detect-document-boundaries" to start a boundary detecting task
+    await router.startCapturing("detect-document-boundaries");
 }
 ```
 
@@ -334,29 +346,30 @@ To do this, we define the function `editBoundary()` like this
 
 ```js
 async function editBoundary(imageData, points) {
-    // Stop the previous detecting task since we assume we have found a good boundary
+    // Stops the previous detecting task since we assume we have found a good boundary.
     router.stopCapturing();
-    // Create an ImageEditorView inside the div "imageEditorViewContainer"
+    // Creates an ImageEditorView inside the div "imageEditorViewContainer".
     if (imageEditorView == undefined) {
         imageEditorView = await Dynamsoft.DCE.ImageEditorView.createInstance(
             imageEditorViewContainer
         );
     }
-    // Create a drawinglayer to draw the quad
+    // Creates a drawinglayer to draw the document boundary (quad).
     let layer;
     if (imageEditorView.getAllDrawingLayers().length > 0)
         layer = imageEditorView.getAllDrawingLayers()[0];
     else layer = imageEditorView.createDrawingLayer();
-    // Hide the cameraView and show the imageEditorView
+    // Hides the cameraView and show the imageEditorView.
     cameraViewContainer.style.display = "none";
     imageEditorViewContainer.style.display = "block";
-    // Draw the image in the imageEditorView first
+    // Draws the image in the imageEditorView first.
     imageEditorView.setOriginalImage(imageData);
-    // Draw the quad
+    // Draws the document boundary (quad).
     const quad = new Dynamsoft.DCE.DrawingItem.QuadDrawingItem({
         points,
     });
     layer.setDrawingItems([quad]);
+    document.getElementById("btn_normalize").disabled = false;
 }
 ```
 
@@ -365,9 +378,9 @@ Since we will need the original image returned, we update `startDetecting()` lik
 ```js
 async function startDetecting() {
     cameraViewContainer.style.display = "block";
-    router.addResultReceiver(crr);
+    router.addResultReceiver(resultReceiver);
     await cameraEnhancer.open();
-    // Update the settings for "detect-document-boundaries" to return the original image
+    // Updates the settings for "detect-document-boundaries" to return the original image.
     let settings = await router.getSimplifiedSettings(
         "detect-document-boundaries"
     );
@@ -380,53 +393,32 @@ async function startDetecting() {
 
 Then we update the callback function to do 2 things:
 
-1. Detect whether a found boundary is good by checking its property `confidenceAsDocumentBoundary`
-2. If a good boundray is found, carry on to invoke the function `editBoundary()`
-  > Note that in order to get both the boundary result and the original image, we use the callback function `onCapturedResultReceived` instead
+1. Determine whether a found boundary is good by counting consecutive frames with results. Here we set 30 as the threshold.
+  > Alternatively, you can determine the quality of the boundary with its property `confidenceAsDocumentBoundary`.
+2. If a good boundray is found, carry on to invoke the function `editBoundary()`.
+  > Note that in order to get both the boundary result and the original image, we have changed the callback function from `onDetectedQuadsReceived` to `onCapturedResultReceived`.
 
 ```js
-let crr = {
-    onCapturedResultReceived: (result) => {
-        let confidentBoundaryPoints = null;
-        let readyToAdjustBoundary = false;
-        if (result.items && result.items.length > 0) {
-            for (let i = 0; i < result.items.length; i++) {
-                let resultItem = result.items[i];
-                if (
-                    resultItem.type ==
-                    Dynamsoft.Core.EnumCapturedResultItemType.CRIT_DETECTED_QUAD
-                ) {
-                    // Check the confidence score of the found boundary
-                    if (resultItem.confidenceAsDocumentBoundary > 75) {
-                        readyToAdjustBoundary = true;
-                        confidentBoundaryPoints = resultItem.location.points;
-                    }
-                }
-            }
-        }
-        if (result.items && result.items.length > 0) {
-            for (let i = 0; i < result.items.length; i++) {
-                let resultItem = result.items[i];
-                if (
-                    resultItem.type ==
-                    Dynamsoft.Core.EnumCapturedResultItemType.CRIT_ORIGINAL_IMAGE
-                ) {
-                    if (readyToAdjustBoundary && confidentBoundaryPoints) {
-                        // When the boundary is good, carry on to invoke editBoundary()
-                        editBoundary(resultItem.imageData, confidentBoundaryPoints);
-                    }
-                }
-            }
-        }
-    },
+resultReceiver.onCapturedResultReceived = (result) => {
+    /* Saves the image data of the current frame for subsequent image editing. */
+    let image = result.items.filter((item) => item.type === 1)[0].imageData;
+    if (result.items.length <= 1) {
+        frameCount = 0;
+        return;
+    }
+    frameCount++;
+    if (frameCount === 30) {
+        frameCount = 0;
+        editBoundary(image, result.items[1].location.points);
+    }
 };
 ```
 
 Now, the behavior will be
 
-1. The page constantly detect the boundary of the document in the video
-2. When the found boundary has a confidence score of 75 or more, the page hides the video stream and draw both the image and the boundary in the "imageEditorViewer"
-3. The user can adjust the boundary to be more precise
+1. The page constantly detect the boundary of the document in the video.
+2. When the found boundary in 30 consecutive image frames, the page hides the video stream and draw both the image and the boundary in the "imageEditorViewer".
+3. The user can adjust the boundary to be more precise.
 
 #### Normalize a document based on its adjusted boundary
 
@@ -436,12 +428,16 @@ The function `normalizeImage()` is defined like this:
 
 ```js
 async function normalizeImage() {
-    // Hide the imageEditorView
+    // Hides the imageEditorView
     imageEditorViewContainer.style.display = "none";
-    // Remove the old normalized image if any
+    // Removes the old normalized image if any
     normalizedImageContainer.innerHTML = "";
-    // Get the boundary from the imageEditorView
+    // Gets the boundary from the imageEditorView
     let boundaryQuad = null;
+    if (imageEditorView == undefined) {
+        document.getElementById("btn_normalize").disabled = true;
+        return;
+    }
     let seletedItems = imageEditorView.getSelectedDrawingItems();
     if (seletedItems.length == 0) {
         let layer = imageEditorView.getAllDrawingLayers()[0];
@@ -449,20 +445,24 @@ async function normalizeImage() {
     } else {
         boundaryQuad = seletedItems[0];
     }
-    // Get the original image to normalize
+    // Gets the original image to normalize
     let originalImage = imageEditorView.getOriginalImage();
     await router.resetSettings();
     let quad = boundaryQuad.getQuad();
-    // Update the template "normalize-document" with the boundary
+    // Updates the template "normalize-document" with the boundary
     let newSettings = await router.getSimplifiedSettings(
         "normalize-document"
     );
     newSettings.roi.points = quad.points;
     newSettings.roiMeasuredInPercentage = 0;
     await router.updateSettings("normalize-document", newSettings);
-    // Normalize and show the result image
-    let normalizeResult = await router.capture(originalImage, "normalize-document");
+    // Normalizes and show the result image
+    let normalizeResult = await router.capture(
+        originalImage,
+        "normalize-document"
+    );
     normalizedImageContainer.append(normalizeResult.items[0].toCanvas());
+    document.getElementById("btn_normalize").disabled = true;
 }
 ```
 
