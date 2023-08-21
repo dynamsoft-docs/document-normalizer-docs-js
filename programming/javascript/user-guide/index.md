@@ -314,7 +314,7 @@ async function startDetecting() {
     await cameraEnhancer.open();
     // Use the built-in template "detect-document-boundaries" to start a boundary detecting task
     await router.startDetecting("detect-document-boundaries");
-}
+};
 ```
 
 The steps of the workflow is as follows
@@ -357,7 +357,7 @@ async function editBoundary(imageData, points) {
         points,
     });
     layer.setDrawingItems([quad]);
-}
+};
 ```
 
 Since we will need the original image returned, we update `startDetecting()` like this:
@@ -375,20 +375,24 @@ async function startDetecting() {
         Dynamsoft.Core.EnumCapturedResultItemType.CRIT_ORIGINAL_IMAGE;
     await router.updateSettings("detect-document-boundaries", settings);
     await router.startCapturing("detect-document-boundaries");
-}
+};
 ```
 
 Then we update the callback function to do 2 things:
 
 1. Detect whether a found boundary is good by checking its property `confidenceAsDocumentBoundary`
-2. If a good boundray is found, carry on to invoke the function `editBoundary()`
+
+2. If a good boundary is found, carry on to invoke the function `editBoundary()`
+
   > Note that in order to get both the boundary result and the original image, we use the callback function `onCapturedResultReceived` instead
 
 ```js
+let frameCount = 0;
 let crr = {
     onCapturedResultReceived: (result) => {
         let confidentBoundaryPoints = null;
         let readyToAdjustBoundary = false;
+        frameCount++;
         if (result.items && result.items.length > 0) {
             for (let i = 0; i < result.items.length; i++) {
                 let resultItem = result.items[i];
@@ -396,8 +400,8 @@ let crr = {
                     resultItem.type ==
                     Dynamsoft.Core.EnumCapturedResultItemType.CRIT_DETECTED_QUAD
                 ) {
-                    // Check the confidence score of the found boundary
-                    if (resultItem.confidenceAsDocumentBoundary > 75) {
+                    // Check that the camera is stabilized by finding the document boundaries for 30 consecutive frames
+                    if (frameCount == 30) {
                         readyToAdjustBoundary = true;
                         confidentBoundaryPoints = resultItem.location.points;
                     }
@@ -430,7 +434,7 @@ Now, the behavior will be
 
 #### Normalize a document based on its adjusted boundary
 
-After the user has adjusted the boundary or determined that the found boundary is good enough, he can press the button "Normaize Image" to carry out the normalization as the last step of the solution.
+After the user has adjusted the boundary or determined that the found boundary is good enough, he can press the button "Normalize Image" to carry out the normalization as the last step of the solution.
 
 The function `normalizeImage()` is defined like this:
 
@@ -463,13 +467,13 @@ async function normalizeImage() {
     // Normalize and show the result image
     let normalizeResult = await router.capture(originalImage, "normalize-document");
     normalizedImageContainer.append(normalizeResult.items[0].toCanvas());
-}
+};
 ```
 
 The added behavior is
 
 1. The user hits "Normalize Image"
-2. The page gets the boundary normzlie the image based on it
+2. The page gets the boundary normalize the image based on it
 3. The normalized image shows up on the page
 
 ## System requirements
