@@ -510,6 +510,7 @@ The following table is a list of supported browsers based on the above requireme
   |    Chrome    |   v69+ on desktop and Android    |
   |   Firefox    |   v62+ on desktop and Android    |
   |    Safari    |           v15+ on iOS            |
+  |     Edge     |         v79+ on desktop          |
 
 Apart from the browsers, the operating systems may impose some limitations of their own that could restrict the use of the SDK.
 
