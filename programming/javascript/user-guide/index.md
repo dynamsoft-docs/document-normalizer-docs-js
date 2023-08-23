@@ -70,12 +70,12 @@ The following sample code sets up the SDK and implements boundary detection on a
         );
         let router;
         let cameraEnhancer;
+        Dynamsoft.License.LicenseManager.initLicense(
+                "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9"
+        );
+        Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"]);
 
         (async function() {
-            Dynamsoft.License.LicenseManager.initLicense(
-                "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9"
-            );
-            Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"]);
             router = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
             let view = await Dynamsoft.DCE.CameraView.createInstance();
             cameraEnhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance(
@@ -125,7 +125,7 @@ The following sample code sets up the SDK and implements boundary detection on a
 
 ### Test the code
 
-Create a text file called "Detect-A-Document-Boundary.html", fill it with the code above and save it. After that, open the example page in your browser, allow the page to access your camera, and the video will be displayed on the page. Afterwards, you will see the detected boundaries displayed on the video in real time. 
+Create a text file called "Detect-A-Document-Boundary.html", fill it with the code above and save it. After that, open the example page in your browser, allow the page to access your camera, and the video will be displayed on the page. Afterwards, you will see the detected boundaries displayed on the video in real time.
 
 > NOTE:
 > 
@@ -160,6 +160,7 @@ We'll build on this skeleton page:
 <body>
     <h1>Detect the Boundary of the Document and Normalize it</h1>
     <script>
+      // Write your code here.
     </script>
 </body>
 </html>
@@ -173,7 +174,7 @@ To build the solution, we need to include five packages
 2. `dynamsoft-utility`: Optional, it defines auxiliary classes shared between all Dynamsoft SDKs.
 3. `dynamsoft-document-normalizer`: Required, it provides functions to detect boundaries or perform normalization.
 4. `dynamsoft-capture-vision-router`: Required, it defines the class `CaptureVisionRouter`, which controls the whole process.
-5. `dynamsoft-camera-enhancer`: Required, it supplies image frames captured from video input.
+5. `dynamsoft-camera-enhancer`: Recommended, it provides the ability to capture images from video stream.
 
 #### Use a CDN
 
@@ -203,53 +204,46 @@ The simplest way to include the SDK is to use either the [jsDelivr](https://jsde
 
 Besides using the CDN, you can also download the SDK and host its files on your own website / server before including it in your application.
 
-> Also read [how to do the same for Dynamsoft Camera Enhancer](https://www.dynamsoft.com/camera-enhancer/docs/programming/javascript/user-guide/index.html?ver=latest#host-the-sdk-yourself).
+Options to download the SDK:
 
-To download the SDK:
+- From the website
+
+  [Download the JavaScript Package](https://www.dynamsoft.com/document-normalizer/downloads/?ver=2.0.10&utm_source=guide)
 
 - yarn
 
   ```cmd
-  yarn add dynamsoft-document-normalizer@2.0.10
+  yarn add dynamsoft-capture-vision-router@2.0.10
   ```
 
 - npm
 
   ```cmd
-  npm install dynamsoft-document-normalizer@2.0.10
+  npm install dynamsoft-capture-vision-router@2.0.10
   ```
+
+> Note: Upon installation of `dynamsoft-capture-vision-router`, the compatible versions of `dynamsoft-document-normalizer` and `dynamsoft-core` will be automatically downloaded.
 
 Depending on how you downloaded the SDK and where you put it, you can typically include it like this:
 
   ```html
-  <script src="/dynamsoft-core-js-3.0.10/dist/core.js"></script>
-  <script src="/dynamsoft-utility-js-1.0.10/dist/utility.js"></script>
-  <script src="/dynamsoft-document-normalizer-js-2.0.10/dist/ddn.js"></script>
-  <script src="/dynamsoft-capture-vision-router-js-2.0.10/dist/cvr.js"></script>
-  <script src="/dynamsoft-camera-enhancer-js-4.0.0/dist/dce.js"></script>
+  <!-- Upon extracting the zip package into your project, you can generally include it in the following manner -->
+  <script src="./dynamsoft-document-normalizer-js-2.0.10/dynamsoft/distributables/dynamsoft-core@3.0.10/dist/core.js"></script>
+  <script src="./dynamsoft-document-normalizer-js-2.0.10/dynamsoft/distributables/dynamsoft-utility@1.0.10/dist/utility.js"></script>
+  <script src="./dynamsoft-document-normalizer-js-2.0.10/dynamsoft/distributables/dynamsoft-document-normalizer@2.0.10/dist/ddn.js"></script>
+  <script src="./dynamsoft-document-normalizer-js-2.0.10/dynamsoft/distributables/dynamsoft-capture-vision-router@2.0.10/dist/cvr.js"></script>
+  <script src="./dynamsoft-document-normalizer-js-2.0.10/dynamsoft/distributables/dynamsoft-camera-enhancer@4.0.0/dist/dce.js"></script>
   ```
 
 or
 
   ```html
-  <script src="/node_modules/dynamsoft-core-js-3.0.10/dist/core.js"></script>
-  <script src="/node_modules/dynamsoft-utility-js-1.0.10/dist/utility.js"></script>
-  <script src="/node_modules/dynamsoft-document-normalizer-js-2.0.10/dist/ddn.js"></script>
-  <script src="/node_modules/dynamsoft-capture-vision-router-js-2.0.10/dist/cvr.js"></script>
-  <script src="/node_modules/dynamsoft-camera-enhancer-js-4.0.0/dist/dce.js"></script>
+  <script src="./node_modules/dynamsoft-core/dist/core.js"></script>
+  <script src="./node_modules/dynamsoft-utility/dist/utility.js"></script>
+  <script src="./node_modules/dynamsoft-document-normalizer/dist/ddn.js"></script>
+  <script src="./node_modules/dynamsoft-capture-vision-router/dist/cvr.js"></script>
+  <script src="./node_modules/dynamsoft-camera-enhancer/dist/dce.js"></script>
   ```
-
-or
-
-  ```ts
-  import { Core } from 'dynamsoft-core';
-  import { MultiFrameResultCrossFilter } from 'dynamsoft-utility';
-  import { DocumentNormalizer } from 'dynamsoft-document-normalizer';
-  import { CaptureVisionRouter } from 'dynamsoft-capture-vision-router';
-  import { CameraEnhancer } from 'dynamsoft-camera-enhancer';
-  ```
-
-> At present, `dynamsoft-utility` consists of the classes UtilityModule, ImageManager and the interface MultiFrameResultCrossFilter, each provide different functions, for details please refer [Utility](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/utility/utility-module.html).
 
 ### Define necessary HTML elements
 
@@ -283,11 +277,12 @@ The following function executes as soon as the page loads to get the SDK prepare
 let router;
 let cameraEnhancer;
 let imageEditorView;
+Dynamsoft.License.LicenseManager.initLicense(
+    "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9"
+);
+Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"]);
+
 (async function() {
-    Dynamsoft.License.LicenseManager.initLicense(
-        "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9"
-    );
-    Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"]);
     router = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
     let view = await Dynamsoft.DCE.CameraView.createInstance();
     cameraEnhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance(
@@ -507,10 +502,10 @@ The following table is a list of supported browsers based on the above requireme
 
   | Browser Name |             Version              |
   | :----------: | :------------------------------: |
-  |    Chrome    |   v69+ on desktop and Android    |
-  |   Firefox    |   v62+ on desktop and Android    |
-  |    Safari    |           v15+ on iOS            |
-  |     Edge     |         v79+ on desktop          |
+  |    Chrome    |             v69+                 |
+  |   Firefox    |             v62+                 |
+  |    Safari    |             v15+                 |
+  |     Edge     |             v79+                 |
 
 Apart from the browsers, the operating systems may impose some limitations of their own that could restrict the use of the SDK.
 
