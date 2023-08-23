@@ -59,7 +59,7 @@ noTitleIndex: true
 - [`EnhancedGrayscaleImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/enhanced-grayscale-image-unit.html)
 - [`GrayscaleImageUnit`]({{ site.dcv_js_api }}core/intermediate-results/grayscale-image-unit.html)
 - [`IntermediateResultExtraInfo`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result-extra-info.html)
-- [`IntermediateResultManager`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result-manager.html)
+<!--- [`IntermediateResultManager`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result-manager.html)-->
 - [`IntermediateResultReceiver`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result-receiver.html)
 - [`IntermediateResultUnit`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result-unit.html)
 - [`IntermediateResult`]({{ site.dcv_js_api }}core/intermediate-results/intermediate-result.html)
