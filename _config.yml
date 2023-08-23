@@ -26,7 +26,7 @@ sad_icon: /document-normalizer/docs/web/assets/img-icon/icon-sad.png
 
 baseurl: "/document-normalizer/docs/web"
 
-download: "/document-normalizer/downloads/1000023-confirmation/"
+download: "/document-normalizer/downloads/"
 
 plugins:
   - jemoji

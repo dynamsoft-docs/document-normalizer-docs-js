@@ -75,7 +75,7 @@ await normalizer.updateScanSettings(scanSettings);
 
 ## getRuntimeSettings
 
-Gets current runtime settings with a template represented by [`a JSON object`]({{site.parameter}}parameter-organization-structure.html).
+Gets current runtime settings with a template represented by [`a JSON object`](https://www.dynamsoft.com/document-normalizer/docs/core/parameters/parameter-organization-structure-v1.0.21.html).
 
 ```typescript
 getRuntimeSettings(): Promise<object>

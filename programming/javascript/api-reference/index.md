@@ -7,6 +7,7 @@ needAutoGenerateSidebar: true
 needGenerateH3Content: true
 breadcrumbText: API Reference
 noTitleIndex: true
+
 ---
 
 # API Reference - JavaScript
