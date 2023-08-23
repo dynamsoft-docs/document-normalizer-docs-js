@@ -13,7 +13,7 @@ breadcrumbText: User Guide
 
 With Dynamsoft Document Normalizer JavaScript edition, you can add to your website the ability to take pictures of documents with your camera and normalize them to obtain high-quality images for further processing or archiving purposes.
 
-> Dynamsoft Document Normalizer v2.0.10 and above is based on Dynamsoft Capture Vision Architecture. To learn more, read [Introduction to Dynamsoft Capture Vision]({{site.dcv_introduction}}).
+> Dynamsoft Document Normalizer v2.0.10 and above is based on Dynamsoft Capture Vision Architecture. To learn more, read [Introduction to Dynamsoft Capture Vision](https://www.dynamsoft.com/capture-vision/docs/core/introduction/).
 
 In this guide, you'll learn step-by-step how to build such a simple solution in a web page.
 
@@ -249,7 +249,7 @@ or
   import { CameraEnhancer } from 'dynamsoft-camera-enhancer';
   ```
 
-> At present, `dynamsoft-utility` consists of the classes UtilityModule, ImageManager and the interface MultiFrameResultCrossFilter, each provide different functions, for details please refer [Utility]({{ site.dcv_js_api }}utility/utility-module.html).
+> At present, `dynamsoft-utility` consists of the classes UtilityModule, ImageManager and the interface MultiFrameResultCrossFilter, each provide different functions, for details please refer [Utility](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/utility/utility-module.html).
 
 ### Define necessary HTML elements
 
@@ -306,7 +306,7 @@ The code was explained earlier. Please refer to [About the Code](#about-the-code
 
 Before we start the detection process with `startDetection()`, we need to define a callback function to accept the detected document boundaries. The callback function is defined based on the `CapturedResultReceiver` interface.
 
-> Read more on [`CapturedResultReceiver`]({{ site.dcv_js_api }}core/basic-structures/captured-result-receiver.html)
+> Read more on [`CapturedResultReceiver`](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/captured-result-receiver.html)
 
 ```js
 const resultReceiver = new Dynamsoft.CVR.CapturedResultReceiver();
