@@ -243,11 +243,13 @@ or
 
   ```ts
   import { Core } from 'dynamsoft-core';
-  import { Utility } from 'dynamsoft-utility';
+  import { MultiFrameResultCrossFilter } from 'dynamsoft-utility';
   import { DocumentNormalizer } from 'dynamsoft-document-normalizer';
   import { CaptureVisionRouter } from 'dynamsoft-capture-vision-router';
   import { CameraEnhancer } from 'dynamsoft-camera-enhancer';
   ```
+
+> At present, `dynamsoft-utility` consists of the classes UtilityModule, ImageManager and the interface MultiFrameResultCrossFilter, each provide different functions, for details please refer [Utility]({{ site.dcv_js_api }}utility/utility-module.html).
 
 ### Define necessary HTML elements
 
@@ -399,7 +401,7 @@ Then we update the callback function to do 2 things:
   > * With its property `confidenceAsDocumentBoundary`.
   > * With a result filter such as a `MultiFrameResultCrossFilter`.
 
-2. If a good boundray is found, carry on to invoke the function `editBoundary()`.
+2. If a good boundary is found, carry on to invoke the function `editBoundary()`.
   > Note that in order to get both the boundary result and the original image, we have changed the callback function from `onDetectedQuadsReceived` to `onCapturedResultReceived`.
 
 ```js
@@ -505,8 +507,8 @@ The following table is a list of supported browsers based on the above requireme
 
   | Browser Name |             Version              |
   | :----------: | :------------------------------: |
-  |    Chrome    | v85+ on desktop, v94+ on Android |
-  |   Firefox    |   v99+ on desktop and Android    |
+  |    Chrome    |   v69+ on desktop and Android    |
+  |   Firefox    |   v62+ on desktop and Android    |
   |    Safari    |           v15+ on iOS            |
 
 Apart from the browsers, the operating systems may impose some limitations of their own that could restrict the use of the SDK.
