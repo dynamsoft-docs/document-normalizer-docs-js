@@ -61,7 +61,7 @@ The following sample code sets up the SDK and implements boundary detection on a
 
 <body>
     <h1>Detect the Boundary of the Document</h1>
-    <button onclick="startDetecting()">Start Detecting</button>
+    <button onclick="startDetection()">Start Detection</button>
     <div id="cameraViewContainer" style="width: 50vw; height: 45vh; margin-top: 10px; display: none"></div>
 
     <script>
@@ -84,7 +84,7 @@ The following sample code sets up the SDK and implements boundary detection on a
             cameraViewContainer.append(view.getUIElement());
             router.setInput(cameraEnhancer);
         })();
-        async function startDetecting() {
+        async function startDetection() {
             cameraViewContainer.style.display = "block";
             await cameraEnhancer.open();
             await router.startCapturing("detect-document-boundaries");
@@ -158,7 +158,7 @@ We'll build on this skeleton page:
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
-    <h1>Detect the Boundary of the Document</h1>
+    <h1>Detect the Boundary of the Document and Normalize it</h1>
     <script>
     </script>
 </body>
@@ -254,7 +254,7 @@ or
 For this solution, we define two buttons and three `<div>` elements.
 
 ```html
-<button onclick="startDetecting()">Start Detecting</button>
+<button onclick="startDetection()">Start Detection</button>
 <button id="btn_normalize" onclick="normalizeImage()" disabled>Normalize Image</button>
 <div id="cameraViewContainer" style="width: 50vw; height: 45vh; margin-top: 10px; display: none"></div>
 <div id="imageEditorViewContainer" style="width: 80vw; height: 50vh"></div>
@@ -302,7 +302,7 @@ The code was explained earlier. Please refer to [About the Code](#about-the-code
 
 #### Start the detection
 
-Before we start the detection process with `startDetecting()`, we need to define a callback function to accept the detected document boundaries. The callback function is defined based on the `CapturedResultReceiver` interface.
+Before we start the detection process with `startDetection()`, we need to define a callback function to accept the detected document boundaries. The callback function is defined based on the `CapturedResultReceiver` interface.
 
 > Read more on [`CapturedResultReceiver`]({{ site.dcv_js_api }}core/basic-structures/captured-result-receiver.html)
 
@@ -317,22 +317,16 @@ resultReceiver.onDetectedQuadsReceived = (result) => {
 And we define the function like this:
 
 ```js
-async function startDetecting() {
+async function startDetection() {
     // Shows the cameraView
     cameraViewContainer.style.display = "block";
     // Specifies the result receiver
     router.addResultReceiver(resultReceiver);
     // Starts streaming the video
     await cameraEnhancer.open();
-<<<<<<< HEAD
     // Uses the built-in template "detect-document-boundaries" to start a boundary detecting task
     await router.startCapturing("detect-document-boundaries");
 }
-=======
-    // Use the built-in template "detect-document-boundaries" to start a boundary detecting task
-    await router.startDetecting("detect-document-boundaries");
-};
->>>>>>> 71d37032d49d1e7c0a14293d5dc7cfff596fa496
 ```
 
 The steps of the workflow is as follows
@@ -379,10 +373,10 @@ async function editBoundary(imageData, points) {
 }
 ```
 
-Since we will need the original image returned, we update `startDetecting()` like this:
+Since we will need the original image returned, we update `startDetection()` like this:
 
 ```js
-async function startDetecting() {
+async function startDetection() {
     cameraViewContainer.style.display = "block";
     router.addResultReceiver(resultReceiver);
     await cameraEnhancer.open();
@@ -400,7 +394,11 @@ async function startDetecting() {
 Then we update the callback function to do 2 things:
 
 1. Determine whether a found boundary is good by counting consecutive frames with results. Here we set 30 as the threshold.
-  > Alternatively, you can determine the quality of the boundary with its property `confidenceAsDocumentBoundary`.
+   
+  > Alternatively, the quality of the boundary can be judged in a few other ways:
+  > * With its property `confidenceAsDocumentBoundary`.
+  > * With a result filter such as a `MultiFrameResultCrossFilter`.
+
 2. If a good boundray is found, carry on to invoke the function `editBoundary()`.
   > Note that in order to get both the boundary result and the original image, we have changed the callback function from `onDetectedQuadsReceived` to `onCapturedResultReceived`.
 
