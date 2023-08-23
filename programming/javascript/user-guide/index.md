@@ -208,7 +208,7 @@ Options to download the SDK:
 
 - From the website
 
-  [Download the JavaScript Package](https://www.dynamsoft.com/document-normalizer/downloads/?ver=2.0.10&utm_source=guide)
+  [Download the JavaScript ZIP package](https://www.dynamsoft.com/document-normalizer/downloads/?ver=2.0.10&utm_source=guide)
 
 - yarn
 
@@ -489,14 +489,6 @@ The SDK requires the following features to work:
 - `WebAssembly`, `Blob`, `URL`/`createObjectURL`, `Web Workers`
 
   The above four features are required for the SDK to work.
-
-- `MediaDevices`/`getUserMedia`
-
-  This API is only required for in-browser video streaming.
-
-- `getSettings`
-
-  This API inspects the video input which is a `MediaStreamTrack` object about its constrainable properties.
 
 The following table is a list of supported browsers based on the above requirements:
 
