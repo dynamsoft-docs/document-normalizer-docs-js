@@ -88,7 +88,7 @@ The following sample code sets up the SDK and implements boundary detection on a
             cameraViewContainer.style.display = "block";
             await cameraEnhancer.open();
             await router.startCapturing("detect-document-boundaries");
-        }
+        };
     </script>
 </body>
 
@@ -323,7 +323,7 @@ async function startDetection() {
     await cameraEnhancer.open();
     // Uses the built-in template "detect-document-boundaries" to start a boundary detecting task
     await router.startCapturing("detect-document-boundaries");
-}
+};
 ```
 
 The steps of the workflow is as follows
@@ -367,7 +367,7 @@ async function editBoundary(imageData, points) {
     });
     layer.setDrawingItems([quad]);
     document.getElementById("btn_normalize").disabled = false;
-}
+};
 ```
 
 Since we will need the original image returned, we update `startDetection()` like this:
@@ -400,6 +400,7 @@ Then we update the callback function to do 2 things:
   > Note that in order to get both the boundary result and the original image, we have changed the callback function from `onDetectedQuadsReceived` to `onCapturedResultReceived`.
 
 ```js
+let frameCount = 0;
 resultReceiver.onCapturedResultReceived = (result) => {
     /* Saves the image data of the current frame for subsequent image editing. */
     let image = result.items.filter((item) => item.type === 1)[0].imageData;
@@ -464,7 +465,7 @@ async function normalizeImage() {
     );
     normalizedImageContainer.append(normalizeResult.items[0].toCanvas());
     document.getElementById("btn_normalize").disabled = true;
-}
+};
 ```
 
 The added behavior is
