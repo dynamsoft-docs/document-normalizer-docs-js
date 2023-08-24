@@ -33,6 +33,7 @@ In this guide, you'll learn step-by-step how to build such a simple solution in 
       - [Start the detection](#start-the-detection)
       - [Review and adjust a found boundary](#review-and-adjust-a-found-boundary)
       - [Normalize a document based on its adjusted boundary](#normalize-a-document-based-on-its-adjusted-boundary)
+      - [Output the document as a file](#output-the-document-as-a-file)
   - [System requirements](#system-requirements)
   - [Release notes](#release-notes)
   - [Next steps](#next-steps)
@@ -482,6 +483,23 @@ The added behavior is
 1. The user hits "Normalize Image"
 2. The page gets the boundary normalize the image based on it
 3. The normalized image shows up on the page
+
+#### Output the document as a file
+
+We can output the document as a file with the help of the class `Dynamsoft.Utility.ImageManager`. To do this, we change the following line in the function "normalizeImage()":
+
+```js
+normalizedImageContainer.append(normalizeResult.items[0].toCanvas());
+```
+
+to 
+
+```js
+const imageManager = new Dynamsoft.Utility.ImageManager();
+imageManager.saveToFile(normalizeResult.items[0].imageData, "result.jpg", true);
+```
+
+Then once a document has been normalized, it is downloaded as JPEG file in the browser.
 
 ## System requirements
 
