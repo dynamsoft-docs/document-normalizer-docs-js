@@ -290,6 +290,8 @@ Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"]);
     );
     cameraViewContainer.append(view.getUIElement());
     router.setInput(cameraEnhancer);
+    if (resultReceiver)
+        router.addResultReceiver(resultReceiver);
 })();
 ```
 
@@ -318,7 +320,6 @@ async function startDetection() {
     // Shows the cameraView
     cameraViewContainer.style.display = "block";
     // Specifies the result receiver
-    router.addResultReceiver(resultReceiver);
     // Starts streaming the video
     await cameraEnhancer.open();
     // Uses the built-in template "detect-document-boundaries" to start a boundary detecting task
@@ -375,13 +376,12 @@ Since we will need the original image returned, we update `startDetection()` lik
 ```js
 async function startDetection() {
     cameraViewContainer.style.display = "block";
-    router.addResultReceiver(resultReceiver);
     await cameraEnhancer.open();
     // Updates the settings for "detect-document-boundaries" to return the original image.
     let settings = await router.getSimplifiedSettings(
         "detect-document-boundaries"
     );
-    settings.capturedResultItemTypes +=
+    settings.capturedResultItemTypes |=
         Dynamsoft.Core.EnumCapturedResultItemType.CRIT_ORIGINAL_IMAGE;
     await router.updateSettings("detect-document-boundaries", settings);
     await router.startCapturing("detect-document-boundaries");
@@ -390,12 +390,21 @@ async function startDetection() {
 
 Then we update the callback function to do 2 things:
 
-1. Determine whether a found boundary is good by counting consecutive frames with results. Here we set 30 as the threshold.
-   
-  > Alternatively, the quality of the boundary can be judged in a few other ways:
-  > * With its property `confidenceAsDocumentBoundary`.
-  > * With a result filter such as a `MultiFrameResultCrossFilter`.
-
+1. Determine whether a found boundary is good by counting consecutive frames with results.
+    > To judge whether the boundary is good enough, here we set 30 consecutive fames with results as the threshold.
+    > Alternatively, the quality of the boundary can be judged in a few other different ways. For example:
+    > 1. With its property `confidenceAsDocumentBoundary`.
+    > ```js
+    > if (result.items[1] && result.items[1].confidenceAsDocumentBoundary > 80) {
+    >   editBoundary(image, result.items[1].location.points);
+    > }
+    > ```
+    > 2. With a result filter such as a `MultiFrameResultCrossFilter`. The following code should be executed before startCapturing() is called.
+    > ```js
+    > filter = new Dynamsoft.Utility.MultiFrameResultCrossFilter();
+    > filter.enableResultCrossVerification(Dynamsoft.Core.EnumCapturedResultItemType.CRIT_DETECTED_QUAD, true);
+    > await router.addResultFilter(filter);
+    > ```
 2. If a good boundary is found, carry on to invoke the function `editBoundary()`.
   > Note that in order to get both the boundary result and the original image, we have changed the callback function from `onDetectedQuadsReceived` to `onCapturedResultReceived`.
 
