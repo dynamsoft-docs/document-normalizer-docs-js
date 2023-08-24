@@ -29,11 +29,10 @@ In this guide, you'll learn step-by-step how to build such a simple solution in 
       - [Host the SDK yourself](#host-the-sdk-yourself)
     - [Define necessary HTML elements](#define-necessary-html-elements)
     - [Prepare the SDK for the task](#prepare-the-sdk-for-the-task)
-    - [Define the functions](#define-the-functions)
-      - [Start the detection](#start-the-detection)
-      - [Review and adjust a found boundary](#review-and-adjust-a-found-boundary)
-      - [Normalize a document based on its adjusted boundary](#normalize-a-document-based-on-its-adjusted-boundary)
-      - [Output the document as a file](#output-the-document-as-a-file)
+    - [Start the detection](#start-the-detection)
+    - [Review and adjust the boundary](#review-and-adjust-the-boundary)
+    - [Normalize the document](#normalize-the-document)
+    - [Output the document as a file](#output-the-document-as-a-file)
   - [System requirements](#system-requirements)
   - [Release notes](#release-notes)
   - [Next steps](#next-steps)
@@ -298,9 +297,7 @@ Dynamsoft.CVR.CaptureVisionRouter.preloadModule(["DDN"]);
 
 The code was explained earlier. Please refer to [About the Code](#about-the-code).
 
-### Define the functions
-
-#### Start the detection
+### Start the detection
 
 Before we start the detection process with `startDetection()`, we need to define a callback function to accept the detected document boundaries. The callback function is defined based on the `CapturedResultReceiver` interface.
 
@@ -337,7 +334,7 @@ The steps of the workflow is as follows
 
 > Also note that the `quadsResultItems` are drawn over the video automatically to show the detection in action.
 
-#### Review and adjust a found boundary
+### Review and adjust the boundary
 
 The SDK tries to find the boundary of the document in each and every image processed. This happens very fast and we don't always get the perfect boundary for normalization. Therefore, we can draw the image and the boundary in the `ImageEditorView` and let the user adjust the boundary before proceed to normalization.
 
@@ -432,7 +429,7 @@ Now, the behavior will be
 2. When the found boundary in 30 consecutive image frames, the page hides the video stream and draw both the image and the boundary in the "imageEditorViewer".
 3. The user can adjust the boundary to be more precise.
 
-#### Normalize a document based on its adjusted boundary
+### Normalize the document
 
 After the user has adjusted the boundary or determined that the found boundary is good enough, he can press the button "Normalize Image" to carry out the normalization as the last step of the solution.
 
@@ -484,7 +481,7 @@ The added behavior is
 2. The page gets the boundary normalize the image based on it
 3. The normalized image shows up on the page
 
-#### Output the document as a file
+### Output the document as a file
 
 We can output the document as a file with the help of the class `Dynamsoft.Utility.ImageManager`. To do this, we change the following line in the function "normalizeImage()":
 
