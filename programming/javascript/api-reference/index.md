@@ -22,8 +22,8 @@ noTitleIndex: true
 - [`Instantiate`]({{ site.dcv_js_api }}capture-vision-router/instantiate.html)
 - [`Single-File Processing`]({{ site.dcv_js_api }}capture-vision-router/single-file-processing.html)
 - [`Multiple-File Processing`]({{ site.dcv_js_api }}capture-vision-router/multiple-file-processing.html)
-- [`Settings`]({{ site.dcv_js_api }}capture-vision-router/interfaces/settings.html)
-- [`Intermediate Result`]({{ site.dcv_js_api }}capture-vision-router/intermediate-result.html)
+- [`Settings`]({{ site.dcv_js_api }}capture-vision-router/settings.html)
+<!--- [`Intermediate Result`]({{ site.dcv_js_api }}capture-vision-router/intermediate-result.html)-->
 
 ## Dynamsoft Core - Input
 
