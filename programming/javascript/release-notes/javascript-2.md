@@ -21,15 +21,15 @@ In this version, the `DynamsoftDocumentNormalizer` SDK has been refactored under
 | v1.x API                                 | v2.x API                                                                                                      |
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | class `Dynamsoft.DDN.DocumentNormalizer` | class `Dynamsoft.CVR.CaptureVisionRouter`                                                                     |
-| license()                                | [`initLicense()`]({{ site.dcv_js_api }}license/license-manager.html#initLicense)                              |
-| loadWasm()                               | [`preLoadModule()`]({{ site.dcv_js_api }}capture-vision-router/instantiate.html#preloadmodule)                |
 | setImageSource()                         | [`setInput()`]({{ site.dcv_js_api }}capture-vision-router/multiple-file-processing.html#setinput)             |
 | detectQuad()<br>Normalize()              | [`capture()`]({{ site.dcv_js_api }}capture-vision-router/single-file-processing.html#capture)                 |
 | startScanning()                          | [`startCapturing()`]({{ site.dcv_js_api }}capture-vision-router/multiple-file-processing.html#startcapturing) |
-| stopScanning()                           | [`startCapturing()`]({{ site.dcv_js_api }}capture-vision-router/multiple-file-processing.html#stopscanning)   |
+| stopScanning()                           | [`stopCapturing()`]({{ site.dcv_js_api }}capture-vision-router/multiple-file-processing.html#stopcapturing)   |
 | getRuntimeSettings()                     | [`getSimplifiedSettings()`]({{ site.dcv_js_api }}capture-vision-router/settings.html#getsimplifiedsettings)   |
 | setRuntimeSettings()                     | [`updateSettings()`]({{ site.dcv_js_api }}capture-vision-router/settings.html#updatesettings)                 |
 | resetRuntimeSettings()                   | [`resetSettings()`]({{ site.dcv_js_api }}capture-vision-router/settings.html#resetsettings)                   |
+
+* License-related functions are handled by class [`Dynamsoft.License.LicenseManager`]({{ site.dcv_js_api }}license/license-manager.html#initLicense).
 
 * This version of `DocumentNormalizer` only accepts `DynamsoftCameraEnhancer(DCE)` version 4.0 and above, which has been refactored to be compliant with the [`ImageSourceAdapter` (ISA) interface](https://www.dynamsoft.com/capture-vision/docs/core/architecture/input.html#image-source-adapter), as a valid image source.
 
