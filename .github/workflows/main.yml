@@ -49,6 +49,11 @@ jobs:
           port: 21 
           local-dir: /home/ubuntu/DDNDocJS/_site/
           server-dir: /www.dynamsoft.com/document-normalizer/docs/web/
+
+      - name: Trigger Webhook 
+        run: | 
+          curl -X POST -H "${{ secrets.WEBHOOK_USER }}" -H "${{ secrets.WEBHOOK_TOKEN }}" -H "Content-Type: application/json" -d "[\"/document-normalizer/docs/web/*\"]" ${{ secrets.WEBHOOK_URL }}
+
           
   Build-Preview:
     if: ${{ github.ref == 'refs/heads/preview' }}
