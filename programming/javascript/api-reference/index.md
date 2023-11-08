@@ -24,6 +24,10 @@ noTitleIndex: true
 - [`Multiple-File Processing`]({{ site.dcv_js_api }}capture-vision-router/multiple-file-processing.html)
 - [`Settings`]({{ site.dcv_js_api }}capture-vision-router/settings.html)
 <!--- [`Intermediate Result`]({{ site.dcv_js_api }}capture-vision-router/intermediate-result.html)-->
+- Output handling
+  - [`CapturedResultFilter`]({{ site.dcv_js_api }}capture-vision-router/interfaces/captured-result-filter.html)
+  - [`CapturedResultReceiver`]({{ site.dcv_js_api }}capture-vision-router/interfaces/captured-result-receiver.html)
+  - [`IntermediateResultReceiver`]({{ site.dcv_js_api }}capture-vision-router/interfaces/intermediate-result-receiver.html)
 
 ## Dynamsoft Core - Input
 
