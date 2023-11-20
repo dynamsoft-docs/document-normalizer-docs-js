@@ -1,6 +1,6 @@
 ---
 layout: default-layout
-title: Dynamsoft Document Normalizer for JavaScript SDK - Release Notes
+title: Dynamsoft Document Normalizer for JavaScript SDK - V2.x  Release Notes
 description: This is the release notes page of Dynamsoft Document Normalizer for JavaScript SDK v2.0.11.
 keywords: release notes, javascript, version 2
 needAutoGenerateSidebar: true
