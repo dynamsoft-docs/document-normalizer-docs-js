@@ -3,7 +3,7 @@
         "version": "2.0.10",
         "matchList": {
             "js":{
-                "dcvRepoMobile": [
+                "dcvRepoJs": [
                     {
                         "path": "/programming/javascript/api-reference/utility",
                         "version": "1.0.10"
