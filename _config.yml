@@ -38,6 +38,8 @@ plugins:
   - jekyll-readme-index
   - jekyll-seo-tag
 
+edition: js
+
 defaults:
   - scope:
       path: ""
