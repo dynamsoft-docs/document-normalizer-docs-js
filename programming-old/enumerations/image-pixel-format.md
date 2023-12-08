@@ -1,8 +1,8 @@
 ---
 layout: default-layout
-title: ImagePixelFormat Enumeration
+title: ImagePixelFormat Enumeration - Dynamsoft Document Normalizer JavaScript Edition v1.x
 keywords: imagepixelformat, enumerations, enums, documentation
-description: Dynamsoft Document Normalizer - ImagePixelFormat Enumeration
+description: ImagePixelFormat Enumeration Dynamsoft Document Normalizer JavaScript Edition
 permalink: /programming/enumerations/image-pixel-format.html
 ---
 
