@@ -1,9 +1,9 @@
 [
     {
-        "version": "2.0.10",
+        "version": "2.0.11",
         "matchList": {
             "js":{
-                "dcvRepoMobile": [
+                "dcvRepoWeb": [
                     {
                         "path": "/programming/javascript/api-reference/utility",
                         "version": "1.0.10"
@@ -52,10 +52,10 @@
             }
         }
     },{
-        "version": "1.0.30",
+        "version": "1.0.12",
         "matchList": {
             "js": {
-                "dce": "3.0.3"
+                "dce": "3.2.0"
             }
         }
     }
