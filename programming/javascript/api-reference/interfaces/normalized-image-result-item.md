@@ -1,7 +1,7 @@
 ---
 layout: default-layout
-title: interface NormalizedImageResultItem - Dynamsoft Core Module JS Edition API Reference
-description: This page shows the JS edition of the interface NormalizedImageResultItem in Dynamsoft Core Module.
+title: Interface NormalizedImageResultItem - Dynamsoft Label Recognizer JS Edition API Reference
+description: This page shows the JS edition of the interface NormalizedImageResultItem.
 keywords: normalized image result, JS
 needAutoGenerateSidebar: true
 noTitleIndex: true

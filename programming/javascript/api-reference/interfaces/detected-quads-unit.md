@@ -1,7 +1,7 @@
 ---
 layout: default-layout
-title: interface DetectedQuadsUnit - Dynamsoft Core Module JS Edition API Reference
-description: This page shows the JS edition of the interface DetectedQuadsUnit in Dynamsoft Core Module.
+title: Interface DetectedQuadsUnit - Dynamsoft Label Recognizer JS Edition API Reference
+description: This page shows the JS edition of the interface DetectedQuadsUnit.
 keywords: detected quad, JS
 needAutoGenerateSidebar: true
 noTitleIndex: true

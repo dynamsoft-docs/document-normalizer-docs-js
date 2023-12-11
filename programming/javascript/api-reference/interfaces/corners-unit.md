@@ -1,7 +1,7 @@
 ---
 layout: default-layout
-title: interface CornersUnit - Dynamsoft Core Module JS Edition API Reference
-description: This page shows the JS edition of the interface CornersUnit in Dynamsoft Core Module.
+title: Interface CornersUnit - Dynamsoft Label Recognizer JS Edition API Reference
+description: This page shows the JS edition of the interface CornersUnit.
 keywords: corners, JS
 needAutoGenerateSidebar: true
 noTitleIndex: true
