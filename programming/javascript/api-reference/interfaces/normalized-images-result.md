@@ -25,7 +25,7 @@ interface NormalizedImagesResult {
 |----------------------|-------------|
 | [`originalImageHashId`](#originalimagehashid) | *string* |
 | [`originalImageTag`](#originalimagetag) | *Core.BasicStructures.ImageTag* |
-| [`normalizedImageResultItems`](#normalizedimageresultitems) | *Array<NormalizedImagesResult>* |
+| [`normalizedImageResultItems`](#normalizedimageresultitems) | *Array\<NormalizedImagesResult>* |
 
 ### originalImageHashId
 

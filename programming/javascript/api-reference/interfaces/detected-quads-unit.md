@@ -21,7 +21,7 @@ interface DetectedQuadsUnit extends Core.IntermediateResult.IntermediateResultUn
 
 | Properties              | Type |
 |----------------------|-------------|
-| [`detectedQuads`](#detectedquads) | *Array<DetectedQuadsUnit>* |
+| [`detectedQuads`](#detectedquads) | *Array\<DetectedQuadsUnit>* |
 
 ### detectedQuads
 

@@ -21,7 +21,7 @@ interface NormalizedImagesUnit extends Core.IntermediateResult.IntermediateResul
 
 | Properties               | Type |
 |----------------------|-------------|
-| [`normalizedImages`](#normalizedimages) | *Array<NormalizedImagesUnit>* |
+| [`normalizedImages`](#normalizedimages) | *Array\<NormalizedImagesUnit>* |
 
 ### normalizedImages
 

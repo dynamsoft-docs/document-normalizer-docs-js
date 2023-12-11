@@ -21,7 +21,7 @@ interface CandidateQuadEdgesUnit extends Core.IntermediateResult.IntermediateRes
 
 | Properties               | Type |
 |----------------------|-------------|
-| [`candidateQuadEdges`](#candidatequadedges) | *Array<Core.BasicStructures.Edge>* |
+| [`candidateQuadEdges`](#candidatequadedges) | *Array\<Core.BasicStructures.Edge>* |
 
 ### candidateQuadEdges
 

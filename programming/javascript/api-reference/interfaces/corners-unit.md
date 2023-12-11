@@ -21,7 +21,7 @@ interface CornersUnit extends Core.IntermediateResult.IntermediateResultUnit {
 
 | Properties              | Type |
 |----------------------|-------------|
-| [`corners`](#corners) | *Array<Core.BasicStructures.Corner>* |
+| [`corners`](#corners) | *Array\<Core.BasicStructures.Corner>* |
 
 ### corners
 

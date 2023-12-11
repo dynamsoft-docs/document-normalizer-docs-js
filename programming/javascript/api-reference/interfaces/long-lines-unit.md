@@ -21,7 +21,7 @@ interface LongLinesUnit extends Core.IntermediateResult.IntermediateResultUnit {
 
 | Properties               | Type |
 |----------------------|-------------|
-| [`longLines`](#longllines) | *Array<LongLinesUnit>* |
+| [`longLines`](#longlines) | *Array\<LongLinesUnit>* |
 
 ### longLines
 

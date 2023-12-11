@@ -25,7 +25,7 @@ interface DetectedQuadsResult {
 |----------------------|-------------|
 | [`originalImageHashId`](#originalimagehashid) | *string* |
 | [`originalImageTag`](#originalimagetag) | *Core.BasicStructures.ImageTag* |
-| [`quadsResultItems`](#quadsresultitems) | *Array<DetectedQuadResultItem>* |
+| [`quadsResultItems`](#quadsresultitems) | *Array\<DetectedQuadResultItem>* |
 
 ### originalImageHashId
 
