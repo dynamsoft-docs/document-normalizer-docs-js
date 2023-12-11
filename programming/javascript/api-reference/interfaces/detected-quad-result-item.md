@@ -15,9 +15,9 @@ An interface that extends the CapturedResultItem interface from the Core.BasicSt
 
 ```ts
 interface DetectedQuadResultItem extends Core.BasicStructures.CapturedResultItem {
-            location: Core.BasicStructures.Quadrilateral;
-            confidenceAsDocumentBoundary: number;
-        }
+    location: Core.BasicStructures.Quadrilateral;
+    confidenceAsDocumentBoundary: number;
+}
 ```
 
 | Properties             | Type |

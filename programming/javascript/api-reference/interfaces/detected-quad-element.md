@@ -15,8 +15,8 @@ The DetectedQuadElement interface inherits from RegionObjectElement interface in
 
 ```ts
 interface DetectedQuadElement extends Core.IntermediateResult.RegionObjectElement {
-                confidenceAsDocumentBoundary: number;
-            }
+    confidenceAsDocumentBoundary: number;
+}
 ```
 
 | Properties              | Type |

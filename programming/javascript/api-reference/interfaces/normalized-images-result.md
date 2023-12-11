@@ -15,10 +15,10 @@ An interface represents the result of normalized images. It includes properties 
 
 ```ts
 interface NormalizedImagesResult {
-            readonly originalImageHashId: string;
-            readonly originalImageTag: Core.BasicStructures.ImageTag;
-            normalizedImageResultItems: Array<NormalizedImageResultItem>;
-        }
+    readonly originalImageHashId: string;
+    readonly originalImageTag: Core.BasicStructures.ImageTag;
+    normalizedImageResultItems: Array<NormalizedImageResultItem>;
+}
 ```
 
 | Properties              | Type |

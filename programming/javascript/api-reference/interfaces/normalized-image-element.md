@@ -15,9 +15,9 @@ The NormalizedImageElement interface inherits from RegionObjectElement interface
 
 ```ts
 interface NormalizedImageElement extends Core.IntermediateResult.RegionObjectElement {
-                imageData: Core.BasicStructures.DSImageData;
-                referencedElement: Core.IntermediateResult.RegionObjectElement;
-            }
+    imageData: Core.BasicStructures.DSImageData;
+    referencedElement: Core.IntermediateResult.RegionObjectElement;
+}
 ```
 
 | Properties               | Type |

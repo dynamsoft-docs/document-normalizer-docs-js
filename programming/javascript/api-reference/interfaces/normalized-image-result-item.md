@@ -15,13 +15,13 @@ An interface that extends the CapturedResultItem interface from the Core.BasicSt
 
 ```ts
 interface NormalizedImageResultItem extends Core.BasicStructures.CapturedResultItem {
-            imageData: Core.BasicStructures.DSImageData;
-            location: Core.BasicStructures.Quadrilateral;
-            toCanvas(): HTMLCanvasElement;
-            toImage(MIMEType: "image/png" | "image/jpeg"): HTMLImageElement;
-            toBlob(MIMEType: "image/png" | "image/jpeg"): Promise<Blob>;
-            saveToFile(name: string, download?: boolean): Promise<File>;
-        }
+    imageData: Core.BasicStructures.DSImageData;
+    location: Core.BasicStructures.Quadrilateral;
+    toCanvas(): HTMLCanvasElement;
+    toImage(MIMEType: "image/png" | "image/jpeg"): HTMLImageElement;
+    toBlob(MIMEType: "image/png" | "image/jpeg"): Promise<Blob>;
+    saveToFile(name: string, download?: boolean): Promise<File>;
+}
 ```
 
 | API Name               | Description |

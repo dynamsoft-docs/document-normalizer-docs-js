@@ -15,8 +15,8 @@ The CornersUnit interface extends the IntermediateResultUnit interface and repre
 
 ```ts
 interface CornersUnit extends Core.IntermediateResult.IntermediateResultUnit {
-                corners: Array<Core.BasicStructures.Corner>;
-            }
+    corners: Array<Core.BasicStructures.Corner>;
+}
 ```
 
 | Properties              | Type |

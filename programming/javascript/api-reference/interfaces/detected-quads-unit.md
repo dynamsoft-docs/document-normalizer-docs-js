@@ -15,8 +15,8 @@ The DetectedQuadsUnit interface inherits from IntermediateResultUnit interface i
 
 ```ts
 interface DetectedQuadsUnit extends Core.IntermediateResult.IntermediateResultUnit {
-                detectedQuads: Array<DetectedQuadElement>;
-            }
+    detectedQuads: Array<DetectedQuadElement>;
+}
 ```
 
 | Properties              | Type |

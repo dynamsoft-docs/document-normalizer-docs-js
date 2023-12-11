@@ -15,10 +15,10 @@ An interface representing the result of detected quads. It includes properties s
 
 ```ts
 interface DetectedQuadsResult {
-            readonly originalImageHashId: string;
-            readonly originalImageTag: Core.BasicStructures.ImageTag;
-            quadsResultItems: Array<DetectedQuadResultItem>;
-        }
+    readonly originalImageHashId: string;
+    readonly originalImageTag: Core.BasicStructures.ImageTag;
+    quadsResultItems: Array<DetectedQuadResultItem>;
+}
 ```
 
 | Properties            | Type |
