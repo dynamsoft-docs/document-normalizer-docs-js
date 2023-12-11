@@ -1,6 +1,6 @@
 ---
 layout: default-layout
-title: Dynamsoft Document Normalizer JavaScript Edition v10.x API Reference - Main Page
+title: Dynamsoft Document Normalizer JavaScript Edition v2.x API Reference - Main Page
 description: This is the main page of Dynamsoft Document Normalizer for JavaScript SDK API Reference.
 keywords: DocumentNormalizer, api reference, javascript, js
 needAutoGenerateSidebar: true
