@@ -15,8 +15,8 @@ An interface that extends the CapturedResultItem interface from the Core.BasicSt
 
 ```ts
 interface NormalizedImageResultItem extends Core.BasicStructures.CapturedResultItem {
-    imageData: Core.BasicStructures.DSImageData;
-    location: Core.BasicStructures.Quadrilateral;
+    imageData: DSImageData;
+    location: Quadrilateral;
     toCanvas(): HTMLCanvasElement;
     toImage(MIMEType: "image/png" | "image/jpeg"): HTMLImageElement;
     toBlob(MIMEType: "image/png" | "image/jpeg"): Promise<Blob>;
@@ -39,7 +39,7 @@ interface NormalizedImageResultItem extends Core.BasicStructures.CapturedResultI
  A property of type DSImageData from the Core.BasicStructures namespace. It holds the image data for the normalized image.
 
 ```ts
-imageData: Core.BasicStructures.DSImageData;
+imageData: DSImageData;
 ```
 
 ### location
@@ -47,7 +47,7 @@ imageData: Core.BasicStructures.DSImageData;
  A property of type Quadrilateral from the Core.BasicStructures namespace. It represents the location of the normalized image as a quadrilateral.
 
 ```ts
-location: Core.BasicStructures.Quadrilateral;
+location: Quadrilateral;
 ```
 
 ### toCanvas

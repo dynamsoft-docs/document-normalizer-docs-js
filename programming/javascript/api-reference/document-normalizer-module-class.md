@@ -27,6 +27,6 @@ static getVersion(): string;
 **Code snippet**
 
 ```javascript
-const version = Dynamsoft.DDN.DocumentNormalizerModule.getVersion();
+const version = DocumentNormalizerModule.getVersion();
 console.log(version);
 ```

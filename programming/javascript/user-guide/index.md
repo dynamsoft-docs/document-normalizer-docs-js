@@ -60,7 +60,7 @@ The following sample code sets up the SDK and implements boundary detection on a
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-license@3.0.20/dist/license.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-utility@1.0.20/dist/utility.js"></script>
     <script src="https://cdn.jsdelivr.net/npm//dynamsoft-document-normalizer@2.0.20/dist/ddn.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.0.20/dist/cvr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.0.30/dist/cvr.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.1/dist/dce.js"></script>
 </head>
 
@@ -185,7 +185,7 @@ The simplest way to include the SDK is to use either the [jsDelivr](https://jsde
   <script src="https://cdn.jsdelivr.net/npm/dynamsoft-license@3.0.20/dist/license.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dynamsoft-utility@1.0.20/dist/utility.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.0.20/dist/ddn.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.0.20/dist/cvr.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.0.30/dist/cvr.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.1/dist/dce.js"></script>
   ```
 
@@ -196,7 +196,7 @@ The simplest way to include the SDK is to use either the [jsDelivr](https://jsde
   <script src="https://unpkg.com/dynamsoft-license@3.0.20/dist/license.js"></script>
   <script src="https://unpkg.com/dynamsoft-utility@1.0.20/dist/utility.js"></script>
   <script src="https://unpkg.com/dynamsoft-document-normalizer@2.0.20/dist/ddn.js"></script>
-  <script src="https://unpkg.com/dynamsoft-capture-vision-router@2.0.20/dist/cvr.js"></script>
+  <script src="https://unpkg.com/dynamsoft-capture-vision-router@2.0.30/dist/cvr.js"></script>
   <script src="https://unpkg.com/dynamsoft-camera-enhancer@4.0.1/dist/dce.js"></script>
   ```
 
@@ -217,7 +217,7 @@ Options to download the SDK:
   yarn add dynamsoft-license@3.0.20 --save
   yarn add dynamsoft-utility@1.0.20 --save
   yarn add dynamsoft-document-normalizer@2.0.20 --save
-  yarn add dynamsoft-capture-vision-router@2.0.20 --save
+  yarn add dynamsoft-capture-vision-router@2.0.30 --save
   yarn add dynamsoft-camera-enhancer@4.0.1 --save
   ```
 
@@ -228,7 +228,7 @@ Options to download the SDK:
   npm install dynamsoft-license@3.0.20 --save
   npm install dynamsoft-utility@1.0.20 --save
   npm install dynamsoft-document-normalizer@2.0.20 --save
-  npm install dynamsoft-capture-vision-router@2.0.20 --save
+  npm install dynamsoft-capture-vision-router@2.0.30 --save
   npm install dynamsoft-camera-enhancer@4.0.1 --save
   ```
 
@@ -240,7 +240,7 @@ Depending on how you downloaded the SDK and where you put it, you can typically 
   <script src="./dynamsoft/distributables/dynamsoft-license@3.0.20/dist/license.js"></script>
   <script src="./dynamsoft/distributables/dynamsoft-utility@1.0.20/dist/utility.js"></script>
   <script src="./dynamsoft/distributables/dynamsoft-document-normalizer@2.0.20/dist/dbr.js"></script>
-  <script src="./dynamsoft/distributables/dynamsoft-capture-vision-router@2.0.20/dist/cvr.js"></script>
+  <script src="./dynamsoft/distributables/dynamsoft-capture-vision-router@2.0.30/dist/cvr.js"></script>
   <script src="./dynamsoft/distributables/dynamsoft-camera-enhancer@4.0.1/dist/dce.js"></script>
   ```
 
@@ -251,7 +251,7 @@ or
   <script src="./node_modules/dynamsoft-license@3.0.20/dist/license.js"></script>
   <script src="./node_modules/dynamsoft-utility@1.0.20/dist/utility.js"></script>
   <script src="./node_modules/dynamsoft-document-normalizer@2.0.20/dist/dbr.js"></script>
-  <script src="./node_modules/dynamsoft-capture-vision-router@2.0.20/dist/cvr.js"></script>
+  <script src="./node_modules/dynamsoft-capture-vision-router@2.0.30/dist/cvr.js"></script>
   <script src="./node_modules/dynamsoft-camera-enhancer@4.0.1/dist/dce.js"></script>
   ```
 

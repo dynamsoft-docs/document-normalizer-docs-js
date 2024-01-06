@@ -16,7 +16,7 @@ An interface represents the result of normalized images. It includes properties 
 ```ts
 interface NormalizedImagesResult {
     readonly originalImageHashId: string;
-    readonly originalImageTag: Core.BasicStructures.ImageTag;
+    readonly originalImageTag: ImageTag;
     normalizedImageResultItems: Array<NormalizedImageResultItem>;
 }
 ```
@@ -24,7 +24,7 @@ interface NormalizedImagesResult {
 | Properties              | Type |
 |----------------------|-------------|
 | [`originalImageHashId`](#originalimagehashid) | *string* |
-| [`originalImageTag`](#originalimagetag) | *Core.BasicStructures.ImageTag* |
+| [`originalImageTag`](#originalimagetag) | *ImageTag* |
 | [`normalizedImageResultItems`](#normalizedimageresultitems) | *Array\<NormalizedImagesResult>* |
 
 ### originalImageHashId
@@ -40,7 +40,7 @@ readonly originalImageHashId: string;
 Gets the tag of the original image.
 
 ```ts
-readonly originalImageTag: Core.BasicStructures.ImageTag;
+readonly originalImageTag: ImageTag;
 ```
 
 ### normalizedImageResultItems

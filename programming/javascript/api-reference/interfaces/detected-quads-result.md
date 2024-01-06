@@ -16,7 +16,7 @@ An interface representing the result of detected quads. It includes properties s
 ```ts
 interface DetectedQuadsResult {
     readonly originalImageHashId: string;
-    readonly originalImageTag: Core.BasicStructures.ImageTag;
+    readonly originalImageTag: ImageTag;
     quadsResultItems: Array<DetectedQuadResultItem>;
 }
 ```
@@ -24,7 +24,7 @@ interface DetectedQuadsResult {
 | Properties            | Type |
 |----------------------|-------------|
 | [`originalImageHashId`](#originalimagehashid) | *string* |
-| [`originalImageTag`](#originalimagetag) | *Core.BasicStructures.ImageTag* |
+| [`originalImageTag`](#originalimagetag) | *ImageTag* |
 | [`quadsResultItems`](#quadsresultitems) | *Array\<DetectedQuadResultItem>* |
 
 ### originalImageHashId
@@ -40,7 +40,7 @@ readonly originalImageHashId: string;
 Gets the tag of the original image.
 
 ```ts
-readonly originalImageTag: Core.BasicStructures.ImageTag;
+readonly originalImageTag: ImageTag;
 ```
 
 ### quadsResultItems

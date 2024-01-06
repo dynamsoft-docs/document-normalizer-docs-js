@@ -15,14 +15,14 @@ An interface that extends the CapturedResultItem interface from the Core.BasicSt
 
 ```ts
 interface DetectedQuadResultItem extends Core.BasicStructures.CapturedResultItem {
-    location: Core.BasicStructures.Quadrilateral;
+    location: Quadrilateral;
     confidenceAsDocumentBoundary: number;
 }
 ```
 
 | Properties             | Type |
 |----------------------|-------------|
-| [`location`](#location) | *Core.BasicStructures.Quadrilateral* |
+| [`location`](#location) | *Quadrilateral* |
 | [`confidenceAsDocumentBoundary`](#confidenceasdocumentboundary) | *number* |
 
 ### location
@@ -30,7 +30,7 @@ interface DetectedQuadResultItem extends Core.BasicStructures.CapturedResultItem
 The detected quadrilateral's coordinates.
 
 ```ts
-location: Core.BasicStructures.Quadrilateral;
+location: Quadrilateral;
 ```
 
 ### confidenceAsDocumentBoundary

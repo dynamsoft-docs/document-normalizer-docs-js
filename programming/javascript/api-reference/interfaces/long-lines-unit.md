@@ -15,18 +15,18 @@ The LongLinesUnit interface inherits from IntermediateResultUnit interface in th
 
 ```ts
 interface LongLinesUnit extends Core.IntermediateResult.IntermediateResultUnit {
-    longLines: Array<Core.BasicStructures.LineSegment>;
+    longLines: Array<LineSegment>;
 }
 ```
 
 | Properties               | Type |
 |----------------------|-------------|
-| [`longLines`](#longlines) | *Array\<LongLinesUnit>* |
+| [`longLines`](#longlines) | *Array\<LineSegment>* |
 
 ### longLines
 
-An array of LineSegment objects, represented by Array<Core.BasicStructures.LineSegment>. It holds the long lines detected or processed as part of the intermediate result. Each LineSegment represents a line segment defined by its start and end points.
+An array of LineSegment objects, represented by Array<LineSegment>. It holds the long lines detected or processed as part of the intermediate result. Each LineSegment represents a line segment defined by its start and end points.
 
 ```ts
-longLines: Array<Core.BasicStructures.LineSegment>;
+longLines: Array<LineSegment>;
 ```
