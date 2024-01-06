@@ -12,13 +12,17 @@ noTitleIndex: true
 
 The `DocumentNormalizerModule` Class is defined in the namespace `Dynamsoft.DDN`.
 
-| API Name                                           | Description                                                         |
-| -------------------------------------------------- | ------------------------------------------------------------------- |
-| static [`getVersion()`](#getversion)               | Returns the version of the `DocumentNormalizer` module.                  |
+| API Name                             | Description                                             |
+| ------------------------------------ | ------------------------------------------------------- |
+| static [`getVersion()`](#getversion) | Returns the version of the `DocumentNormalizer` module. |
 
 ### getVersion
 
 Returns the version of the `DocumentNormalizer` module.
+
+```typescript
+static getVersion(): string;
+```
 
 **Code snippet**
 

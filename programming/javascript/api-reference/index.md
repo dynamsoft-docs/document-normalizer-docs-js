@@ -12,7 +12,7 @@ noTitleIndex: true
 
 # Dynamsoft Document Normalizer JavaScript Edition API Reference
 
-In versions 10.x and higher, Dynamsoft Document Normalizer JavaScript Edition includes the following modules:
+In versions 2.x and higher, Dynamsoft Document Normalizer JavaScript Edition includes the following modules:
 
 * [DocumentNormalizer](./document-normalizer-module.md)
 * [CaptureVisionRouter]({{ site.dcv_js_api }}capture-vision-router/capture-vision-router-module.md)
