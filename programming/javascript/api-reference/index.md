@@ -15,7 +15,7 @@ noTitleIndex: true
 In versions 2.x and higher, Dynamsoft Document Normalizer JavaScript Edition includes the following modules:
 
 * [DocumentNormalizer](./document-normalizer-module.md)
-* [CaptureVisionRouter]({{ site.dcv_js_api }}capture-vision-router/capture-vision-router-module.md)
-* [License]({{ site.dcv_js_api }}license/license-module.md)
-* [Utility]({{ site.dcv_js_api }}utility/utility-module.md)
-* [Core]({{ site.dcv_js_api }}core/core-module.md)
+* [CaptureVisionRouter]({{ site.dcv_js_api }}capture-vision-router/capture-vision-router-module-class.md)
+* [License]({{ site.dcv_js_api }}license/license-module-class.md)
+* [Utility]({{ site.dcv_js_api }}utility/utility-module-class.md)
+* [Core]({{ site.dcv_js_api }}core/core-module-class.md)

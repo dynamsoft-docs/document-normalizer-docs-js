@@ -56,10 +56,10 @@ The following sample code sets up the SDK and implements boundary detection on a
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-core@3.0.20/dist/core.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-core@3.0.30/dist/core.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-license@3.0.20/dist/license.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-utility@1.0.20/dist/utility.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm//dynamsoft-document-normalizer@2.0.20/dist/ddn.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.0.20/dist/ddn.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.0.30/dist/cvr.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.1/dist/dce.js"></script>
 </head>
@@ -181,7 +181,7 @@ The simplest way to include the SDK is to use either the [jsDelivr](https://jsde
 - jsDelivr
 
   ```html
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-core@3.0.20/dist/core.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-core@3.0.30/dist/core.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dynamsoft-license@3.0.20/dist/license.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dynamsoft-utility@1.0.20/dist/utility.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.0.20/dist/ddn.js"></script>
@@ -192,7 +192,7 @@ The simplest way to include the SDK is to use either the [jsDelivr](https://jsde
 - UNPKG
 
   ```html
-  <script src="https://unpkg.com/dynamsoft-core@3.0.20/dist/core.js"></script>
+  <script src="https://unpkg.com/dynamsoft-core@3.0.30/dist/core.js"></script>
   <script src="https://unpkg.com/dynamsoft-license@3.0.20/dist/license.js"></script>
   <script src="https://unpkg.com/dynamsoft-utility@1.0.20/dist/utility.js"></script>
   <script src="https://unpkg.com/dynamsoft-document-normalizer@2.0.20/dist/ddn.js"></script>
@@ -213,7 +213,7 @@ Options to download the SDK:
 - yarn
 
   ```cmd
-  yarn add dynamsoft-core@3.0.20 --save
+  yarn add dynamsoft-core@3.0.30 --save
   yarn add dynamsoft-license@3.0.20 --save
   yarn add dynamsoft-utility@1.0.20 --save
   yarn add dynamsoft-document-normalizer@2.0.20 --save
@@ -224,7 +224,7 @@ Options to download the SDK:
 - npm
 
   ```cmd
-  npm install dynamsoft-core@3.0.20 --save
+  npm install dynamsoft-core@3.0.30 --save
   npm install dynamsoft-license@3.0.20 --save
   npm install dynamsoft-utility@1.0.20 --save
   npm install dynamsoft-document-normalizer@2.0.20 --save
@@ -236,7 +236,7 @@ Depending on how you downloaded the SDK and where you put it, you can typically 
 
   ```html
   <!-- Upon extracting the zip package into your project, you can generally include it in the following manner -->
-  <script src="./dynamsoft/distributables/dynamsoft-core@3.0.20/dist/core.js"></script>
+  <script src="./dynamsoft/distributables/dynamsoft-core@3.0.30/dist/core.js"></script>
   <script src="./dynamsoft/distributables/dynamsoft-license@3.0.20/dist/license.js"></script>
   <script src="./dynamsoft/distributables/dynamsoft-utility@1.0.20/dist/utility.js"></script>
   <script src="./dynamsoft/distributables/dynamsoft-document-normalizer@2.0.20/dist/dbr.js"></script>
@@ -247,7 +247,7 @@ Depending on how you downloaded the SDK and where you put it, you can typically 
 or
 
   ```html
-  <script src="./node_modules/dynamsoft-core@3.0.20/dist/core.js"></script>
+  <script src="./node_modules/dynamsoft-core@3.0.30/dist/core.js"></script>
   <script src="./node_modules/dynamsoft-license@3.0.20/dist/license.js"></script>
   <script src="./node_modules/dynamsoft-utility@1.0.20/dist/utility.js"></script>
   <script src="./node_modules/dynamsoft-document-normalizer@2.0.20/dist/dbr.js"></script>
@@ -299,6 +299,7 @@ async function initDCE() {
   const view = await Dynamsoft.DCE.CameraView.createInstance();
   cameraEnhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance(view);
   imageEditorView = await Dynamsoft.DCE.ImageEditorView.createInstance(imageEditorViewContainer);
+  /* Creates an image editing layer for drawing found document boundaries. */
   layer = imageEditorView.createDrawingLayer();
   cameraViewContainer.append(view.getUIElement());
 }
@@ -320,12 +321,22 @@ Once the image processing is complete, the results are sent to all the registere
 
 ```js
 let cvrReady = (async function initCVR() {
+  /**
+   * Creates a CaptureVisionRouter instance and configure the task to detect document boundaries.
+   * Also, make sure the original image is returned after it has been processed.
+   */
   await initDCE();
   router = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
   router.setInput(cameraEnhancer);
+  /**
+   * Sets the result types to be returned.
+   * Because we need to normalize a document from the original image later, here we set the return result type to
+   * include both the quadrilateral and original image data.
+   */  
   let newSettings = await router.getSimplifiedSettings("DetectDocumentBoundaries_Default");
   newSettings.capturedResultItemTypes = Dynamsoft.Core.EnumCapturedResultItemType.CRIT_DETECTED_QUAD | Dynamsoft.Core.EnumCapturedResultItemType.CRIT_ORIGINAL_IMAGE;
   await router.updateSettings("DetectDocumentBoundaries_Default", newSettings)
+  /* Defines the result receiver for the task.*/
   const resultReceiver = new Dynamsoft.CVR.CapturedResultReceiver();
   resultReceiver.onCapturedResultReceived = handleCapturedResult;
   router.addResultReceiver(resultReceiver);
@@ -366,9 +377,9 @@ async function startDetecting() {
 The steps of the workflow is as follows
 
 1. `cameraEnhancer` streams the video, captures live video frames and stores them in a buffer.
-2. `router` gets the video frames from `cameraEnhancer` and passes them to be processed by an internal `DocumentNormalizer` instance.
+2. `router` gets the video frames from `Image Source Adapter` and passes them to be processed by an internal `DocumentNormalizer` instance. The `cameraEnhancer` used here is a special implementation of the `Image Source Adapter`.
 3. The internal `DocumentNormalizer` instance returns the found document boundaries, known as `quadsResultItems`, to `router`.
-4. `router` outputs the `quadsResultItems` via the callback function `onCapturedResultReceived`.
+4. The `router` can output all types of CapturedResults that need to be captured through the `onCapturedResultReceived` callback function. In this example code we use the callback function to output `quadsResultItems` and `originalImageResultItem`.
 
 > Also note that the `quadsResultItems` are drawn over the video automatically to show the detection in action.
 
@@ -396,19 +407,16 @@ async function handleCapturedResult(result) {
       const originalImage = result.items.filter((item) => item.type === 1);
       originalImageData = originalImage.length && originalImage[0].imageData;
       if (originalImageData) {
-        /** If "Normalize Automatically" is checked, the library uses the document boundaries found in consecutive
-         * image frames to decide whether conditions are suitable for automatic normalization.
-         */
         if (result.items.length <= 1) {
           frameCount = 0;
           return;
         }
         frameCount++;
         /**
-         * In our case, we determine a good condition for "automatic normalization" to be
-         * "getting document boundary detected for 30 consecutive frames".
-         *
-         * NOTE that this condition will not be valid should you add a CapturedResultFilter
+         * In our case, we define a good condition for "ready for normalization" as 
+         * "getting the document boundary detected for 30 consecutive frames".
+         * 
+         * NOTE that this condition is not valid if you add a CapturedResultFilter 
          * with ResultDeduplication enabled.
          */
         if (frameCount === 30) {
