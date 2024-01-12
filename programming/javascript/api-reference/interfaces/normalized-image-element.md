@@ -1,6 +1,6 @@
 ---
 layout: default-layout
-title: Interface NormalizedImageElement - Dynamsoft Label Recognizer JS Edition API Reference
+title: Interface NormalizedImageElement - Dynamsoft Document Normalizer JS Edition API Reference
 description: This page shows the JS edition of the interface NormalizedImageElement.
 keywords: normalized image, JS
 needAutoGenerateSidebar: true

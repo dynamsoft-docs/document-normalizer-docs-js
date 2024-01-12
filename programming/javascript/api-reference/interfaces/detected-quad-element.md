@@ -1,6 +1,6 @@
 ---
 layout: default-layout
-title: Interface DetectedQuadElement - Dynamsoft Label Recognizer JS Edition API Reference
+title: Interface DetectedQuadElement - Dynamsoft Document Normalizer JS Edition API Reference
 description: This page shows the JS edition of the interface DetectedQuadElement.
 keywords: detected quad, JS
 needAutoGenerateSidebar: true

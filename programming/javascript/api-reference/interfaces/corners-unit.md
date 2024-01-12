@@ -1,6 +1,6 @@
 ---
 layout: default-layout
-title: Interface CornersUnit - Dynamsoft Label Recognizer JS Edition API Reference
+title: Interface CornersUnit - Dynamsoft Document Normalizer JS Edition API Reference
 description: This page shows the JS edition of the interface CornersUnit.
 keywords: corners, JS
 needAutoGenerateSidebar: true

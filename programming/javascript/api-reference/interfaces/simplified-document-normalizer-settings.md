@@ -1,6 +1,6 @@
 ---
 layout: default-layout
-title: Interface SimplifiedDocumentNormalizerSettings - Dynamsoft Label Recognizer JS Edition API Reference
+title: Interface SimplifiedDocumentNormalizerSettings - Dynamsoft Document Normalizer JS Edition API Reference
 description: This page shows the JS edition of the interface SimplifiedDocumentNormalizerSettings in Dynamsoft DDN Module.
 keywords: simplified setting, document normalizer, JS
 needAutoGenerateSidebar: true

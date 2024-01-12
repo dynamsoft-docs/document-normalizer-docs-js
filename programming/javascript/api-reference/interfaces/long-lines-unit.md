@@ -1,6 +1,6 @@
 ---
 layout: default-layout
-title: Interface LongLinesUnit - Dynamsoft Label Recognizer JS Edition API Reference
+title: Interface LongLinesUnit - Dynamsoft Document Normalizer JS Edition API Reference
 description: This page shows the JS edition of the interface LongLinesUnit.
 keywords: long lines, JS
 needAutoGenerateSidebar: true
