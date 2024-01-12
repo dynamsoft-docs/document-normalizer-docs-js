@@ -118,7 +118,7 @@ The following sample code sets up the SDK and implements boundary detection on a
 
   > The image source in our case is a CameraEnhancer object created with `Dynamsoft.DCE.CameraEnhancer.createInstance(view)`
 
-  > In some cases, a different camera might be required instead of the default one. Also, a different resolution might work better. To change the camera or the resolution, use the `CameraEnhancer` instance `cameraEnhancer`. Learn more [here](https://www.dynamsoft.com/camera-enhancer/docs/programming/javascript/api-reference/camera-control.html?ver=4.0.0&utm_source=guide&product=ddn&package=js).
+  > In some cases, a different camera might be required instead of the default one. Also, a different resolution might work better. To change the camera or the resolution, use the `CameraEnhancer` instance `cameraEnhancer`. Learn more [here](https://www.dynamsoft.com/camera-enhancer/docs/web/programming/javascript/api-reference/camera-control.html).
 
 - `startCapturing("DetectDocumentBoundaries_Default")` : starts to run images through a pre-defined process which, in the case of "DetectDocumentBoundaries_Default", tries to find the boundary of a document present in the image(s).
 
@@ -167,10 +167,10 @@ We'll build on this skeleton page:
 
 To utilize the SDK, the initial step involves including the corresponding resource files:
 
-* `core.js`: Required, encompasses common classes, interfaces, and enumerations that are shared across all Dynamsoft SDKs.
-* `license.js`: Required, introduces the `LicenseManager` class, which manages the licensing for all Dynamsoft SDKs.
-* `utility.js`Optional, encompasses auxiliary classes that are shared among all Dynamsoft SDKs.
-* `dbr.js`: Required, defines interfaces and enumerations specifically tailored to the barcode reader module.
+* `core.js`: Required, encompasses common classes, interfaces, and enumerations that are shared across all Dynamsoft SDKs under Dynamsoft Capture Vision Architecture.
+* `license.js`: Required, introduces the `LicenseManager` class, which manages the licensing for all Dynamsoft SDKs under Dynamsoft Capture Vision Architecture.
+* `utility.js`Optional, encompasses auxiliary classes that are shared among all Dynamsoft SDKs under Dynamsoft Capture Vision Architecture.
+* `ddn.js`: Required, defines interfaces and enumerations specifically tailored to the document normalizer module.
 * `cvr.js`: Required, introduces the `CaptureVisionRouter` class, which governs the entire image processing workflow.
 * `dce.js`: Recommended, comprises classes that offer camera support and basic user interface functionalities.
 
@@ -548,6 +548,10 @@ async function restartDetecting() {
 You can also test the code above at [https://jsfiddle.net/DynamsoftTeam/](https://jsfiddle.net/DynamsoftTeam/L4m7r1db/)
 
 <p align="center" style="text-align:center; white-space: normal; ">
+  <a target="_blank" href="https://github.com/Dynamsoft/document-normalizer-javascript-samples/blob/v2.0.20/hello-world/hello-world.html" title="Code in Github" style="text-decoration:none;">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg" alt="Code in Github" width="20" height="20" style="width:20px;height:20px;">
+  </a>
+  &nbsp;
   <a target="_blank" href="https://https://jsfiddle.net/DynamsoftTeam/L4m7r1db/" title="Run via JSFiddle">
     <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/jsfiddle.svg" alt="Run via JSFiddle" width="20" height="20" style="width:20px;height:20px;">
   </a>
