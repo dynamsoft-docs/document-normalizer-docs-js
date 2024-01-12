@@ -28,6 +28,7 @@ In this guide, you'll learn step-by-step how to build such a simple solution in 
     - [Include the SDK](#include-the-sdk)
       - [Use a CDN](#use-a-cdn)
       - [Host the SDK yourself](#host-the-sdk-yourself)
+      - [Specify the location of the "engine" files (optional)](#specify-the-location-of-the-engine-files-optional)
     - [Define necessary HTML elements](#define-necessary-html-elements)
     - [Prepare the SDK for the task](#prepare-the-sdk-for-the-task)
     - [Start the detection](#start-the-detection)
@@ -202,7 +203,7 @@ The simplest way to include the SDK is to use either the [jsDelivr](https://jsde
 
 #### Host the SDK yourself
 
-Besides using the CDN, you can also download the SDK and host its files on your own website / server before including it in your application.
+Besides using the CDN, you can also download the SDK and host its files on your own website / server before including it in your application. When using a CDN, resources related to `dynamsoft-image-processing` and `dynamsoft-capture-vision-std` are automatically loaded over the network; When using them locally, these two packages need to be configured manually.
 
 Options to download the SDK:
 
@@ -219,6 +220,8 @@ Options to download the SDK:
   yarn add dynamsoft-document-normalizer@2.0.20 --save
   yarn add dynamsoft-capture-vision-router@2.0.30 --save
   yarn add dynamsoft-camera-enhancer@4.0.1 --save
+  yarn add dynamsoft-capture-vision-std@1.0.0 --save
+  yarn add dynamsoft-image-processing@2.0.30 --save
   ```
 
 - npm
@@ -230,6 +233,8 @@ Options to download the SDK:
   npm install dynamsoft-document-normalizer@2.0.20 --save
   npm install dynamsoft-capture-vision-router@2.0.30 --save
   npm install dynamsoft-camera-enhancer@4.0.1 --save
+  npm install dynamsoft-capture-vision-std@1.0.0 --save
+  npm install dynamsoft-image-processing@2.0.30 --save
   ```
 
 Depending on how you downloaded the SDK and where you put it, you can typically include it like this:
@@ -239,7 +244,7 @@ Depending on how you downloaded the SDK and where you put it, you can typically 
   <script src="./dynamsoft/distributables/dynamsoft-core@3.0.30/dist/core.js"></script>
   <script src="./dynamsoft/distributables/dynamsoft-license@3.0.20/dist/license.js"></script>
   <script src="./dynamsoft/distributables/dynamsoft-utility@1.0.20/dist/utility.js"></script>
-  <script src="./dynamsoft/distributables/dynamsoft-document-normalizer@2.0.20/dist/dbr.js"></script>
+  <script src="./dynamsoft/distributables/dynamsoft-document-normalizer@2.0.20/dist/ddn.js"></script>
   <script src="./dynamsoft/distributables/dynamsoft-capture-vision-router@2.0.30/dist/cvr.js"></script>
   <script src="./dynamsoft/distributables/dynamsoft-camera-enhancer@4.0.1/dist/dce.js"></script>
   ```
@@ -250,10 +255,28 @@ or
   <script src="./node_modules/dynamsoft-core@3.0.30/dist/core.js"></script>
   <script src="./node_modules/dynamsoft-license@3.0.20/dist/license.js"></script>
   <script src="./node_modules/dynamsoft-utility@1.0.20/dist/utility.js"></script>
-  <script src="./node_modules/dynamsoft-document-normalizer@2.0.20/dist/dbr.js"></script>
+  <script src="./node_modules/dynamsoft-document-normalizer@2.0.20/dist/ddn.js"></script>
   <script src="./node_modules/dynamsoft-capture-vision-router@2.0.30/dist/cvr.js"></script>
   <script src="./node_modules/dynamsoft-camera-enhancer@4.0.1/dist/dce.js"></script>
   ```
+
+#### Specify the location of the "engine" files (optional)
+
+This is usually only required with frameworks like Angular or React, etc. where the referenced JavaScript files such as `cvr.js`, `ddn.js` are compiled into another file, or using the SDKs completely offline.
+
+The purpose is to tell the SDK where to find the engine files (\*.worker.js, \*.wasm.js and \*.wasm, etc.). The API is called `Dynamsoft.Core.CoreModule.engineResourcePaths`:
+
+```javascript
+//The following code uses the jsDelivr CDN, feel free to change it to your own location of these files
+Dynamsoft.Core.CoreModule.engineResourcePaths.core = "https://cdn.jsdelivr.net/npm/dynamsoft-core@3.0.30/dist/";
+Dynamsoft.Core.CoreModule.engineResourcePaths.license = "https://cdn.jsdelivr.net/npm/dynamsoft-license@3.0.20/dist/";
+Dynamsoft.Core.CoreModule.engineResourcePaths.ddn = "https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.0.20/dist/";
+Dynamsoft.Core.CoreModule.engineResourcePaths.cvr = "https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.0.30/dist/";
+Dynamsoft.Core.CoreModule.engineResourcePaths.dce = "https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.1/dist/";
+Dynamsoft.Core.CoreModule.engineResourcePaths.std = "https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-std@1.0.0/dist/";
+Dynamsoft.Core.CoreModule.engineResourcePaths.dip = "https://cdn.jsdelivr.net/npm/dynamsoft-image-processing@2.0.30/dist/";
+Dynamsoft.Core.CoreModule.engineResourcePaths.utility = "https://cdn.jsdelivr.net/npm/dynamsoft-utility@1.0.20/dist/";
+```
 
 ### Define necessary HTML elements
 
