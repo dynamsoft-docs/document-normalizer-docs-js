@@ -1,7 +1,7 @@
 ---
 layout: default-layout
-title: interface DetectedQuadsResult - Dynamsoft Core Module JS Edition API Reference
-description: This page shows the JS edition of the interface DetectedQuadsResult in Dynamsoft Core Module.
+title: Interface DetectedQuadsResult - Dynamsoft Document Normalizer JS Edition API Reference
+description: This page shows the JS edition of the interface DetectedQuadsResult.
 keywords: detected quad, JS
 needAutoGenerateSidebar: true
 noTitleIndex: true
@@ -15,17 +15,17 @@ An interface representing the result of detected quads. It includes properties s
 
 ```ts
 interface DetectedQuadsResult {
-            readonly originalImageHashId: string;
-            readonly originalImageTag: Core.BasicStructures.ImageTag;
-            quadsResultItems: Array<DetectedQuadResultItem>;
-        }
+    readonly originalImageHashId: string;
+    readonly originalImageTag: ImageTag;
+    quadsResultItems: Array<DetectedQuadResultItem>;
+}
 ```
 
 | Properties            | Type |
 |----------------------|-------------|
 | [`originalImageHashId`](#originalimagehashid) | *string* |
-| [`originalImageTag`](#originalimagetag) | *Core.BasicStructures.ImageTag* |
-| [`quadsResultItems`](#quadsresultitems) | *Array<DetectedQuadResultItem>* |
+| [`originalImageTag`](#originalimagetag) | *ImageTag* |
+| [`quadsResultItems`](#quadsresultitems) | *Array\<DetectedQuadResultItem>* |
 
 ### originalImageHashId
 
@@ -40,7 +40,7 @@ readonly originalImageHashId: string;
 Gets the tag of the original image.
 
 ```ts
-readonly originalImageTag: Core.BasicStructures.ImageTag;
+readonly originalImageTag: ImageTag;
 ```
 
 ### quadsResultItems

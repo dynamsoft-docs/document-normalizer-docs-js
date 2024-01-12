@@ -1,7 +1,7 @@
 ---
 layout: default-layout
-title: interface DetectedQuadElement - Dynamsoft Core Module JS Edition API Reference
-description: This page shows the JS edition of the interface DetectedQuadElement in Dynamsoft Core Module.
+title: Interface DetectedQuadElement - Dynamsoft Document Normalizer JS Edition API Reference
+description: This page shows the JS edition of the interface DetectedQuadElement.
 keywords: detected quad, JS
 needAutoGenerateSidebar: true
 noTitleIndex: true
@@ -15,8 +15,8 @@ The DetectedQuadElement interface inherits from RegionObjectElement interface in
 
 ```ts
 interface DetectedQuadElement extends Core.IntermediateResult.RegionObjectElement {
-                confidenceAsDocumentBoundary: number;
-            }
+    confidenceAsDocumentBoundary: number;
+}
 ```
 
 | Properties              | Type |

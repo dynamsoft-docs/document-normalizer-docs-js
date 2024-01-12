@@ -1,7 +1,7 @@
 ---
 layout: default-layout
-title: interface DetectedQuadsUnit - Dynamsoft Core Module JS Edition API Reference
-description: This page shows the JS edition of the interface DetectedQuadsUnit in Dynamsoft Core Module.
+title: Interface DetectedQuadsUnit - Dynamsoft Document Normalizer JS Edition API Reference
+description: This page shows the JS edition of the interface DetectedQuadsUnit.
 keywords: detected quad, JS
 needAutoGenerateSidebar: true
 noTitleIndex: true
@@ -15,13 +15,13 @@ The DetectedQuadsUnit interface inherits from IntermediateResultUnit interface i
 
 ```ts
 interface DetectedQuadsUnit extends Core.IntermediateResult.IntermediateResultUnit {
-                detectedQuads: Array<DetectedQuadElement>;
-            }
+    detectedQuads: Array<DetectedQuadElement>;
+}
 ```
 
 | Properties              | Type |
 |----------------------|-------------|
-| [`detectedQuads`](#detectedquads) | *Array<DetectedQuadsUnit>* |
+| [`detectedQuads`](#detectedquads) | *Array\<DetectedQuadsUnit>* |
 
 ### detectedQuads
 

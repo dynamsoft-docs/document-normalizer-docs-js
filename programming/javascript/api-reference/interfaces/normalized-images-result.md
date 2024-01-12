@@ -1,7 +1,7 @@
 ---
 layout: default-layout
-title: interface NormalizedImagesResult - Dynamsoft Core Module JS Edition API Reference
-description: This page shows the JS edition of the interface NormalizedImagesResult in Dynamsoft Core Module.
+title: Interface NormalizedImagesResult - Dynamsoft Document Normalizer JS Edition API Reference
+description: This page shows the JS edition of the interface NormalizedImagesResult.
 keywords: normalized image, JS
 needAutoGenerateSidebar: true
 noTitleIndex: true
@@ -15,17 +15,17 @@ An interface represents the result of normalized images. It includes properties 
 
 ```ts
 interface NormalizedImagesResult {
-            readonly originalImageHashId: string;
-            readonly originalImageTag: Core.BasicStructures.ImageTag;
-            normalizedImageResultItems: Array<NormalizedImageResultItem>;
-        }
+    readonly originalImageHashId: string;
+    readonly originalImageTag: ImageTag;
+    normalizedImageResultItems: Array<NormalizedImageResultItem>;
+}
 ```
 
 | Properties              | Type |
 |----------------------|-------------|
 | [`originalImageHashId`](#originalimagehashid) | *string* |
-| [`originalImageTag`](#originalimagetag) | *Core.BasicStructures.ImageTag* |
-| [`normalizedImageResultItems`](#normalizedimageresultitems) | *Array<NormalizedImagesResult>* |
+| [`originalImageTag`](#originalimagetag) | *ImageTag* |
+| [`normalizedImageResultItems`](#normalizedimageresultitems) | *Array\<NormalizedImagesResult>* |
 
 ### originalImageHashId
 
@@ -40,7 +40,7 @@ readonly originalImageHashId: string;
 Gets the tag of the original image.
 
 ```ts
-readonly originalImageTag: Core.BasicStructures.ImageTag;
+readonly originalImageTag: ImageTag;
 ```
 
 ### normalizedImageResultItems

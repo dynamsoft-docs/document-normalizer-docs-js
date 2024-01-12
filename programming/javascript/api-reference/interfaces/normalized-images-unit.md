@@ -1,7 +1,7 @@
 ---
 layout: default-layout
-title: interface NormalizedImagesUnit - Dynamsoft Core Module JS Edition API Reference
-description: This page shows the JS edition of the interface NormalizedImagesUnit in Dynamsoft Core Module.
+title: Interface NormalizedImagesUnit - Dynamsoft Document Normalizer JS Edition API Reference
+description: This page shows the JS edition of the interface NormalizedImagesUnit.
 keywords: normalized image, JS
 needAutoGenerateSidebar: true
 noTitleIndex: true
@@ -15,13 +15,13 @@ The NormalizedImagesUnit interface inherits from IntermediateResultUnit interfac
 
 ```ts
 interface NormalizedImagesUnit extends Core.IntermediateResult.IntermediateResultUnit {
-                normalizedImages: Array<NormalizedImagesUnit>;
-            }
+    normalizedImages: Array<NormalizedImagesUnit>;
+}
 ```
 
 | Properties               | Type |
 |----------------------|-------------|
-| [`normalizedImages`](#normalizedimages) | *Array<NormalizedImagesUnit>* |
+| [`normalizedImages`](#normalizedimages) | *Array\<NormalizedImagesUnit>* |
 
 ### normalizedImages
 
