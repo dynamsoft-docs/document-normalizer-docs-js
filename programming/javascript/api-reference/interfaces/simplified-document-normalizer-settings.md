@@ -14,7 +14,7 @@ This interface defines simplified settings for document normalizer tasks.
 ## Definition
 
 ```typescript
-interface SimplifiedBarcodeReaderSettings {
+interface SimplifiedDocumentNormalizerSettings {
     ImageColourMode: EnumImageColourMode; 
     localizationModes: Array<number>;
     pageSize: number;

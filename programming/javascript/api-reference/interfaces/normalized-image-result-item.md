@@ -97,6 +97,7 @@ saveToFile(name: string, download?: boolean): Promise<File>;
 **Parameters**
 
 `name`:  Specifies the name of the file object.
+
 `download`: Specifies whether to download the file when it's created.
 
 **Return Value**

@@ -9,7 +9,7 @@ noTitleIndex: true
 ---
 <!-- 2.0.20 -- Updated on 12/07/2023-->
 
-# DocumentNormalizer Module
+# DynamsoftDocumentNormalizer Module
 
 The DocumentNormalizer module is defined in the namespace `Dynamsoft.DDN`. It includes a class named "DocumentNormalizerModule" along with various interfaces.
 
@@ -23,7 +23,7 @@ This class defines common functionality in the `DocumentNormalizer` module. At p
 
 ## Interfaces
 
-* [SimplifiedDocumentNormalizerSettings](./interfaces/simplified-document-normalizer-settings.md)
+<!--* [SimplifiedDocumentNormalizerSettings](./interfaces/simplified-document-normalizer-settings.md)-->
 * [DetectedQuadElement](./interfaces/detected-quad-element.md)
 * [NormalizedImageElement](./interfaces/normalized-image-element.md)
 * [LongLinesUnit](./interfaces/long-lines-unit.md)
@@ -39,5 +39,3 @@ This class defines common functionality in the `DocumentNormalizer` module. At p
 <!-- ## Enums
 
 * [EnumImageColourMode]({{ site.dcv_enumerations }}document-normalizer/extended-barcode-result-type.html?lang=js) -->
-
-
