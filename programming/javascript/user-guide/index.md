@@ -252,12 +252,12 @@ Depending on how you downloaded the SDK and where you put it, you can typically 
 or
 
   ```html
-  <script src="./node_modules/dynamsoft-core@3.0.30/dist/core.js"></script>
-  <script src="./node_modules/dynamsoft-license@3.0.20/dist/license.js"></script>
-  <script src="./node_modules/dynamsoft-utility@1.0.20/dist/utility.js"></script>
-  <script src="./node_modules/dynamsoft-document-normalizer@2.0.20/dist/ddn.js"></script>
-  <script src="./node_modules/dynamsoft-capture-vision-router@2.0.30/dist/cvr.js"></script>
-  <script src="./node_modules/dynamsoft-camera-enhancer@4.0.1/dist/dce.js"></script>
+  <script src="./node_modules/dynamsoft-core/dist/core.js"></script>
+  <script src="./node_modules/dynamsoft-license/dist/license.js"></script>
+  <script src="./node_modules/dynamsoft-utility/dist/utility.js"></script>
+  <script src="./node_modules/dynamsoft-document-normalizer/dist/ddn.js"></script>
+  <script src="./node_modules/dynamsoft-capture-vision-router/dist/cvr.js"></script>
+  <script src="./node_modules/dynamsoft-camera-enhancer/dist/dce.js"></script>
   ```
 
 #### Specify the location of the "engine" files (optional)
