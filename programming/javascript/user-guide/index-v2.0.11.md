@@ -302,7 +302,7 @@ The code was explained earlier. Please refer to [About the Code](#about-the-code
 
 Before we start the detection process with `startDetection()`, we need to define a callback function to accept the detected document boundaries. The callback function is defined based on the `CapturedResultReceiver` interface.
 
-> Read more on [`CapturedResultReceiver`](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/captured-result-receiver.html)
+> Read more on [`CapturedResultReceiver`](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/capture-vision-router/interfaces/captured-result-receiver.html)
 
 ```js
 const resultReceiver = new Dynamsoft.CVR.CapturedResultReceiver();

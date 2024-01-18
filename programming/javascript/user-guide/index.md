@@ -340,7 +340,7 @@ The code was explained earlier. Please refer to [About the Code](#about-the-code
 
 Once the image processing is complete, the results are sent to all the registered `CapturedResultReceiver` objects. Each `CapturedResultReceiver` object may encompass one or multiple callback functions associated with various result types. In our task, we need to detect the document border and normalize it, so we use callback function `onCapturedResultReceived` to get both detected borders and the original image for later normalization.
 
-> Read more on [`CapturedResultReceiver`](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/captured-result-receiver.html)
+> Read more on [`CapturedResultReceiver`](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/capture-vision-router/interfaces/captured-result-receiver.html)
 
 ```js
 let cvrReady = (async function initCVR() {
