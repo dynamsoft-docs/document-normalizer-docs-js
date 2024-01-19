@@ -60,7 +60,7 @@ The following sample code sets up the SDK and implements boundary detection on a
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-core@3.0.30/dist/core.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-license@3.0.20/dist/license.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-utility@1.0.21/dist/utility.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.0.20/dist/ddn.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.0.21/dist/ddn.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.0.30/dist/cvr.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.1/dist/dce.js"></script>
 </head>
@@ -209,7 +209,7 @@ Options to download the SDK:
 
 - From the website
 
-  [Download the JavaScript ZIP package](https://www.dynamsoft.com/document-normalizer/downloads/?ver=2.0.20&utm_source=guide)
+  [Download the JavaScript ZIP package](https://www.dynamsoft.com/document-normalizer/downloads/?ver=2.0.21&utm_source=guide)
 
 - yarn
 
@@ -571,7 +571,7 @@ async function restartDetecting() {
 You can also test the code above at [https://jsfiddle.net/DynamsoftTeam/](https://jsfiddle.net/DynamsoftTeam/L4m7r1db/)
 
 <p align="center" style="text-align:center; white-space: normal; ">
-  <a target="_blank" href="https://github.com/Dynamsoft/document-normalizer-javascript-samples/blob/v2.0.20/hello-world/hello-world.html" title="Code in Github" style="text-decoration:none;">
+  <a target="_blank" href="https://github.com/Dynamsoft/document-normalizer-javascript-samples/blob/v2.0.21/hello-world/hello-world.html" title="Code in Github" style="text-decoration:none;">
     <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg" alt="Code in Github" width="20" height="20" style="width:20px;height:20px;">
   </a>
   &nbsp;
