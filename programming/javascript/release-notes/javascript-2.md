@@ -10,6 +10,12 @@ noTitleIndex: true
 
 # Release Notes for Dynamsoft Document Normalizer JavaScript SDK
 
+## 2.0.21 (01/19/2024)
+
+### Fixed
+
+* Fixed a type error bug encountered when utilizing `CapturedResultReceiver` or `CapturedResultFilter` in a TypeScript environment.
+
 ## 2.0.20 (01/11/2024)
 
 ### Added
