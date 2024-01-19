@@ -9,6 +9,7 @@ breadcrumbText: Release Notes
 
 # Dynamsoft Document Normalizer JavaScript SDK - Release Notes
 
+- [2.0.21 (01/19/2024)](javascript-2.html#2021-01192024)
 - [2.0.20 (01/11/2024)](javascript-2.html#2020-01112024)
 - [2.0.11 (08/24/2023)](javascript-2.html#2011-08242023)
 - [1.0.12 (01/05/2023)](javascript-1.html#1012-01052023)
