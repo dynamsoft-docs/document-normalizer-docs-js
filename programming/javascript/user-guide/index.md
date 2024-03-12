@@ -417,6 +417,8 @@ The steps of the workflow is as follows
 | **NormalizeDocument_Default**          | Input an ROI and an image and normalize it.       |
 | **DetectAndNormalizeDocument_Default** | Detect document border on images and normalize it |
 
+Read more on the [preset CaptureVisionTemplates](./preset-templates.md).
+
 ### Review and adjust the boundary
 
 First we update the callback function, use a specific condition to ensure that the camera has stabilized:

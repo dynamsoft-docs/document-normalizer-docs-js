@@ -9,24 +9,20 @@ noTitleIndex: true
 
 # CornersUnit
 
-The CornersUnit interface extends the IntermediateResultUnit interface and represents a unit of intermediate result specifically for corners. It includes additional properties that provide information about the corners.
-
-## Definition
+The `CornersUnit` interface extends the `IntermediateResultUnit` interface and represents a unit of detected corners.
 
 ```ts
-interface CornersUnit extends Core.IntermediateResult.IntermediateResultUnit {
+interface CornersUnit extends IntermediateResultUnit {
     corners: Array<Corner>;
 }
 ```
 
-| Properties              | Type |
-|----------------------|-------------|
-| [`corners`](#corners) | *Array\<Corner>* |
+## corners
 
-### corners
+An array of detected corners within the image, identified during image processing.
 
-It stores the candidate corners detected during processing. The corner type is defined in the Core.BasicStructures namespace.
+**See Also**
 
-```ts
-corners: Array<Corner>;
-```
+[IntermediateResultUnit](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/intermediate-results/intermediate-result-unit.html)
+
+[Corner](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/corner.html)

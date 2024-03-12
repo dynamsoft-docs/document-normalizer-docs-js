@@ -9,24 +9,20 @@ noTitleIndex: true
 
 # DetectedQuadsUnit
 
-The DetectedQuadsUnit interface inherits from IntermediateResultUnit interface in the Core.IntermediateResult namespace. It includes additional properties `detectedQuads`.
-
-## Definition
+The `DetectedQuadsUnit` interface extends the `IntermediateResultUnit` interface and represents a unit of detected quadrilaterals.
 
 ```ts
-interface DetectedQuadsUnit extends Core.IntermediateResult.IntermediateResultUnit {
+interface DetectedQuadsUnit extends IntermediateResultUnit {
     detectedQuads: Array<DetectedQuadElement>;
 }
 ```
 
-| Properties              | Type |
-|----------------------|-------------|
-| [`detectedQuads`](#detectedquads) | *Array\<DetectedQuadsUnit>* |
+## detectedQuads
 
-### detectedQuads
+An array of `DetectedQuadElement` objects, each representing a potential document or area of interest within the image.
 
-An array of DetectedQuadElement objects and it holds the detected quads. Each DetectedQuadElement represents a single set of detected quads.
+**See Also**
 
-```ts
-detectedQuads: Array<DetectedQuadElement>;
-```
+[IntermediateResultUnit](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/intermediate-results/intermediate-result-unit.html)
+
+[DetectedQuadElement](./detected-quad-element.md)

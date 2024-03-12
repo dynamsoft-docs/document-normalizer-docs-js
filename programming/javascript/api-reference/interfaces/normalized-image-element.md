@@ -9,34 +9,20 @@ noTitleIndex: true
 
 # NormalizedImageElement
 
-The NormalizedImageElement interface inherits from RegionObjectElement interface in the Core.IntermediateResult namespace. It includes additional properties `imageData` and `referencedElement`.
-
-## Definition
+The `NormalizedImageElement` interface extends the `RegionObjectElement` interface and represents a normalized image element.
 
 ```ts
-interface NormalizedImageElement extends Core.IntermediateResult.RegionObjectElement {
+interface NormalizedImageElement extends RegionObjectElement {
     imageData: DSImageData;
-    referencedElement: RegionObjectElement;
 }
 ```
 
-| Properties               | Type |
-|----------------------|-------------|
-| [`imageData`](#imagedata) | *DSImageData* |
-| [`referencedElement`](#referencedelement) | *RegionObjectElement* |
+## imageData
 
-### imageData
+The image data for the normalized image.
 
-A property that holds image data represented by the DSImageData type, defined in the Core.BasicStructures namespace. 
+**See Also**
 
-```ts
-imageData: DSImageData;
-```
+[DSImageData](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/ds-image-data.html)
 
-### referencedElement
-
-A property that holds a reference to another RegionObjectElement from the Core.IntermediateResult namespace. This property is used to establish a connection or reference between the normalized image element and the original region object that it refers to.
-
-```ts
-referencedElement: RegionObjectElement;
-```
+[RegionObjectElement](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/intermediate-results/region-object-element.html)

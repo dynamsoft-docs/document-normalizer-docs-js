@@ -19,7 +19,7 @@ interface DetectedQuadsResult {
     readonly errorString: string;
     readonly originalImageHashId: string;
     readonly originalImageTag: ImageTag;
-    readonly detectedQuadResultItems: Array<DetectedQuadResultItem>;
+    readonly quadsResultItems: Array<DetectedQuadResultItem>;
 }
 ```
 
@@ -43,7 +43,7 @@ The tag associated with the original image.
 
 [ImageTag](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/image-tag.html)
 
-## detectedQuadResultItems
+## quadsResultItems
 
 An array of `DetectedQuadResultItem` objects, each representing a detected quadrilateral within the original image. 
 

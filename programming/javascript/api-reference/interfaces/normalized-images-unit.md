@@ -9,24 +9,24 @@ noTitleIndex: true
 
 # NormalizedImagesUnit
 
-The NormalizedImagesUnit interface inherits from IntermediateResultUnit interface in the Core.IntermediateResult namespace. It includes additional properties `normalizedImages`.
-
-## Definition
+The `NormalizedImagesUnit` interface extends the `IntermediateResultUnit` interface and represents a unit of normalized images.
 
 ```ts
-interface NormalizedImagesUnit extends Core.IntermediateResult.IntermediateResultUnit {
-    normalizedImages: Array<NormalizedImagesUnit>;
+interface NormalizedImagesUnit extends IntermediateResultUnit {
+    normalizedImages: Array<NormalizedImageElement>;
 }
 ```
 
-| Properties               | Type |
-|----------------------|-------------|
-| [`normalizedImages`](#normalizedimages) | *Array\<NormalizedImagesUnit>* |
+## normalizedImages
 
-### normalizedImages
-
-An array of NormalizedImageElement objects. It holds the normalized image elements, each NormalizedImageElement represents an image that has been normalized (cropped and standardized).
+An array of `NormalizedImageElement` objects, each representing a piece of the original image after normalization.
 
 ```ts
-normalizedImages: Array<NormalizedImagesUnit>;
+normalizedImages: Array<NormalizedImageElement>;
 ```
+
+**See Also**
+
+[IntermediateResultUnit](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/intermediate-results/intermediate-result-unit.html)
+
+[NormalizedImageElement](./normalized-image-element.md)

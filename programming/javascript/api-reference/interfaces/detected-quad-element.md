@@ -9,24 +9,18 @@ noTitleIndex: true
 
 # DetectedQuadElement
 
-The DetectedQuadElement interface inherits from RegionObjectElement interface in the Core.IntermediateResult namespace. It includes additional properties `confidenceAsDocumentBoundary`.
-
-## Definition
+The `DetectedQuadElement` interface extends the `RegionObjectElement` interface and represents a detected quadrilateral element.
 
 ```ts
-interface DetectedQuadElement extends Core.IntermediateResult.RegionObjectElement {
+interface DetectedQuadElement extends RegionObjectElement {
     confidenceAsDocumentBoundary: number;
 }
 ```
 
-| Properties              | Type |
-|----------------------|-------------|
-| [`confidenceAsDocumentBoundary`](#confidenceasdocumentboundary) | *number* |
+## confidenceAsDocumentBoundary
 
-### confidenceAsDocumentBoundary
+A confidence score indicating the likelihood that the detected quadrilateral accurately represents a document boundary.
 
-A number representing the confidence score of the detected quad element. The confidence score indicates the certainty or accuracy of the quad element being identified as a boundary of a document.
+**See Also**
 
-```ts
-confidenceAsDocumentBoundary: number;
-```
+[RegionObjectElement](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/intermediate-results/region-object-element.html)
