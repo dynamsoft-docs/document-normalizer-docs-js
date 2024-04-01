@@ -19,7 +19,7 @@ interface DetectedQuadElement extends RegionObjectElement {
 
 ## confidenceAsDocumentBoundary
 
-A confidence score indicating the likelihood that the detected quadrilateral accurately represents a document boundary.
+A confidence score measuring the certainty that the detected quadrilateral represents the boundary of a document.
 
 **See Also**
 

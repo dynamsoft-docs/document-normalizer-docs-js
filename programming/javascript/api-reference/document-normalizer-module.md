@@ -34,9 +34,8 @@ This class defines common functionality in the `DocumentNormalizer` module. At p
 * [NormalizedImageResultItem](./interfaces/normalized-image-result-item.md)
 * [NormalizedImagesResult](./interfaces/normalized-images-result.md)
 * [NormalizedImagesUnit](./interfaces/normalized-images-unit.md)
-  
-<!--* [SimplifiedDocumentNormalizerSettings](./interfaces/simplified-document-normalizer-settings.md)-->
+* [SimplifiedDocumentNormalizerSettings](./interfaces/simplified-document-normalizer-settings.md)
 
-<!-- ## Enums
+## Enums
 
-* [EnumImageColourMode]({{ site.dcv_enumerations }}document-normalizer/extended-barcode-result-type.html?lang=js) -->
+* [EnumImageColourMode]({{ site.enums }}document-normalizer/image-colour-mode.html?lang=js)

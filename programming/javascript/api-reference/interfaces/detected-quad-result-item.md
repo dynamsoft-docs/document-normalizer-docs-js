@@ -24,7 +24,7 @@ The location of the detected quadrilateral within the original image, represente
 
 ## confidenceAsDocumentBoundary
 
-A confidence score related to the detected quadrilateral's accuracy as a document boundary.
+A confidence score measuring the certainty that the detected quadrilateral represents the boundary of a document.
 
 **See Also**
 
