@@ -220,7 +220,7 @@ Options to download the SDK:
   yarn add dynamsoft-document-normalizer@2.2.10 --save
   yarn add dynamsoft-capture-vision-router@2.2.10 --save
   yarn add dynamsoft-camera-enhancer@4.0.2 --save
-  yarn add dynamsoft-capture-vision-std@1.0.0 --save
+  yarn add dynamsoft-capture-vision-std@1.2.0 --save
   yarn add dynamsoft-image-processing@2.0.30 --save
   ```
 
@@ -233,7 +233,7 @@ Options to download the SDK:
   npm install dynamsoft-document-normalizer@2.2.10 --save
   npm install dynamsoft-capture-vision-router@2.2.10 --save
   npm install dynamsoft-camera-enhancer@4.0.2 --save
-  npm install dynamsoft-capture-vision-std@1.0.0 --save
+  npm install dynamsoft-capture-vision-std@1.2.0 --save
   npm install dynamsoft-image-processing@2.0.30 --save
   ```
 
@@ -268,14 +268,15 @@ The purpose is to tell the SDK where to find the engine files (\*.worker.js, \*.
 
 ```javascript
 //The following code uses the jsDelivr CDN, feel free to change it to your own location of these files
-Dynamsoft.Core.CoreModule.engineResourcePaths.core = "https://cdn.jsdelivr.net/npm/dynamsoft-core@3.2.10/dist/";
-Dynamsoft.Core.CoreModule.engineResourcePaths.license = "https://cdn.jsdelivr.net/npm/dynamsoft-license@3.2.10/dist/";
-Dynamsoft.Core.CoreModule.engineResourcePaths.ddn = "https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.2.10/dist/";
-Dynamsoft.Core.CoreModule.engineResourcePaths.cvr = "https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.2.10/dist/";
-Dynamsoft.Core.CoreModule.engineResourcePaths.dce = "https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.2/dist/";
-Dynamsoft.Core.CoreModule.engineResourcePaths.std = "https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-std@1.0.0/dist/";
-Dynamsoft.Core.CoreModule.engineResourcePaths.dip = "https://cdn.jsdelivr.net/npm/dynamsoft-image-processing@2.0.30/dist/";
-Dynamsoft.Core.CoreModule.engineResourcePaths.utility = "https://cdn.jsdelivr.net/npm/dynamsoft-utility@1.2.10/dist/";
+Object.assign(Dynamsoft.Core.CoreModule.engineResourcePaths, {
+  Dynamsoft.Core.CoreModule.engineResourcePaths.core = "https://cdn.jsdelivr.net/npm/dynamsoft-core@3.2.10/dist/";
+  Dynamsoft.Core.CoreModule.engineResourcePaths.license = "https://cdn.jsdelivr.net/npm/dynamsoft-license@3.2.10/dist/";
+  Dynamsoft.Core.CoreModule.engineResourcePaths.ddn = "https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.2.10/dist/";
+  Dynamsoft.Core.CoreModule.engineResourcePaths.cvr = "https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.2.10/dist/";
+  Dynamsoft.Core.CoreModule.engineResourcePaths.dce = "https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.2/dist/";
+  Dynamsoft.Core.CoreModule.engineResourcePaths.std = "https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-std@1.2.0/dist/";
+  Dynamsoft.Core.CoreModule.engineResourcePaths.dip = "https://cdn.jsdelivr.net/npm/dynamsoft-image-processing@2.0.30/dist/";
+});
 ```
 
 ### Define necessary HTML elements
