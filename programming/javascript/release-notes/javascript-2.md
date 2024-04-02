@@ -10,7 +10,7 @@ noTitleIndex: true
 
 # Release Notes for Dynamsoft Document Normalizer JavaScript SDK
 
-## 2.2.10 (04/01/2024)
+## 2.2.10 (04/02/2024)
 
 ### New
 

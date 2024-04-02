@@ -269,13 +269,13 @@ The purpose is to tell the SDK where to find the engine files (\*.worker.js, \*.
 ```javascript
 //The following code uses the jsDelivr CDN, feel free to change it to your own location of these files
 Object.assign(Dynamsoft.Core.CoreModule.engineResourcePaths, {
-  Dynamsoft.Core.CoreModule.engineResourcePaths.core = "https://cdn.jsdelivr.net/npm/dynamsoft-core@3.2.10/dist/";
-  Dynamsoft.Core.CoreModule.engineResourcePaths.license = "https://cdn.jsdelivr.net/npm/dynamsoft-license@3.2.10/dist/";
-  Dynamsoft.Core.CoreModule.engineResourcePaths.ddn = "https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.2.10/dist/";
-  Dynamsoft.Core.CoreModule.engineResourcePaths.cvr = "https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.2.10/dist/";
-  Dynamsoft.Core.CoreModule.engineResourcePaths.dce = "https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.2/dist/";
-  Dynamsoft.Core.CoreModule.engineResourcePaths.std = "https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-std@1.2.0/dist/";
-  Dynamsoft.Core.CoreModule.engineResourcePaths.dip = "https://cdn.jsdelivr.net/npm/dynamsoft-image-processing@2.2.10/dist/";
+  core: "https://cdn.jsdelivr.net/npm/dynamsoft-core@3.2.10/dist/",
+  license: "https://cdn.jsdelivr.net/npm/dynamsoft-license@3.2.10/dist/",
+  ddn: "https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.2.10/dist/",
+  cvr: "https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.2.10/dist/",
+  dce: "https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.2/dist/",
+  std: "https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-std@1.2.0/dist/",
+  dip: "https://cdn.jsdelivr.net/npm/dynamsoft-image-processing@2.2.10/dist/",
 });
 ```
 
