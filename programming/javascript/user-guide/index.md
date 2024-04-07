@@ -221,7 +221,7 @@ Options to download the SDK:
   yarn add dynamsoft-capture-vision-router@2.2.10 --save
   yarn add dynamsoft-camera-enhancer@4.0.2 --save
   yarn add dynamsoft-capture-vision-std@1.2.0 --save
-  yarn add dynamsoft-image-processing@2.0.30 --save
+  yarn add dynamsoft-image-processing@2.2.10 --save
   ```
 
 - npm
@@ -234,7 +234,7 @@ Options to download the SDK:
   npm install dynamsoft-capture-vision-router@2.2.10 --save
   npm install dynamsoft-camera-enhancer@4.0.2 --save
   npm install dynamsoft-capture-vision-std@1.2.0 --save
-  npm install dynamsoft-image-processing@2.0.30 --save
+  npm install dynamsoft-image-processing@2.2.10 --save
   ```
 
 Depending on how you downloaded the SDK and where you put it, you can typically include it like this:
@@ -386,12 +386,7 @@ async function startDetecting() {
       await router.startCapturing("DetectDocumentBoundaries_Default");
     })());
   } catch (ex) {
-    let errMsg;
-    if (ex.message.includes("network connection error")) {
-      errMsg = "Failed to connect to Dynamsoft License Server: network connection error. Check your Internet connection or contact Dynamsoft Support (support@dynamsoft.com) to acquire an offline license.";
-    } else {
-      errMsg = ex.message || ex;
-    }
+    let errMsg = ex.message || ex;
     console.error(errMsg);
     alert(errMsg);
   }
@@ -459,7 +454,7 @@ async function handleCapturedResult(result) {
           for (let i = 0; i < result.items.length; i++) {
             if (result.items[i].type === Dynamsoft.Core.EnumCapturedResultItemType.CRIT_ORIGINAL_IMAGE) continue;
             const points = result.items[i].location.points;
-            const quad = new Dynamsoft.DCE.DrawingItem.QuadDrawingItem({ points });
+            const quad = new Dynamsoft.DCE.QuadDrawingItem({ points });
             quads.push(quad);
             layer.addDrawingItems(quads);
           }
@@ -578,7 +573,7 @@ You can also test the code above at [https://jsfiddle.net/DynamsoftTeam/](https:
     <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg" alt="Code in Github" width="20" height="20" style="width:20px;height:20px;">
   </a>
   &nbsp;
-  <a target="_blank" href="https://https://jsfiddle.net/DynamsoftTeam/L4m7r1db/" title="Run via JSFiddle">
+  <a target="_blank" href="https://jsfiddle.net/DynamsoftTeam/L4m7r1db/" title="Run via JSFiddle">
     <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/jsfiddle.svg" alt="Run via JSFiddle" width="20" height="20" style="width:20px;height:20px;">
   </a>
 </p>
