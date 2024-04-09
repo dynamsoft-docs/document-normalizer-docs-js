@@ -9,34 +9,25 @@ noTitleIndex: true
 
 # DetectedQuadResultItem
 
-An interface that extends the CapturedResultItem interface from the Core.BasicStructures namespace. It represents a detected quad result item and includes properties such as location (the quadrilateral's coordinates) and confidenceAsDocumentBoundary (the confidence score of the quad as a document boundary).
-
-## Definition
+The `DetectedQuadResultItem` interface extends the `CapturedResultItem` interface and represents a detected quadrilateral result item.
 
 ```ts
-interface DetectedQuadResultItem extends Core.BasicStructures.CapturedResultItem {
+interface DetectedQuadResultItem extends CapturedResultItem {
     location: Quadrilateral;
     confidenceAsDocumentBoundary: number;
 }
 ```
 
-| Properties             | Type |
-|----------------------|-------------|
-| [`location`](#location) | *Quadrilateral* |
-| [`confidenceAsDocumentBoundary`](#confidenceasdocumentboundary) | *number* |
+## location
 
-### location
+The location of the detected quadrilateral within the original image, represented as a quadrilateral shape.
 
-The detected quadrilateral's coordinates.
+## confidenceAsDocumentBoundary
 
-```ts
-location: Quadrilateral;
-```
+A confidence score measuring the certainty that the detected quadrilateral represents the boundary of a document.
 
-### confidenceAsDocumentBoundary
+**See Also**
 
-A number representing the confidence score of the detected quad element. The confidence score indicates the certainty or accuracy of the quad element being identified as a boundary of a document.
+[CapturedResultItem](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/captured-result-item.html)
 
-```ts
-confidenceAsDocumentBoundary: number;
-```
+[Quadrilateral](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/quadrilateral.html)

@@ -9,44 +9,45 @@ noTitleIndex: true
 
 # NormalizedImagesResult
 
-An interface represents the result of normalized images. It includes properties such as originalImageHashId, originalImageTag, and normalizedImageResultItems (an array of `NormalizedImageResultItem` objects).
+The `NormalizedImagesResult` interface holds information on normalized images, of type `NormalizedImageResultItem`, derived from an original image.
 
 ## Definition
 
 ```ts
 interface NormalizedImagesResult {
+    readonly errorCode: number;
+    readonly errorString: string;
     readonly originalImageHashId: string;
     readonly originalImageTag: ImageTag;
-    normalizedImageResultItems: Array<NormalizedImageResultItem>;
+    readonly normalizedImageResultItems: Array<NormalizedImageResultItem>;
 }
 ```
 
-| Properties              | Type |
-|----------------------|-------------|
-| [`originalImageHashId`](#originalimagehashid) | *string* |
-| [`originalImageTag`](#originalimagetag) | *ImageTag* |
-| [`normalizedImageResultItems`](#normalizedimageresultitems) | *Array\<NormalizedImagesResult>* |
 
-### originalImageHashId
+## errorCode
 
-Gets the hash ID of the original image.
+Error code associated with the capture result.
 
-```ts
-readonly originalImageHashId: string;
-```
+## errorString
 
-### originalImageTag
+Error string providing details about the error.
 
-Gets the tag of the original image.
+## originalImageHashId
 
-```ts
-readonly originalImageTag: ImageTag;
-```
+The hash ID of the original image.
 
-### normalizedImageResultItems
+## originalImageTag
 
-An array of NormalizedImageResultItem objects, represented by Array<NormalizedImageResultItem>.
+The tag associated with the original image.
 
-```ts
-normalizedImageResultItems: Array<NormalizedImageResultItem>;
-```
+**See Also**
+
+[ImageTag](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/image-tag.html)
+
+## normalizedImageResultItems
+
+An array of `NormalizedImageResultItem` objects, each representing a piece of the original image after normalization.
+
+**See Also**
+
+[NormalizedImageResultItem](./normalized-image-result-item.md)

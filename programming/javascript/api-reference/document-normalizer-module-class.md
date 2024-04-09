@@ -10,7 +10,7 @@ noTitleIndex: true
 
 # DocumentNormalizerModule Class
 
-The `DocumentNormalizerModule` Class is defined in the namespace `Dynamsoft.DDN`.
+The `DocumentNormalizerModule` class defines common functionality in the `DocumentNormalizer` module.
 
 | API Name                             | Description                                             |
 | ------------------------------------ | ------------------------------------------------------- |
@@ -18,7 +18,7 @@ The `DocumentNormalizerModule` Class is defined in the namespace `Dynamsoft.DDN`
 
 ### getVersion
 
-Returns the version of the `DocumentNormalizer` module.
+Returns the version of the DocumentNormalizer module.
 
 ```typescript
 static getVersion(): string;
@@ -27,6 +27,6 @@ static getVersion(): string;
 **Code snippet**
 
 ```javascript
-const version = DocumentNormalizerModule.getVersion();
+const version = Dynamsoft.DDN.DocumentNormalizerModule.getVersion();
 console.log(version);
 ```

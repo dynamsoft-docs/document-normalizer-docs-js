@@ -21,22 +21,22 @@ Due to changes in the SDK architecture, adjustments are necessary in your code f
 - jsDelivr
 
   ```html
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-core@3.0.30/dist/core.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-license@3.0.20/dist/license.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-core@3.2.10/dist/core.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-license@3.2.10/dist/license.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dynamsoft-utility@1.0.20/dist/utility.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.0.20/dist/ddn.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.0.30/dist/cvr.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.1/dist/dce.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.2.10/dist/ddn.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.2.10/dist/cvr.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.2/dist/dce.js"></script>
   ```
 
 - UNPKG
   ```html
-  <script src="https://unpkg.com/dynamsoft-core@3.0.30/dist/core.js"></script>
-  <script src="https://unpkg.com/dynamsoft-license@3.0.20/dist/license.js"></script>
+  <script src="https://unpkg.com/dynamsoft-core@3.2.10/dist/core.js"></script>
+  <script src="https://unpkg.com/dynamsoft-license@3.2.10/dist/license.js"></script>
   <script src="https://unpkg.com/dynamsoft-utility@1.0.20/dist/utility.js"></script>
-  <script src="https://unpkg.com/dynamsoft-document-normalizer@2.0.20/dist/ddn.js"></script>
-  <script src="https://unpkg.com/dynamsoft-capture-vision-router@2.0.30/dist/cvr.js"></script>
-  <script src="https://unpkg.com/dynamsoft-camera-enhancer@4.0.1/dist/dce.js"></script>
+  <script src="https://unpkg.com/dynamsoft-document-normalizer@2.2.10/dist/ddn.js"></script>
+  <script src="https://unpkg.com/dynamsoft-capture-vision-router@2.2.10/dist/cvr.js"></script>
+  <script src="https://unpkg.com/dynamsoft-camera-enhancer@4.0.2/dist/dce.js"></script>
   ```
 
 or
@@ -49,7 +49,7 @@ or
 
 * The API for preloading resources has also been refactored. Instead of `Dynamsoft.CVR.CaptureVisionRouter.preloadModule()`, please use use `Dynamsoft.Core.CoreModule.loadWasm()`.
 
-| v2.0.11 API             | v2.0.20 API                                                                        |
+| v2.0.11 API             | v2.0.20+ API                                                                        |
 | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | Dynamsoft.CVR.CaptureVisionRouter.engineResourcePath               | Dynamsoft.Core.CoreModule.engineResourcePaths                                                                               |
 | Dynamsoft.CVR.CaptureVisionRouter.preloadModule()                       | Dynamsoft.Core.CoreModule.loadWasm()                                                                                      |
@@ -58,7 +58,7 @@ or
 
 We have made the following adjustments to the naming of the preset templates:
 
-| v2.0.11 Preset Templates           | v2.0.20 Preset Templates                                                                         |
+| v2.0.11 Preset Templates           | v2.0.20+ Preset Templates                                                                         |
 | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | detect-document-boundaries               | DetectDocumentBoundaries_Default                                                                               |
 | normalize-document                       | NormalizeDocument_Default                                                                                      |
@@ -79,22 +79,22 @@ Since the SDK architecture is changed, you have to change your code for includin
 - jsDelivr
 
   ```html
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-core@3.0.30/dist/core.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-license@3.0.20/dist/license.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-core@3.2.10/dist/core.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-license@3.2.10/dist/license.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dynamsoft-utility@1.0.20/dist/utility.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.0.20/dist/ddn.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.0.30/dist/cvr.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.1/dist/dce.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.2.10/dist/ddn.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.2.10/dist/cvr.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.2/dist/dce.js"></script>
   ```
 
 - UNPKG
   ```html
-  <script src="https://unpkg.com/dynamsoft-core@3.0.30/dist/core.js"></script>
-  <script src="https://unpkg.com/dynamsoft-license@3.0.20/dist/license.js"></script>
+  <script src="https://unpkg.com/dynamsoft-core@3.2.10/dist/core.js"></script>
+  <script src="https://unpkg.com/dynamsoft-license@3.2.10/dist/license.js"></script>
   <script src="https://unpkg.com/dynamsoft-utility@1.0.20/dist/utility.js"></script>
-  <script src="https://unpkg.com/dynamsoft-document-normalizer@2.0.20/dist/ddn.js"></script>
-  <script src="https://unpkg.com/dynamsoft-capture-vision-router@2.0.30/dist/cvr.js"></script>
-  <script src="https://unpkg.com/dynamsoft-camera-enhancer@4.0.1/dist/dce.js"></script>
+  <script src="https://unpkg.com/dynamsoft-document-normalizer@2.2.10/dist/ddn.js"></script>
+  <script src="https://unpkg.com/dynamsoft-capture-vision-router@2.2.10/dist/cvr.js"></script>
+  <script src="https://unpkg.com/dynamsoft-camera-enhancer@4.0.2/dist/dce.js"></script>
   ```
 
 or

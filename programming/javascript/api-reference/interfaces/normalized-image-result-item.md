@@ -9,12 +9,10 @@ noTitleIndex: true
 
 # NormalizedImageResultItem
 
-An interface that extends the CapturedResultItem interface from the Core.BasicStructures namespace. It represents a normalized image result item and includes properties such as imageData (the image data), location (the quadrilateral's coordinates), and additional methods such as toCanvas, toImage, toBlob, and saveToFile for further processing and conversion.
-
-## Definition
+The `NormalizedImageResultItem` interface extends the `CapturedResultItem` interface and represents a normalized image result item.
 
 ```ts
-interface NormalizedImageResultItem extends Core.BasicStructures.CapturedResultItem {
+interface NormalizedImageResultItem extends CapturedResultItem {
     imageData: DSImageData;
     location: Quadrilateral;
     toCanvas(): HTMLCanvasElement;
@@ -24,82 +22,56 @@ interface NormalizedImageResultItem extends Core.BasicStructures.CapturedResultI
 }
 ```
 
-| API Name               | Description |
-|----------------------|-------------|
-| [`imageData`](#imagedata) | A property holds the image data for the normalized image. |
-| [`location`](#location) | A property represents the location of the normalized image as a quadrilateral. |
-| [`toCanvas`](#tocanvas) | Returns an HTMLCanvasElement representing the normalized image. |
-| [`toImage`](#toimage) | Returns an HTMLImageElement representing the normalized image with the specified MIME type. |
-| [`toBlob`](#toblob) | Returns a Promise that resolves to a Blob representing the normalized image with the specified MIME type. |
-| [`saveToFile`](#savetofile) | Saves the normalized image to a File object in memory and optionally downloads it to the local drive. |
+## imageData
 
+The image data for the normalized image result.
 
-### imageData
+**See Also**
 
- A property of type DSImageData from the Core.BasicStructures namespace. It holds the image data for the normalized image.
+[DSImageData](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/ds-image-data.html)
 
-```ts
-imageData: DSImageData;
-```
+## location
 
-### location
+The location where the normalized image was extracted from within the original image, represented as a quadrilateral.
 
- A property of type Quadrilateral from the Core.BasicStructures namespace. It represents the location of the normalized image as a quadrilateral.
+**See Also**
 
-```ts
-location: Quadrilateral;
-```
+[Quadrilateral](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/quadrilateral.html)
 
-### toCanvas
+## toCanvas
 
-```ts
-toCanvas(): HTMLCanvasElement;
-```
+Converts the normalized image data into an HTMLCanvasElement for display or further manipulation in web applications.
 
-**Return Value**
+**See Also**
 
-Returns an HTMLCanvasElement representing the normalized image.
+[HTMLCanvasElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement)
 
-### toImage
+## toImage
 
-```ts
-toImage(MIMEType: "image/png" | "image/jpeg"): HTMLImageElement;
-```
+Converts the normalized image data into an HTMLImageElement of a specified MIME type ('image/png' or 'image/jpeg').
 
-**Parameters**
+**See Also**
 
-`MIMEType`:  Take a type of "image/png" or "image/jpeg".
+[HTMLImageElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement)
 
-**Return Value**
+## toBlob
 
-Returns an HTMLImageElement representing the normalized image with the specified MIME type.
+Converts the normalized image data into a Blob object of a specified MIME type ('image/png' or 'image/jpeg').
 
-### toBlob
+**See Also**
 
-```ts
-toBlob(MIMEType: "image/png" | "image/jpeg"): Promise<Blob>;
-```
+[Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob)
+
+## saveToFile
+
+Saves the normalized image to a File object in memory, optionally downloading it to the user's device.
 
 **Parameters**
 
-`MIMEType`:  Take a type of "image/png" or "image/jpeg".
+`name`: the name to assign to the File object.
 
-**Return Value**
+`download` optional. If true, triggers the download of the file once created; otherwise, retains the file in memory.
 
-Returns a Promise that resolves to a Blob representing the normalized image with the specified MIME type.
+**See Also**
 
-### saveToFile
-
-```ts
-saveToFile(name: string, download?: boolean): Promise<File>;
-```
-
-**Parameters**
-
-`name`:  Specifies the name of the file object.
-
-`download`: Specifies whether to download the file when it's created.
-
-**Return Value**
-
-Returns a Promise that resolves to the File object.
+[File](https://developer.mozilla.org/en-US/docs/Web/API/File)

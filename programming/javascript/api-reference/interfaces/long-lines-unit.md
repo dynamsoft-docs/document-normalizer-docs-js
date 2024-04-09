@@ -9,24 +9,20 @@ noTitleIndex: true
 
 # LongLinesUnit
 
-The LongLinesUnit interface inherits from IntermediateResultUnit interface in the Core.IntermediateResult namespace. It includes additional properties `longLines`.
-
-## Definition
+The `LongLinesUnit` interface extends the `IntermediateResultUnit` interface and represents a unit of long line segments.
 
 ```ts
-interface LongLinesUnit extends Core.IntermediateResult.IntermediateResultUnit {
+interface LongLinesUnit extends IntermediateResultUnit {
     longLines: Array<LineSegment>;
 }
 ```
 
-| Properties               | Type |
-|----------------------|-------------|
-| [`longLines`](#longlines) | *Array\<LineSegment>* |
+## longLines
 
-### longLines
+An array of long line segments detected within the image.
 
-An array of LineSegment objects, represented by Array<LineSegment>. It holds the long lines detected or processed as part of the intermediate result. Each LineSegment represents a line segment defined by its start and end points.
+**See Also**
 
-```ts
-longLines: Array<LineSegment>;
-```
+[IntermediateResultUnit](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/intermediate-results/intermediate-result-unit.html)
+
+[LineSegment](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/line-segment.html)

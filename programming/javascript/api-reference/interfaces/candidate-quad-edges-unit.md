@@ -9,24 +9,20 @@ noTitleIndex: true
 
 # CandidateQuadEdgesUnit
 
-The CandidateQuadEdgesUnit interface extends the IntermediateResultUnit interface and represents a unit of intermediate result specifically for candidate quadrilateral edges. It includes additional properties that provide information about the edges.
-
-## Definition
+The `CandidateQuadEdgesUnit` interface extends the `IntermediateResultUnit` interface and represents a unit of candidate edges.
 
 ```ts
-interface CandidateQuadEdgesUnit extends Core.IntermediateResult.IntermediateResultUnit {
+interface CandidateQuadEdgesUnit extends IntermediateResultUnit {
     candidateQuadEdges: Array<Edge>;
 }
 ```
 
-| Properties               | Type |
-|----------------------|-------------|
-| [`candidateQuadEdges`](#candidatequadedges) | *Array\<Edge>* |
+## candidateQuadEdges
 
-### candidateQuadEdges
+An array of candidate edges that may form quadrilaterals, identified during image processing.
 
-Gets the candidate quad edges related to the intermediate result. The Edge type is defined in the Core.BasicStructures namespace.
+**See Also**
 
-```ts
-candidateQuadEdges: Array<Edge>;
-```
+[IntermediateResultUnit](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/intermediate-results/intermediate-result-unit.html)
+
+[Edge](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/edge.html)
