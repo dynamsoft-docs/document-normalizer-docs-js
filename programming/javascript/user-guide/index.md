@@ -24,8 +24,8 @@ In this guide, you'll learn step-by-step how to build such a simple solution in 
     - [Run the example](#run-the-example)
   - [Building your own page](#building-your-own-page)
     - [Include the SDK](#include-the-sdk)
-      - [Use a public CDN](#use-a-public-cdn)
-      - [Host the SDK yourself (Optional)](#host-the-sdk-yourself-optional)
+      - [Use a CDN](#use-a-cdn)
+      - [Host the SDK yourself](#host-the-sdk-yourself)
       - [Specify the location of the "engine" files (optional)](#specify-the-location-of-the-engine-files-optional)
     - [Define necessary HTML elements](#define-necessary-html-elements)
     - [Prepare the SDK for the task](#prepare-the-sdk-for-the-task)
@@ -55,7 +55,12 @@ The following sample code sets up the SDK and implements boundary detection on a
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer-bundle@2.2.1000/dist/ddn.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-core@3.2.10/dist/core.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-license@3.2.10/dist/license.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-utility@1.2.10/dist/utility.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.2.10/dist/ddn.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.2.10/dist/cvr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.2/dist/dce.js"></script>
 </head>
 
 <body>
@@ -67,7 +72,7 @@ The following sample code sets up the SDK and implements boundary detection on a
         const cameraViewContainer = document.querySelector(
             "#cameraViewContainer"
         );
-        let cvRouter;
+        let router;
         let cameraEnhancer;
         Dynamsoft.License.LicenseManager.initLicense(
                 "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9"
@@ -75,18 +80,18 @@ The following sample code sets up the SDK and implements boundary detection on a
         Dynamsoft.Core.CoreModule.loadWasm(["DDN"]);
 
         (async function() {
-            cvRouter = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
+            router = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
             let view = await Dynamsoft.DCE.CameraView.createInstance();
             cameraEnhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance(
                 view
             );
             cameraViewContainer.append(view.getUIElement());
-            cvRouter.setInput(cameraEnhancer);
+            router.setInput(cameraEnhancer);
         })();
         async function startDetection() {
             cameraViewContainer.style.display = "block";
             await cameraEnhancer.open();
-            await cvRouter.startCapturing("DetectDocumentBoundaries_Default");
+            await router.startCapturing("DetectDocumentBoundaries_Default");
         };
     </script>
 </body>
@@ -102,13 +107,13 @@ The following sample code sets up the SDK and implements boundary detection on a
 
 - `Dynamsoft.Core.CoreModule.loadWasm(["DDN"])`: preloads the `DocumentNormalizer` module, saving time in preparing for document border detection and image normalization.
 
-- `Dynamsoft.CVR.CaptureVisionRouter.createInstance()`: initializes the `cvRouter` variable by creating an instance of the `CaptureVisionRouter` class. An instance of `CaptureVisionRouter` is the core of any solution based on Dynamsoft Capture Vision architecture.
+- `Dynamsoft.CVR.CaptureVisionRouter.createInstance()`: initializes the `router` variable by creating an instance of the `CaptureVisionRouter` class. An instance of `CaptureVisionRouter` is the core of any solution based on Dynamsoft Capture Vision architecture.
 
   > Read more on [what is CaptureVisionRouter](https://www.dynamsoft.com/capture-vision/docs/core/architecture/#capture-vision-router)
 
 - `Dynamsoft.DCE.CameraEnhancer.createInstance(view)`: initializes the `cameraEnhancer` variable by creating an instance of the `CameraEnhancer` class.
 
-- `setInput()`: `cvRouter` connects to the image source through the [Image Source Adapter](https://www.dynamsoft.com/capture-vision/docs/web//programming/javascript/api-reference/core/image-source-adapter.html) interface with the method `setInput()`.
+- `setInput()`: `router` connects to the image source through the [Image Source Adapter](https://www.dynamsoft.com/capture-vision/docs/web//programming/javascript/api-reference/core/image-source-adapter.html) interface with the method `setInput()`.
 
   > The image source in our case is a CameraEnhancer object created with `Dynamsoft.DCE.CameraEnhancer.createInstance(view)`
 
@@ -168,46 +173,33 @@ To utilize the SDK, the initial step involves including the corresponding resour
 * `cvr.js`: Required, introduces the `CaptureVisionRouter` class, which governs the entire image processing workflow.
 * `dce.js`: Recommended, comprises classes that offer camera support and basic user interface functionalities.
 
-For simplification, starting from version 2.2.10, we introduced ddn.bundle.js. Including this file is equivalent to incorporating all six packages.
-
-* dynamsoft-core@3.2.30/dist/core.js
-* dynamsoft-license@3.2.21/dist/license.js
-* dynamsoft-utility@1.2.20/dist/utility.js
-* dynamsoft-document-normalizer@3.2.30/dist/ddn.js
-* dynamsoft-capture-vision-router@2.2.30/dist/cvr.js
-* dynamsoft-camera-enhancer@4.0.3/dist/dce.js
-
-Equivalent to
-
-* dynamsoft-document-normalizer-bundle@2.2.1000/dist/ddn.bundle.js
-
-In the following chapters, we will use `ddn.bundle.js`.
-
-#### Use a public CDN
+#### Use a CDN
 
 The simplest way to include the SDK is to use either the [jsDelivr](https://jsdelivr.com/) or [UNPKG](https://unpkg.com/) CDN.
 
 - jsDelivr
 
   ```html
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer-bundle@2.2.1000/dist/ddn.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-core@3.2.10/dist/core.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-license@3.2.10/dist/license.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-utility@1.2.10/dist/utility.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.2.10/dist/ddn.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.2.10/dist/cvr.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.2/dist/dce.js"></script>
   ```
 
 - UNPKG
 
   ```html
-  <script src="https://unpkg.com/dynamsoft-document-normalizer-bundle@2.2.1000/dist/ddn.js"></script>
+  <script src="https://unpkg.com/dynamsoft-core@3.2.10/dist/core.js"></script>
+  <script src="https://unpkg.com/dynamsoft-license@3.2.10/dist/license.js"></script>
+  <script src="https://unpkg.com/dynamsoft-utility@1.2.10/dist/utility.js"></script>
+  <script src="https://unpkg.com/dynamsoft-document-normalizer@2.2.10/dist/ddn.js"></script>
+  <script src="https://unpkg.com/dynamsoft-capture-vision-router@2.2.10/dist/cvr.js"></script>
+  <script src="https://unpkg.com/dynamsoft-camera-enhancer@4.0.2/dist/dce.js"></script>
   ```
 
-- In some rare cases (such as some restricted areas), you might not be able to access the CDN. If this happens, you can use the following files for the test.
-
-  ```html
-  <script src="download2.dynamsoft.com/packages/dynamsoft-document-normalizer-bundle@2.2.1000/dist/ddn.js"></script>
-  ```
-
-However, please **DO NOT** use `download2.dynamsoft.com` resources in a production application as they are for temporary testing purposes only. Instead, you can try hosting the SDK yourself.
-
-#### Host the SDK yourself (Optional)
+#### Host the SDK yourself
 
 Besides using the CDN, you can also download the SDK and host its files on your own website / server before including it in your application. When using a CDN, resources related to `dynamsoft-image-processing` and `dynamsoft-capture-vision-std` are automatically loaded over the network; When using them locally, these two packages need to be configured manually.
 
@@ -217,35 +209,53 @@ Options to download the SDK:
 
   [Download the JavaScript ZIP package](https://www.dynamsoft.com/document-normalizer/downloads/?ver=2.2.10&utm_source=guide)
 
-- npm
-
-  ```cmd
-  npm i dynamsoft-document-normalizer-bundle@2.2.1000 -E
-  npm i dynamsoft-capture-vision-std@1.2.0 -E
-  npm i dynamsoft-image-processing@2.2.10 -E
-  ```
-
 - yarn
 
   ```cmd
-  yarn add dynamsoft-document-normalizer-bundle@2.2.1000 -E
-  yarn add dynamsoft-capture-vision-std@1.2.0 -E
-  yarn add dynamsoft-image-processing@2.2.10 -E
+  yarn add dynamsoft-core@3.2.10 --save
+  yarn add dynamsoft-license@3.2.10 --save
+  yarn add dynamsoft-utility@1.2.10 --save
+  yarn add dynamsoft-document-normalizer@2.2.10 --save
+  yarn add dynamsoft-capture-vision-router@2.2.10 --save
+  yarn add dynamsoft-camera-enhancer@4.0.2 --save
+  yarn add dynamsoft-capture-vision-std@1.2.0 --save
+  yarn add dynamsoft-image-processing@2.2.10 --save
+  ```
+
+- npm
+
+  ```cmd
+  npm install dynamsoft-core@3.2.10 --save
+  npm install dynamsoft-license@3.2.10 --save
+  npm install dynamsoft-utility@1.2.10 --save
+  npm install dynamsoft-document-normalizer@2.2.10 --save
+  npm install dynamsoft-capture-vision-router@2.2.10 --save
+  npm install dynamsoft-camera-enhancer@4.0.2 --save
+  npm install dynamsoft-capture-vision-std@1.2.0 --save
+  npm install dynamsoft-image-processing@2.2.10 --save
   ```
 
 Depending on how you downloaded the SDK and where you put it, you can typically include it like this:
 
-- From the website
-  
   ```html
   <!-- Upon extracting the zip package into your project, you can generally include it in the following manner -->
-  <script src="./dynamsoft/distributables/dynamsoft-document-normalizer-bundle@2.2.1000/dist/ddn.js"></script>
+  <script src="./dynamsoft/distributables/dynamsoft-core@3.2.10/dist/core.js"></script>
+  <script src="./dynamsoft/distributables/dynamsoft-license@3.2.10/dist/license.js"></script>
+  <script src="./dynamsoft/distributables/dynamsoft-utility@1.2.10/dist/utility.js"></script>
+  <script src="./dynamsoft/distributables/dynamsoft-document-normalizer@2.2.10/dist/ddn.js"></script>
+  <script src="./dynamsoft/distributables/dynamsoft-capture-vision-router@2.2.10/dist/cvr.js"></script>
+  <script src="./dynamsoft/distributables/dynamsoft-camera-enhancer@4.0.2/dist/dce.js"></script>
   ```
 
-- yarn or npm
+or
 
   ```html
-  <script src="./node_modules/dynamsoft-document-normalizer-bundle@2.2.1000/dist/ddn.js"></script>
+  <script src="./node_modules/dynamsoft-core/dist/core.js"></script>
+  <script src="./node_modules/dynamsoft-license/dist/license.js"></script>
+  <script src="./node_modules/dynamsoft-utility/dist/utility.js"></script>
+  <script src="./node_modules/dynamsoft-document-normalizer/dist/ddn.js"></script>
+  <script src="./node_modules/dynamsoft-capture-vision-router/dist/cvr.js"></script>
+  <script src="./node_modules/dynamsoft-camera-enhancer/dist/dce.js"></script>
   ```
 
 #### Specify the location of the "engine" files (optional)
@@ -263,7 +273,7 @@ Object.assign(Dynamsoft.Core.CoreModule.engineResourcePaths, {
   cvr: "https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.2.10/dist/",
   dce: "https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.0.2/dist/",
   std: "https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-std@1.2.0/dist/",
-  dip: "https://cdn.jsdelivr.net/npm/dynamsoft-image-processing@2.2.10/dist/"
+  dip: "https://cdn.jsdelivr.net/npm/dynamsoft-image-processing@2.2.10/dist/",
 });
 ```
 
@@ -295,7 +305,7 @@ The following function executes as soon as the page loads to get the SDK prepare
 
 ```js
 let cameraEnhancer = null;
-let cvRouter = null;
+let router = null;
 let items;
 let layer;
 let originalImage;
@@ -318,8 +328,8 @@ async function initDCE() {
 
 let cvrReady = (async function initCVR() {
   await initDCE();
-  cvRouter = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
-  cvRouter.setInput(cameraEnhancer);
+  router = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
+  router.setInput(cameraEnhancer);
 })();
 ```
 
@@ -338,20 +348,20 @@ let cvrReady = (async function initCVR() {
    * Also, make sure the original image is returned after it has been processed.
    */
   await initDCE();
-  cvRouter = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
-  cvRouter.setInput(cameraEnhancer);
+  router = await Dynamsoft.CVR.CaptureVisionRouter.createInstance();
+  router.setInput(cameraEnhancer);
   /**
    * Sets the result types to be returned.
    * Because we need to normalize a document from the original image later, here we set the return result type to
    * include both the quadrilateral and original image data.
    */  
-  let newSettings = await cvRouter.getSimplifiedSettings("DetectDocumentBoundaries_Default");
+  let newSettings = await router.getSimplifiedSettings("DetectDocumentBoundaries_Default");
   newSettings.capturedResultItemTypes = Dynamsoft.Core.EnumCapturedResultItemType.CRIT_DETECTED_QUAD | Dynamsoft.Core.EnumCapturedResultItemType.CRIT_ORIGINAL_IMAGE;
-  await cvRouter.updateSettings("DetectDocumentBoundaries_Default", newSettings)
+  await router.updateSettings("DetectDocumentBoundaries_Default", newSettings)
   /* Defines the result receiver for the task.*/
   const resultReceiver = new Dynamsoft.CVR.CapturedResultReceiver();
   resultReceiver.onCapturedResultReceived = handleCapturedResult;
-  cvRouter.addResultReceiver(resultReceiver);
+  router.addResultReceiver(resultReceiver);
 })();
 
 async function handleCapturedResult(result) {
@@ -371,7 +381,7 @@ async function startDetecting() {
       /* Starts streaming the video. */
       await cameraEnhancer.open();
       /* Uses the built-in template "DetectDocumentBoundaries_Default" to start a continuous boundary detection task. */
-      await cvRouter.startCapturing("DetectDocumentBoundaries_Default");
+      await router.startCapturing("DetectDocumentBoundaries_Default");
     })());
   } catch (ex) {
     let errMsg = ex.message || ex;
@@ -384,15 +394,15 @@ async function startDetecting() {
 The steps of the workflow is as follows
 
 1. `cameraEnhancer` streams the video, captures live video frames and stores them in a buffer.
-2. `cvRouter` gets the video frames from `Image Source Adapter` and passes them to be processed by an internal `DocumentNormalizer` instance. The `cameraEnhancer` used here is a special implementation of the `Image Source Adapter`.
-3. The internal `DocumentNormalizer` instance returns the found document boundaries, known as `quadsResultItems`, to `cvRouter`.
-4. The `cvRouter` can output all types of CapturedResults that need to be captured through the `onCapturedResultReceived` callback function. In this example code we use the callback function to output `quadsResultItems` and `originalImageResultItem`.
+2. `router` gets the video frames from `Image Source Adapter` and passes them to be processed by an internal `DocumentNormalizer` instance. The `cameraEnhancer` used here is a special implementation of the `Image Source Adapter`.
+3. The internal `DocumentNormalizer` instance returns the found document boundaries, known as `quadsResultItems`, to `router`.
+4. The `router` can output all types of CapturedResults that need to be captured through the `onCapturedResultReceived` callback function. In this example code we use the callback function to output `quadsResultItems` and `originalImageResultItem`.
 
 > Also note that the `quadsResultItems` are drawn over the video automatically to show the detection in action.
 
 *Note*:
 
-* `cvRouter` is engineered to consistently request images from the image source.
+* `router` is engineered to consistently request images from the image source.
 * Three preset templates are at your disposal for document normalizing or border detection:
 
 | Template Name                          | Function                                          |
@@ -431,7 +441,7 @@ async function handleCapturedResult(result) {
         if (frameCount === 30) {
           frameCount = 0;
           /* Stops the detection task since we assume we have found a good boundary. */
-          cvRouter.stopCapturing();
+          router.stopCapturing();
           /* Hides the cameraView and shows the imageEditorView. */
           cameraViewContainer.style.display = "none";
           imageEditorViewContainer.style.display = "block";
@@ -499,12 +509,12 @@ btnNormalize.addEventListener("click", async () => {
    * Sets the coordinates of the ROI (region of interest)
    * in the built-in template "NormalizeDocument_Default".
    */
-  let newSettings = await cvRouter.getSimplifiedSettings("NormalizeDocument_Default");
+  let newSettings = await router.getSimplifiedSettings("NormalizeDocument_Default");
   newSettings.roiMeasuredInPercentage = 0;
   newSettings.roi.points = quad.points;
-  await cvRouter.updateSettings("NormalizeDocument_Default", newSettings);
+  await router.updateSettings("NormalizeDocument_Default", newSettings);
   /* Executes the normalization and shows the result on the page. */
-  let normalizeResult = await cvRouter.capture(originalImageData, "NormalizeDocument_Default");
+  let normalizeResult = await router.capture(originalImageData, "NormalizeDocument_Default");
   if (normalizeResult.items[0]) {
     normalizedImageContainer.append(normalizeResult.items[0].toCanvas());
   }
@@ -550,7 +560,7 @@ async function restartDetecting() {
   btnRestart.style.display = "none";
   btnNormalize.disabled = true;
   layer.clearDrawingItems()
-  await cvRouter.startCapturing("DetectDocumentBoundaries_Default");
+  await router.startCapturing("DetectDocumentBoundaries_Default");
 }
 ```
 <!--TODO-->
