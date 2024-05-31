@@ -87,7 +87,7 @@ contrast: number;
 
 ## scaleDownThreshold
 
-Set the threshold for scaling down the input image during barcode localization. If the shorter edge size of the image is larger than this threshold,the original may be scaled down to reduce processing time. The default value is 2300.
+Set the threshold for scaling down the input image during document detection. If the shorter edge size of the image is larger than this threshold,the original may be scaled down to reduce processing time. The default value is 2300.
 
 ```typescript
 scaleDownThreshold: number;
