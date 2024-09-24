@@ -16,6 +16,7 @@ In versions 2.x and higher, Dynamsoft Document Normalizer JavaScript Edition inc
 
 * [CaptureVisionRouter]({{ site.dcv_js_api }}capture-vision-router/capture-vision-router-module.html)
 * [DocumentNormalizer](./document-normalizer-module.md)
+* [DynamsoftCameraEnhancer]({{ site.dce_js_api }}index.html)
 * [License]({{ site.dcv_js_api }}license/license-module.html)
 * [Utility]({{ site.dcv_js_api }}utility/utility-module.html)
 * [Core]({{ site.dcv_js_api }}core/core-module.html)
