@@ -20,7 +20,8 @@ dcv_js_api: /capture-vision/docs/web/programming/javascript/api-reference/
 dcv_introduction: /capture-vision/docs/core/introduction/
 dce_js_api: /camera-enhancer/docs/web/programming/javascript/api-reference/
 
-useVersionTree: true
+useVersionTree: false
+isDCV: true
 
 assets: /document-normalizer/docs/web/assets/
 edit_icon: /document-normalizer/docs/web/assets/img-icon/edit-icon.png

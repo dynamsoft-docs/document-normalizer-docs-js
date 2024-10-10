@@ -22,8 +22,6 @@ interface SimplifiedDocumentNormalizerSettings {
     brightness: number;
     contrast: number;
     scaleDownThreshold: number;
-    minQuadrilateralAreaRatio: number;
-    expectedDocumentsCount: number;
 }
 ```
 
@@ -93,20 +91,4 @@ Set the threshold for scaling down the input image during document detection. If
 
 ```typescript
 scaleDownThreshold: number;
-```
-
-## minQuadrilateralAreaRatio
-
-The minimum ratio between the target document area and the total image area. Only those exceeding this value will be output (measured in percentages).
-
-```typescript
-minQuadrilateralAreaRatio: number;
-```
-
-## expectedDocumentsCount
-
-The number of documents expected to be detected.
-
-```typescript
-expectedDocumentsCount: number;
 ```
