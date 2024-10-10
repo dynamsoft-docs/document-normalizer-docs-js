@@ -19,7 +19,8 @@ dcv_parameters: /capture-vision/docs/core/parameters/reference/
 dcv_js_api: /capture-vision/docs/web/programming/javascript/api-reference/
 dcv_introduction: /capture-vision/docs/core/introduction/
 
-useVersionTree: true
+useVersionTree: false
+isDCV: true
 
 assets: /document-normalizer/docs/web/assets/
 edit_icon: /document-normalizer/docs/web/assets/img-icon/edit-icon.png
