@@ -1,33 +1,33 @@
 repository: dynamsoft-docs/document-normalizer-docs-js
 repositoryUrl: https://github.com/dynamsoft-docs/document-normalizer-docs-js/blob/main
-docFullPath: https://www.dynamsoft.com/document-normalizer/docs/web
-firstLevelUrl: /document-normalizer/docs/web
+docFullPath: https://www.dynamsoft.com/document-normalizer/docs-archive/web
+firstLevelUrl: /document-normalizer/docs-archive/web
 docRootName: "Document Normalizer JS Edition" 
-docHomePage: /document-normalizer/docs/web/programming/javascript/
+docHomePage: /document-normalizer/docs-archive/web/programming/javascript/
 
-js: /document-normalizer/docs/web/programming/javascript/
-ddn_js_api: /document-normalizer/docs/web/programming/javascript/api-reference/
-ddn_enums: /document-normalizer/docs/web/programming/enumerations/
-js_release_notes: /document-normalizer/docs/web/programming/javascript/release-notes/
+js: /document-normalizer/docs-archive/web/programming/javascript/
+ddn_js_api: /document-normalizer/docs-archive/web/programming/javascript/api-reference/
+ddn_enums: /document-normalizer/docs-archive/web/programming/enumerations/
+js_release_notes: /document-normalizer/docs-archive/web/programming/javascript/release-notes/
 
-programming: /document-normalizer/docs/web/programming/
+programming: /document-normalizer/docs-archive/web/programming/
 
-enums: /capture-vision/docs/core/enums/
-parameters_reference_ddn: /document-normalizer/docs/core/parameters/reference/
-dcv_parameters: /capture-vision/docs/core/parameters/reference/
+enums: /capture-vision/docs-archive/core/enums/
+parameters_reference_ddn: /document-normalizer/docs-archive/core/parameters/reference/
+dcv_parameters: /capture-vision/docs-archive/core/parameters/reference/
 
-dcv_js_api: /capture-vision/docs/web/programming/javascript/api-reference/
-dcv_introduction: /capture-vision/docs/core/introduction/
-dce_js_api: /camera-enhancer/docs/web/programming/javascript/api-reference/
+dcv_js_api: /capture-vision/docs-archive/web/programming/javascript/api-reference/
+dcv_introduction: /capture-vision/docs-archive/core/introduction/
+dce_js_api: /camera-enhancer/docs-archive/web/programming/javascript/api-reference/
 
 useVersionTree: true
 
-assets: /document-normalizer/docs/web/assets/
-edit_icon: /document-normalizer/docs/web/assets/img-icon/edit-icon.png
-smile_icon: /document-normalizer/docs/web/assets/img-icon/icon-smile.png
-sad_icon: /document-normalizer/docs/web/assets/img-icon/icon-sad.png
+assets: /document-normalizer/docs-archive/web/assets/
+edit_icon: /document-normalizer/docs-archive/web/assets/img-icon/edit-icon.png
+smile_icon: /document-normalizer/docs-archive/web/assets/img-icon/icon-smile.png
+sad_icon: /document-normalizer/docs-archive/web/assets/img-icon/icon-sad.png
 
-baseurl: "/document-normalizer/docs/web"
+baseurl: "/document-normalizer/docs-archive/web"
 
 download: "/document-normalizer/downloads/"
 
@@ -55,12 +55,12 @@ defaults:
       path: "programming/javascript" 
     values: 
       docRootName: "Document Normalizer JavaScript" 
-      docHomePage: "/document-normalizer/docs/web/programming/javascript/"
+      docHomePage: "/document-normalizer/docs-archive/web/programming/javascript/"
   - scope: 
       path: "programming-old/javascript" 
     values: 
       docRootName: "Document Normalizer JavaScript" 
-      docHomePage: "/document-normalizer/docs/web/programming/javascript/"
+      docHomePage: "/document-normalizer/docs-archive/web/programming/javascript/"
 
   - scope:
       path: "Hide_Tree_Page.html"
