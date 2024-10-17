@@ -55,7 +55,7 @@ The following sample code sets up the SDK and implements boundary detection on a
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-bundle@2.4.2000/dist/dcv.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-bundle@2.4.2100/dist/dcv.bundle.js"></script>
 </head>
 
 <body>
@@ -168,13 +168,13 @@ The simplest way to include the SDK is to use either the [jsDelivr](https://jsde
 - jsDelivr
 
   ```html
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-bundle@2.4.2000/dist/dcv.bundle.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-bundle@2.4.2100/dist/dcv.bundle.js"></script>
   ```
 
 - UNPKG
 
   ```html
-  <script src="https://unpkg.com/dynamsoft-capture-vision-bundle@2.4.2000/dist/dcv.bundle.js"></script>
+  <script src="https://unpkg.com/dynamsoft-capture-vision-bundle@2.4.2100/dist/dcv.bundle.js"></script>
   ```
 
 #### Host the SDK yourself
@@ -184,7 +184,7 @@ Besides using the CDN, you can also download the SDK and host its files on your 
 - npm
 
   ```cmd
-  npm i dynamsoft-capture-vision-bundle@2.4.2000 -E
+  npm i dynamsoft-capture-vision-bundle@2.4.2100 -E
   # Compared with using CDN, you need to set up more resources.
   npm i dynamsoft-capture-vision-std@1.4.10 -E
   npm i dynamsoft-image-processing@2.4.20 -E
@@ -207,16 +207,8 @@ This is usually only required with frameworks like Angular or React, etc. where 
 The purpose is to tell the SDK where to find the engine files (\*.worker.js, \*.wasm.js and \*.wasm, etc.). The API is called `Dynamsoft.Core.CoreModule.engineResourcePaths`:
 
 ```javascript
-//The following code uses the jsDelivr CDN, feel free to change it to your own location of these files
-Object.assign(Dynamsoft.Core.CoreModule.engineResourcePaths, {
-  core: "https://cdn.jsdelivr.net/npm/dynamsoft-core@3.4.20/dist/",
-  license: "https://cdn.jsdelivr.net/npm/dynamsoft-license@3.4.20/dist/",
-  ddn: "https://cdn.jsdelivr.net/npm/dynamsoft-document-normalizer@2.4.20/dist/",
-  cvr: "https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-router@2.4.20/dist/",
-  dce: "https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@4.1.0/dist/",
-  std: "https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-std@1.4.10/dist/",
-  dip: "https://cdn.jsdelivr.net/npm/dynamsoft-image-processing@2.4.20/dist/",
-});
+//The following code uses the jsDelivr CDN as an example, feel free to change it to your own location of these files
+CoreModule.engineResourcePaths.rootDirectory = "https://cdn.jsdelivr.net/npm/";
 ```
 
 ### Define necessary HTML elements
