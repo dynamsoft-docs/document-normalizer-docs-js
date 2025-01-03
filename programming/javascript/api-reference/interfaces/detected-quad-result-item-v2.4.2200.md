@@ -15,7 +15,6 @@ The `DetectedQuadResultItem` interface extends the `CapturedResultItem` interfac
 interface DetectedQuadResultItem extends CapturedResultItem {
     location: Quadrilateral;
     confidenceAsDocumentBoundary: number;
-    crossVerificationStatus: EnumCrossVerificationStatus;
 }
 ```
 
@@ -27,14 +26,8 @@ The location of the detected quadrilateral within the original image, represente
 
 A confidence score measuring the certainty that the detected quadrilateral represents the boundary of a document.
 
-## crossVerificationStatus
-
-Indicates whether the DetectedQuadResultItem has passed cross verification.
-
 **See Also**
 
 [CapturedResultItem](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/captured-result-item.html)
 
 [Quadrilateral](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/quadrilateral.html)
-
-[EnumCrossVerificationStatus]({{ site.enums }}core/cross-verification-status.html?lang=js)

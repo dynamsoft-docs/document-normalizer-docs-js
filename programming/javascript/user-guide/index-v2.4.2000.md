@@ -55,7 +55,7 @@ The following sample code sets up the SDK and implements boundary detection on a
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-bundle@2.6.1000/dist/dcv.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-bundle@2.4.2200/dist/dcv.bundle.js"></script>
 </head>
 
 <body>
@@ -168,13 +168,13 @@ The simplest way to include the SDK is to use either the [jsDelivr](https://jsde
 - jsDelivr
 
   ```html
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-bundle@2.6.1000/dist/dcv.bundle.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-capture-vision-bundle@2.4.2200/dist/dcv.bundle.js"></script>
   ```
 
 - UNPKG
 
   ```html
-  <script src="https://unpkg.com/dynamsoft-capture-vision-bundle@2.6.1000/dist/dcv.bundle.js"></script>
+  <script src="https://unpkg.com/dynamsoft-capture-vision-bundle@2.4.2200/dist/dcv.bundle.js"></script>
   ```
 
 #### Host the SDK yourself
@@ -184,10 +184,10 @@ Besides using the CDN, you can also download the SDK and host its files on your 
 - npm
 
   ```cmd
-  npm i dynamsoft-capture-vision-bundle@2.6.1000 -E
+  npm i dynamsoft-capture-vision-bundle@2.4.2200 -E
   # Compared with using CDN, you need to set up more resources.
-  npm i dynamsoft-capture-vision-std@1.4.21 -E
-  npm i dynamsoft-image-processing@2.4.31 -E
+  npm i dynamsoft-capture-vision-std@1.4.10 -E
+  npm i dynamsoft-image-processing@2.4.20 -E
   ```
 
   The resources are located at the path `node_modules/<pkg>`, without `@<version>`, so the script would be like:
