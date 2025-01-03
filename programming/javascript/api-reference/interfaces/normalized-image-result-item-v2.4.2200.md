@@ -15,7 +15,6 @@ The `NormalizedImageResultItem` interface extends the `CapturedResultItem` inter
 interface NormalizedImageResultItem extends CapturedResultItem {
     imageData: DSImageData;
     location: Quadrilateral;
-    crossVerificationStatus: EnumCrossVerificationStatus;
     toCanvas(): HTMLCanvasElement;
     toImage(MIMEType: "image/png" | "image/jpeg"): HTMLImageElement;
     toBlob(MIMEType: "image/png" | "image/jpeg"): Promise<Blob>;
@@ -38,14 +37,6 @@ The location where the normalized image was extracted from within the original i
 **See Also**
 
 [Quadrilateral](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/quadrilateral.html)
-
-## crossVerificationStatus
-
-Indicates whether the NormalizedImageResultItem has passed cross verification.
-
-**See Also**
-
-[EnumCrossVerificationStatus]({{ site.enums }}core/cross-verification-status.html?lang=js)
 
 ## toCanvas
 
