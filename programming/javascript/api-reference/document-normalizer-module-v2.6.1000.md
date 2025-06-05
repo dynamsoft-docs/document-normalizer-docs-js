@@ -7,7 +7,6 @@ needAutoGenerateSidebar: true
 needGenerateH3Content: true
 noTitleIndex: true
 ---
-<!-- 2.0.20 -- Updated on 12/07/2023-->
 
 # DynamsoftDocumentNormalizer Module
 
@@ -27,15 +26,13 @@ This class defines common functionality in the `DocumentNormalizer` module. At p
 * [CornersUnit](./interfaces/corners-unit.md)
 * [DetectedQuadElement](./interfaces/detected-quad-element.md)
 * [DetectedQuadResultItem](./interfaces/detected-quad-result-item.md)
+* [DetectedQuadsResult](./interfaces/detected-quads-result.md)
 * [DetectedQuadsUnit](./interfaces/detected-quads-unit.md)
-* [DeskewedImageElement](./interfaces/deskewed-image-element.md)
-* [DeskewedImageResultItem](./interfaces/deskewed-image-result-item.md)
-* [DeskewedImagesUnit](./interfaces/deskewed-images-unit.md)
-* [EnhancedImageElement](./interfaces/enhanced-image-element.md)
-* [EnhancedImageResultItem](./interfaces/enhanced-image-result-item.md)
-* [EnhancedImagesUnit](./interfaces/enhanced-images-unit.md)
-* [LogicLinesUnit](./interfaces/logic-lines-unit.md)
 * [LongLinesUnit](./interfaces/long-lines-unit.md)
+* [NormalizedImageElement](./interfaces/normalized-image-element.md)
+* [NormalizedImageResultItem](./interfaces/normalized-image-result-item.md)
+* [NormalizedImagesResult](./interfaces/normalized-images-result.md)
+* [NormalizedImagesUnit](./interfaces/normalized-images-unit.md)
 * [SimplifiedDocumentNormalizerSettings](./interfaces/simplified-document-normalizer-settings.md)
 
 ## Enums
