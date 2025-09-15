@@ -24,6 +24,7 @@ dce_js_api: /camera-enhancer/docs/web/programming/javascript/api-reference/
 
 useVersionTree: false
 isDCV: true
+useJSVersionV3: true
 
 assets: /document-normalizer/docs/web/assets/
 edit_icon: /document-normalizer/docs/web/assets/img-icon/edit-icon.png
