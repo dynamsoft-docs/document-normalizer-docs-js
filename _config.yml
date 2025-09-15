@@ -23,6 +23,7 @@ dcv_introduction: /capture-vision/docs/core/introduction/
 
 useVersionTree: false
 isDCV: true
+useJSVersionV3: true
 
 assets: /document-normalizer/docs/web/assets/
 edit_icon: /document-normalizer/docs/web/assets/img-icon/edit-icon.png
