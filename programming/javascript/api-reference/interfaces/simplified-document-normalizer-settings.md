@@ -37,7 +37,7 @@ grayscaleEnhancementModes: Array<Core.EnumGrayscaleEnhancementMode>;
 
 **See also**
 
-* [EnumGrayscaleEnhancementMode]({{ site.enums }}core/grayscale-enhancement-mode.html?lang=js)
+* [EnumGrayscaleEnhancementMode]({{ site.dcv_js_api }}core/enum-grayscale-enhancement-mode.html?lang=js)
 
 ## grayscaleTransformationModes
 
@@ -49,7 +49,7 @@ grayscaleTransformationModes: Array<Core.EnumGrayscaleTransformationMode>;
 
 **See also**
 
-* [EnumGrayscaleTransformationMode]({{ site.enums }}core/grayscale-transformation-mode.html?lang=js)
+* [EnumGrayscaleTransformationMode]({{ site.dcv_js_api }}core/enum-grayscale-transformation-mode.html?lang=js)
 
 ## colourMode
 
@@ -61,7 +61,7 @@ colourMode: EnumImageColourMode;
 
 **See also**
 
-* [EnumImageColourMode]({{ site.enums }}document-normalizer/image-colour-mode.html?lang=js)
+* [EnumImageColourMode]({{ site.ddn_js_api }}enum-image-colour-mode.html?lang=js)
 
 ## pageSize
 

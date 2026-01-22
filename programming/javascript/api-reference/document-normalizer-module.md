@@ -40,4 +40,4 @@ This class defines common functionality in the `DocumentNormalizer` module. At p
 
 ## Enums
 
-* [EnumImageColourMode]({{ site.enums }}document-normalizer/image-colour-mode.html?lang=js)
+* [EnumImageColourMode]({{ site.ddn_js_api }}enum-image-colour-mode.html?lang=js)

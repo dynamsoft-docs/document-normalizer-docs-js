@@ -37,4 +37,4 @@ Indicates whether the DetectedQuadResultItem has passed cross verification.
 
 [Quadrilateral](https://www.dynamsoft.com/capture-vision/docs/web/programming/javascript/api-reference/core/basic-structures/quadrilateral.html)
 
-[EnumCrossVerificationStatus]({{ site.enums }}core/cross-verification-status.html?lang=js)
+[EnumCrossVerificationStatus]({{ site.dcv_js_api }}core/enum-cross-verification-status.html?lang=js)
