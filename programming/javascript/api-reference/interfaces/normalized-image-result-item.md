@@ -45,7 +45,7 @@ Indicates whether the NormalizedImageResultItem has passed cross verification.
 
 **See Also**
 
-[EnumCrossVerificationStatus]({{ site.enums }}core/cross-verification-status.html?lang=js)
+[EnumCrossVerificationStatus]({{ site.dcv_js_api }}core/enum-cross-verification-status.html?lang=js)
 
 ## toCanvas
 
