@@ -1,6 +1,6 @@
 ---
 layout: default-layout
-title: ImageColourMode - Dynamsoft Document Normalizer Enumerations
+title: ImageColourMode Enum – Document Normalizer JavaScript
 description: The enumeration ImageColourMode of Dynamsoft Document Normalizer describes the mapping status of a parsed field.
 keywords: Mapping status
 needGenerateH3Content: true
